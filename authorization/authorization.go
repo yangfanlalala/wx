@@ -83,22 +83,24 @@ func (a *Authorizer) StartPushTicket() error {
 	return nil
 }
 
-type atResponse struct {
-	baseResponse
+type Ticket struct {
 	ComponentAccessToken string `json:"component_access_token"`
 	ExpiresIn int64 `json:"expires_in"`
 }
 // GetAccessToken
 // @Summery 从服务端获取accessToken
-func (a *Authorizer) GetAccessToken(ticket string) error {
+func (a *Authorizer) GetAccessToken(ticket *Ticket) error {
 	payload := map[string]interface{} {
 		"component_appid": a.appid,
 		"component_appsecret": a.secret,
 		"component_verify_ticket": ticket,
 	}
 	data, _ := json.Marshal(payload)
-	resp := &atResponse{}
-	err := a.exec(ApiQueryAuth, http.MethodPost, data, resp)
+	resp := &struct {
+		baseResponse
+		Ticket
+	}{}
+	err := a.exec(a.buildURL(ApiComponentToken), http.MethodPost, data, resp)
 	if err != nil {
 		return err
 	}
@@ -111,74 +113,105 @@ func (a *Authorizer) GetAccessToken(ticket string) error {
 }
 
 
-type pacResponse struct {
-	baseResponse
+type PreAuthorization struct {
 	PreAuthCode string `json:"pre_auth_code"`
 	ExpiresIn int64 `json:"expires_in"`
 }
 // CreatePreAuthCode
 // @Summary
-func (a *Authorizer) CreatePreAuthCode() (string, error) {
+func (a *Authorizer) CreatePreAuthCode() (*PreAuthorization, error) {
 	payload := map[string]interface{} {
-		"component_access_token": a.AccessToken,
 		"component_appid": a.appid,
 	}
 	data, _ := json.Marshal(payload)
-	resp := &pacResponse{}
-	err := a.exec(ApiCreatePreAuthCode, http.MethodPost, data, resp)
+	resp := &struct{
+		baseResponse
+		PreAuthorization
+	}{}
+	err := a.exec(a.buildURL(ApiCreatePreAuthCode), http.MethodPost, data, resp)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	if resp.ErrorCode != 0 {
-		return "", fmt.Errorf("request wx service failed code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
+		return nil, fmt.Errorf("request wx service failed code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
 	}
-	return resp.PreAuthCode, nil
+	return &resp.PreAuthorization, nil
 }
 
-type qaResponse struct {
-	baseResponse
-	AuthorizationInfo struct{
-		AuthorizerAppID string `json:"authorizer_appid"`
-		AuthorizerAccessToken string `json:"authorizer_access_token"`
-		ExpiresIn int64 `json:"expires_in"`
-		AuthorizerRefreshToken string `json:"authorizer_refresh_token"`
-		FuncInfo []struct{
-			FuncScopeCategory struct{
-				ID int64 `json:"id"`
-			} `json:"funcscope_category"`
-		} `json:"func_info"`
-	} `json:"authorization_info"`
+type Authorization struct{
+	AuthorizerAppID string `json:"authorizer_appid"`
+	AuthorizerAccessToken string `json:"authorizer_access_token"`
+	ExpiresIn int64 `json:"expires_in"`
+	AuthorizerRefreshToken string `json:"authorizer_refresh_token"`
+	FuncInfo []struct{
+		FuncScopeCategory struct{
+			ID int64 `json:"id"`
+		} `json:"funcscope_category"`
+	} `json:"func_info"`
 }
 // QueryAuth
 // @Summary
-func (a *Authorizer) QueryAuth(ac string) (string, error) {
+func (a *Authorizer) QueryAuth(ac string) (*Authorization, error) {
 	payload := map[string]interface{} {
-		"component_access_token": "",
-		"component_appid": "",
-		"authorization_code": "",
+		"component_appid": a.appid,
+		"authorization_code": ac,
 	}
 	data, _ := json.Marshal(payload)
-	resp := &qaResponse{}
-	err := a.exec(ApiQueryAuth, http.MethodPost, data, resp)
+	resp := &struct {
+		baseResponse
+		AuthorizationInfo Authorization  `json:"authorization_info"`
+	}{}
+	err := a.exec(a.buildURL(ApiQueryAuth), http.MethodPost, data, resp)
 	if err != nil {
-		return "", nil
+		return nil, err
 	}
 	if resp.ErrorCode != 0 {
-		return "", fmt.Errorf("request wx service failed, code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
+		return nil, fmt.Errorf("request wx service failed, code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
 	}
-	return "", nil
+	return &resp.AuthorizationInfo, nil
+}
+
+type AuthorizerToken struct {
+	AuthorizerAccessToken string `json:"authorizer_access_token"`
+	ExpiresIn int64 `json:"expires_in"`
+	AuthorizerRefreshToken string `json:"authorizer_refresh_token"`
+}
+
+func (a *Authorizer) AuthorizerToken(appid, token string) (*AuthorizerToken, error) {
+	payload := map[string]interface{} {
+		"component_appid": a.appid,
+		"authorizer_appid": appid,
+		"authorizer_refresh_token": token,
+	}
+	data, _ := json.Marshal(payload)
+	resp := &struct {
+		baseResponse
+		AuthorizerToken
+	}{}
+	if err := a.exec(a.buildURL(ApiAuthorizerToken), http.MethodPost, data, resp); err != nil {
+		return nil, err
+	}
+	return &resp.AuthorizerToken, nil
 }
 
 
-func (a *Authorizer) AuthorizerToken() (string, error) {
-	return "", nil
+func (a *Authorizer) GetAuthorizerList(appid string) {
+	payload := &map[string]interface{}{
+		"component_appid": a.appid,
+		"authorizer_appid": appid,
+	}
+    data, _ := json.Marshal(payload)
+    a.exec(a.buildURL(ApiGetAuthorizerList), http.MethodPost, data, nil)
 }
 
-func (a *Authorizer) GetAuthorizerList() {
-
-}
-
-func (a *Authorizer) GetAuthorizerOption() {
+func (a *Authorizer) GetAuthorizerOption(appid string) {
+	payload := &map[string]interface{}{
+		"component_appid": a.appid,
+		"authorizer_appid": appid,
+		"option_name": "",
+	}
+	data, _ := json.Marshal(payload)
+	a.exec("", http.MethodPost, data, nil)
 
 }
 
@@ -212,4 +245,8 @@ func (a *Authorizer) exec(url, method string, data []byte, rst interface{}) erro
 		return err
 	}
 	return nil
+}
+
+func (a *Authorizer) buildURL(url string) string {
+	return url + "?component_access_token=" + a.AccessToken
 }
