@@ -11,3 +11,15 @@ const (
 	ApiGetWxaCode = "https://api.weixin.qq.com/wxa/getwxacode" // 获取小程序码
 	ApiCreateWxaQRCode = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode" // 获取小程序二维码
 )
+
+func (cli *WeChatClient) ShortURL() {
+
+}
+
+func (cli *WeChatClient) GetWxaCodeUnlimit() {
+
+}
+
+func (cli *WeChatClient) CreateWxaQRCode() {
+
+}
