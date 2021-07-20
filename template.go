@@ -1,4 +1,4 @@
-package template
+package wx
 
 const (
 	ApiGetTemplateDraftList = "https://api.weixin.qq.com/wxa/gettemplatedraftlist" // 获取代码草稿列表

@@ -1,4 +1,4 @@
-package authorization
+package wx
 
 import (
 	"bytes"
@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
-	"sync"
 	"time"
 )
 
@@ -21,6 +20,18 @@ const (
 	ApiGetAuthorizerOption = "https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_option" // 获取授权方选项信息
 	ApiSetAuthorizerOption = "https://api.weixin.qq.com/cgi-bin/component/api_set_authorizer_option" // 设置授权方选项信息
 	ApiGetAuthorizerInfo   = "https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info"   // 获取授权方的帐号基本信息
+
+	OptionNameLocationReport = "location_report"
+	OptionNameVoiceRecognize = "voice_recognize"
+	OptionNameCustomerService = "customer_service"
+
+	OptionValueLocationReportOff = 0
+	OptionValueLocationReportOn = 1
+	OptionValueLocationReportPeriod = 2
+	OptionValueVoiceRecognizeOff = 0
+	OptionValueVoiceRecognizeOn = 1
+	OptionValueCustomerServiceOff = 0
+	OptionValueCustomerServiceOn = 1
 )
 
 type baseResponse struct {
@@ -31,11 +42,6 @@ type baseResponse struct {
 type Authorizer struct {
 	appid              string
 	secret             string
-	VerifyTicket       string
-	VerifyTicketExpire int64
-	AccessToken        string
-	AccessTokenExpire  int64
-	lck                sync.Mutex
 	cli                *http.Client
 }
 
@@ -100,15 +106,13 @@ func (a *Authorizer) GetAccessToken(ticket *Ticket) error {
 		baseResponse
 		Ticket
 	}{}
-	err := a.exec(a.buildURL(ApiComponentToken), http.MethodPost, data, resp)
+	err := a.exec(ApiComponentToken, http.MethodPost, data, resp)
 	if err != nil {
 		return err
 	}
 	if resp.ErrorCode != 0 {
 		return fmt.Errorf("request wx service failed, code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
 	}
-	a.AccessToken = resp.ComponentAccessToken
-	a.AccessTokenExpire = time.Now().Unix() + resp.ExpiresIn
 	return nil
 }
 
@@ -119,7 +123,7 @@ type PreAuthorization struct {
 }
 // CreatePreAuthCode
 // @Summary
-func (a *Authorizer) CreatePreAuthCode() (*PreAuthorization, error) {
+func (a *Authorizer) CreatePreAuthCode(ac string) (*PreAuthorization, error) {
 	payload := map[string]interface{} {
 		"component_appid": a.appid,
 	}
@@ -128,7 +132,7 @@ func (a *Authorizer) CreatePreAuthCode() (*PreAuthorization, error) {
 		baseResponse
 		PreAuthorization
 	}{}
-	err := a.exec(a.buildURL(ApiCreatePreAuthCode), http.MethodPost, data, resp)
+	err := a.exec(buildComponentURL(ApiCreatePreAuthCode, ac), http.MethodPost, data, resp)
 	if err != nil {
 		return nil, err
 	}
@@ -161,7 +165,7 @@ func (a *Authorizer) QueryAuth(ac string) (*Authorization, error) {
 		baseResponse
 		AuthorizationInfo Authorization  `json:"authorization_info"`
 	}{}
-	err := a.exec(a.buildURL(ApiQueryAuth), http.MethodPost, data, resp)
+	err := a.exec(buildComponentURL(ApiQueryAuth, ac), http.MethodPost, data, resp)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +181,7 @@ type AuthorizerToken struct {
 	AuthorizerRefreshToken string `json:"authorizer_refresh_token"`
 }
 
-func (a *Authorizer) AuthorizerToken(appid, token string) (*AuthorizerToken, error) {
+func (a *Authorizer) AuthorizerToken(appid, token, ac string) (*AuthorizerToken, error) {
 	payload := map[string]interface{} {
 		"component_appid": a.appid,
 		"authorizer_appid": appid,
@@ -188,39 +192,68 @@ func (a *Authorizer) AuthorizerToken(appid, token string) (*AuthorizerToken, err
 		baseResponse
 		AuthorizerToken
 	}{}
-	if err := a.exec(a.buildURL(ApiAuthorizerToken), http.MethodPost, data, resp); err != nil {
+	if err := a.exec(buildComponentURL(ApiAuthorizerToken, ac), http.MethodPost, data, resp); err != nil {
 		return nil, err
 	}
 	return &resp.AuthorizerToken, nil
 }
 
 
-func (a *Authorizer) GetAuthorizerList(appid string) {
+func (a *Authorizer) GetAuthorizerList(appid, ac string) {
 	payload := &map[string]interface{}{
 		"component_appid": a.appid,
 		"authorizer_appid": appid,
 	}
     data, _ := json.Marshal(payload)
-    a.exec(a.buildURL(ApiGetAuthorizerList), http.MethodPost, data, nil)
+    a.exec(buildComponentURL(ApiGetAuthorizerList, ac), http.MethodPost, data, nil)
 }
 
-func (a *Authorizer) GetAuthorizerOption(appid string) {
+type AuthorizerOption struct {
+	AuthorizerAppID string `json:"authorizer_appid"`
+	OptionName string `json:"option_name"`
+	OptionValue int64 `json:"option_value"`
+}
+
+func (a *Authorizer) GetAuthorizerOption(appid, option, ac string) (*AuthorizerOption, error) {
 	payload := &map[string]interface{}{
 		"component_appid": a.appid,
 		"authorizer_appid": appid,
-		"option_name": "",
+		"option_name": option,
 	}
 	data, _ := json.Marshal(payload)
-	a.exec("", http.MethodPost, data, nil)
-
+	resp := &struct {
+		baseResponse
+		AuthorizerOption
+	}{}
+	if err := a.exec(buildComponentURL(ApiGetAuthorizerOption, ac), http.MethodPost, data, resp); err != nil {
+		return nil, err
+	}
+	if resp.ErrorCode != 0 {
+		return nil, fmt.Errorf("request wx service failed, code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
+	}
+	return &resp.AuthorizerOption, nil
 }
 
-func (a *Authorizer) SetAuthorizerOption() {
-
+func (a *Authorizer) SetAuthorizerOption(option *AuthorizerOption, ac string) error {
+	payload := map[string]interface{} {
+		"component_appid": a.appid,
+		"authorizer_appid": option.AuthorizerAppID,
+		"option_name": option.OptionName,
+		"option_value": option.OptionValue,
+	}
+	data, _ := json.Marshal(payload)
+	resp := &baseResponse{}
+	if err := a.exec(buildComponentURL(ApiSetAuthorizerOption, ac), http.MethodPost, data, resp); err != nil {
+		return err
+	}
+	if resp.ErrorCode != 0 {
+		return fmt.Errorf("request wx service failed, code[%d], message[%s]", resp.ErrorCode, resp.ErrorMessage)
+	}
+	return nil
 }
 
-func (a *Authorizer) GetAuthorizerInfo() {
-
+func (a *Authorizer) GetAuthorizerInfo(appid, ac string) {
+	a.exec(buildComponentURL(ApiGetAuthorizerInfo, ac), http.MethodPost, nil, nil)
 }
 
 func (a *Authorizer) exec(url, method string, data []byte, rst interface{}) error {
@@ -247,6 +280,6 @@ func (a *Authorizer) exec(url, method string, data []byte, rst interface{}) erro
 	return nil
 }
 
-func (a *Authorizer) buildURL(url string) string {
-	return url + "?component_access_token=" + a.AccessToken
+func buildComponentURL(url, ac string) string {
+	return url + "?component_access_token=" + ac
 }

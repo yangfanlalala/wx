@@ -1,4 +1,4 @@
-package business
+package wx
 
 const (
 	ApiTmplGetCategory = "https://api.weixin.qq.com/wxaapi/newtmpl/getcategory" // 获取小程序账号的类目
@@ -9,3 +9,18 @@ const (
 	ApiTmplDeleteTemplate = "https://api.weixin.qq.com/wxaapi/newtmpl/deltemplate" // 删除帐号下的某个模板
 	ApiTmplSend = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send" // 发送订阅消息
 )
+
+
+type TmplMessageData map[string]interface{}
+type TmplMessage struct {
+	ToUser string `json:"touser"`
+	TemplateID string `json:"template_id"`
+	Page string `json:"page"`
+	Data TmplMessageData `json:"data"`
+	MiniProgramState string `json:"miniprogram_state,omitempty"`
+	Lang string `json:"lang,omitempty"`
+}
+func SendTmplMessage(token string, tmpl *TmplMessage) {
+
+}
+

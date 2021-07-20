@@ -1,4 +1,4 @@
-package mini_code
+package wx
 
 const (
 	ApiQRCodeJumpGet = "https://api.weixin.qq.com/cgi-bin/wxopen/qrcodejumpget" // 获取已设置的二维码规则
