@@ -11,7 +11,7 @@ func (client WeChatClient) FastRegisterWeApp() {
 
 type FastRegisterWeAppRequest struct {
 	Action             string `position:"query" name:"action"`
-	AccessCode         string `position:"query" name:"access_code"`
+	ComponentAccessToken         string `position:"query" name:"component_access_token"`
 	Name               string `position:"body" name:"name"`
 	Code               string `position:"body" name:"code"`
 	CodeType           int64  `position:"body" name:"code_type"`
