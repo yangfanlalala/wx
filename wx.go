@@ -17,7 +17,7 @@ const (
 )
 
 type rsp struct {
-	ErrorCode int64 `json:"errcode"`
+	ErrorCode    int64  `json:"errcode"`
 	ErrorMessage string `json:"errmsg"`
 }
 
@@ -29,16 +29,16 @@ func NewWeChatClient() *WeChatClient {
 	return &WeChatClient{}
 }
 
-func (cli *WeChatClient) execute(url, method string, data []byte, reply interface{}) error {
+func (client *WeChatClient) execute(url, method string, data []byte, reply interface{}) error {
 	req, err := http.NewRequest(method, url, bytes.NewReader(data))
 	if err != nil {
 		return err
 	}
-	resp, err := cli.httpClient.Do(req)
+	resp, err := client.httpClient.Do(req)
 	if err != nil {
 		return err
 	}
-	defer func() { _ = resp.Body.Close()}()
+	defer func() { _ = resp.Body.Close() }()
 	body, _ := ioutil.ReadAll(resp.Body)
 	if resp.StatusCode >= 300 {
 		return fmt.Errorf("request wx service failed, status code[%d], message[%s]", resp.StatusCode, body)

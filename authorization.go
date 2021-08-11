@@ -21,28 +21,28 @@ const (
 	ApiSetAuthorizerOption = "https://api.weixin.qq.com/cgi-bin/component/api_set_authorizer_option" // 设置授权方选项信息
 	ApiGetAuthorizerInfo   = "https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info"   // 获取授权方的帐号基本信息
 
-	OptionNameLocationReport = "location_report"
-	OptionNameVoiceRecognize = "voice_recognize"
+	OptionNameLocationReport  = "location_report"
+	OptionNameVoiceRecognize  = "voice_recognize"
 	OptionNameCustomerService = "customer_service"
 
-	OptionValueLocationReportOff = 0
-	OptionValueLocationReportOn = 1
+	OptionValueLocationReportOff    = 0
+	OptionValueLocationReportOn     = 1
 	OptionValueLocationReportPeriod = 2
-	OptionValueVoiceRecognizeOff = 0
-	OptionValueVoiceRecognizeOn = 1
-	OptionValueCustomerServiceOff = 0
-	OptionValueCustomerServiceOn = 1
+	OptionValueVoiceRecognizeOff    = 0
+	OptionValueVoiceRecognizeOn     = 1
+	OptionValueCustomerServiceOff   = 0
+	OptionValueCustomerServiceOn    = 1
 )
 
 type baseResponse struct {
-	ErrorCode int64 `json:"errcode"`
+	ErrorCode    int64  `json:"errcode"`
 	ErrorMessage string `json:"errmsg"`
 }
 
 type Authorizer struct {
-	appid              string
-	secret             string
-	cli                *http.Client
+	appid  string
+	secret string
+	cli    *http.Client
 }
 
 func NewAuthorizer(appid, secret string, cli *http.Client) *Authorizer {
@@ -73,8 +73,8 @@ func NewAuthorizer(appid, secret string, cli *http.Client) *Authorizer {
 // StartPushTicket
 // @Summery 开启推送票据
 func (a *Authorizer) StartPushTicket() error {
-	payload := map[string]interface{} {
-		"component_appid": a.appid,
+	payload := map[string]interface{}{
+		"component_appid":  a.appid,
 		"component_secret": a.secret,
 	}
 	data, _ := json.Marshal(payload)
@@ -91,14 +91,15 @@ func (a *Authorizer) StartPushTicket() error {
 
 type Ticket struct {
 	ComponentAccessToken string `json:"component_access_token"`
-	ExpiresIn int64 `json:"expires_in"`
+	ExpiresIn            int64  `json:"expires_in"`
 }
+
 // GetAccessToken
 // @Summery 从服务端获取accessToken
 func (a *Authorizer) GetAccessToken(ticket *Ticket) error {
-	payload := map[string]interface{} {
-		"component_appid": a.appid,
-		"component_appsecret": a.secret,
+	payload := map[string]interface{}{
+		"component_appid":         a.appid,
+		"component_appsecret":     a.secret,
 		"component_verify_ticket": ticket,
 	}
 	data, _ := json.Marshal(payload)
@@ -116,19 +117,19 @@ func (a *Authorizer) GetAccessToken(ticket *Ticket) error {
 	return nil
 }
 
-
 type PreAuthorization struct {
 	PreAuthCode string `json:"pre_auth_code"`
-	ExpiresIn int64 `json:"expires_in"`
+	ExpiresIn   int64  `json:"expires_in"`
 }
+
 // CreatePreAuthCode
 // @Summary
 func (a *Authorizer) CreatePreAuthCode(ac string) (*PreAuthorization, error) {
-	payload := map[string]interface{} {
+	payload := map[string]interface{}{
 		"component_appid": a.appid,
 	}
 	data, _ := json.Marshal(payload)
-	resp := &struct{
+	resp := &struct {
 		baseResponse
 		PreAuthorization
 	}{}
@@ -142,28 +143,29 @@ func (a *Authorizer) CreatePreAuthCode(ac string) (*PreAuthorization, error) {
 	return &resp.PreAuthorization, nil
 }
 
-type Authorization struct{
-	AuthorizerAppID string `json:"authorizer_appid"`
-	AuthorizerAccessToken string `json:"authorizer_access_token"`
-	ExpiresIn int64 `json:"expires_in"`
+type Authorization struct {
+	AuthorizerAppID        string `json:"authorizer_appid"`
+	AuthorizerAccessToken  string `json:"authorizer_access_token"`
+	ExpiresIn              int64  `json:"expires_in"`
 	AuthorizerRefreshToken string `json:"authorizer_refresh_token"`
-	FuncInfo []struct{
-		FuncScopeCategory struct{
+	FuncInfo               []struct {
+		FuncScopeCategory struct {
 			ID int64 `json:"id"`
 		} `json:"funcscope_category"`
 	} `json:"func_info"`
 }
+
 // QueryAuth
 // @Summary
 func (a *Authorizer) QueryAuth(ac string) (*Authorization, error) {
-	payload := map[string]interface{} {
-		"component_appid": a.appid,
+	payload := map[string]interface{}{
+		"component_appid":    a.appid,
 		"authorization_code": ac,
 	}
 	data, _ := json.Marshal(payload)
 	resp := &struct {
 		baseResponse
-		AuthorizationInfo Authorization  `json:"authorization_info"`
+		AuthorizationInfo Authorization `json:"authorization_info"`
 	}{}
 	err := a.exec(buildComponentURL(ApiQueryAuth, ac), http.MethodPost, data, resp)
 	if err != nil {
@@ -176,15 +178,15 @@ func (a *Authorizer) QueryAuth(ac string) (*Authorization, error) {
 }
 
 type AuthorizerToken struct {
-	AuthorizerAccessToken string `json:"authorizer_access_token"`
-	ExpiresIn int64 `json:"expires_in"`
+	AuthorizerAccessToken  string `json:"authorizer_access_token"`
+	ExpiresIn              int64  `json:"expires_in"`
 	AuthorizerRefreshToken string `json:"authorizer_refresh_token"`
 }
 
 func (a *Authorizer) AuthorizerToken(appid, token, ac string) (*AuthorizerToken, error) {
-	payload := map[string]interface{} {
-		"component_appid": a.appid,
-		"authorizer_appid": appid,
+	payload := map[string]interface{}{
+		"component_appid":          a.appid,
+		"authorizer_appid":         appid,
 		"authorizer_refresh_token": token,
 	}
 	data, _ := json.Marshal(payload)
@@ -198,27 +200,26 @@ func (a *Authorizer) AuthorizerToken(appid, token, ac string) (*AuthorizerToken,
 	return &resp.AuthorizerToken, nil
 }
 
-
 func (a *Authorizer) GetAuthorizerList(appid, ac string) {
 	payload := &map[string]interface{}{
-		"component_appid": a.appid,
+		"component_appid":  a.appid,
 		"authorizer_appid": appid,
 	}
-    data, _ := json.Marshal(payload)
-    a.exec(buildComponentURL(ApiGetAuthorizerList, ac), http.MethodPost, data, nil)
+	data, _ := json.Marshal(payload)
+	a.exec(buildComponentURL(ApiGetAuthorizerList, ac), http.MethodPost, data, nil)
 }
 
 type AuthorizerOption struct {
 	AuthorizerAppID string `json:"authorizer_appid"`
-	OptionName string `json:"option_name"`
-	OptionValue int64 `json:"option_value"`
+	OptionName      string `json:"option_name"`
+	OptionValue     int64  `json:"option_value"`
 }
 
 func (a *Authorizer) GetAuthorizerOption(appid, option, ac string) (*AuthorizerOption, error) {
 	payload := &map[string]interface{}{
-		"component_appid": a.appid,
+		"component_appid":  a.appid,
 		"authorizer_appid": appid,
-		"option_name": option,
+		"option_name":      option,
 	}
 	data, _ := json.Marshal(payload)
 	resp := &struct {
@@ -235,11 +236,11 @@ func (a *Authorizer) GetAuthorizerOption(appid, option, ac string) (*AuthorizerO
 }
 
 func (a *Authorizer) SetAuthorizerOption(option *AuthorizerOption, ac string) error {
-	payload := map[string]interface{} {
-		"component_appid": a.appid,
+	payload := map[string]interface{}{
+		"component_appid":  a.appid,
 		"authorizer_appid": option.AuthorizerAppID,
-		"option_name": option.OptionName,
-		"option_value": option.OptionValue,
+		"option_name":      option.OptionName,
+		"option_value":     option.OptionValue,
 	}
 	data, _ := json.Marshal(payload)
 	resp := &baseResponse{}
@@ -265,7 +266,7 @@ func (a *Authorizer) exec(url, method string, data []byte, rst interface{}) erro
 	if err != nil {
 		return err
 	}
-	defer func() {resp.Body.Close()}()
+	defer func() { resp.Body.Close() }()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
