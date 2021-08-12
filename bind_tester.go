@@ -9,6 +9,6 @@ func (client *WeChatClient) BindTester() {
 }
 
 type BindTesterRequest struct {
-	AccessToken string `name:"access_token"`
-	WeChatID string `name:"wechatid"`
+	AccessToken string `name:"access_token" json:"-"`
+	WeChatID string `name:"wechatid" json:"wechatid"`
 }

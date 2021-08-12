@@ -9,10 +9,10 @@ func (client *WeChatClient) ModifyHeadImage() {
 }
 
 type ModifyHeadImageRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	HeadImageMediaID string `position:"body" name:"head_img_media_id"`
-	X1 string `position:"body" name:"x1"`
-	Y1 string `position:"body" name:"y1"`
-	X2 string `position:"body" name:"x2"`
-	Y2 string `position:"body" name:"y2"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	HeadImageMediaID string `position:"body" name:"head_img_media_id" json:"head_image_media_id"`
+	X1 string `position:"body" name:"x1" json:"x1"`
+	Y1 string `position:"body" name:"y1" json:"y1"`
+	X2 string `position:"body" name:"x2" json:"x2"`
+	Y2 string `position:"body" name:"y2" json:"y2"`
 }

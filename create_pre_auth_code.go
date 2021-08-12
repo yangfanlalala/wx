@@ -9,6 +9,6 @@ func (client *WeChatClient) CreatePreAuthCode() {
 }
 
 type CreatePreAuthCodeRequest struct {
-	ComponentAccessToken string `position:"query" name:"component_access_token"`
-	ComponentAppID string `position:"body" name:"component_app_id"`
+	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
+	ComponentAppID string `position:"body" name:"component_appid" json:"component_appid"`
 }

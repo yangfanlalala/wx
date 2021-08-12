@@ -13,7 +13,7 @@ func (client *WeChatClient) SetWebViewDomain() {
 }
 
 type SetWebViewDomainRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	action string `position:"body" name:"action"`
-	WebViewDomain string `position:"body" name:"webviewdomain"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	action string `position:"body" name:"action" json:"action"`
+	WebViewDomain string `position:"body" name:"webviewdomain" json:"webviewdomain"`
 }

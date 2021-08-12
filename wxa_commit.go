@@ -9,9 +9,9 @@ func (client *WeChatClient) WxaCommit () {
 }
 
 type WxaCommitRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	TemplateID string `name:"template_id"`
-	ExtJson string `name:"ext_json"`
-	UserVersion string `name:"user_version"`
-	UserDesc string `name:"user_desc"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	TemplateID string `name:"template_id" json:"template_id"`
+	ExtJson string `name:"ext_json" json:"ext_json"`
+	UserVersion string `name:"user_version" json:"user_version"`
+	UserDesc string `name:"user_desc" json:"user_desc"`
 }

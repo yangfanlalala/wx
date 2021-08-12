@@ -10,16 +10,16 @@ func (client *WeChatClient) AddCategory() {
 
 type AddCategoryRequest struct {
 	AccessToken string `position:"query" name:"access_token"`
-	Categories []AddCategory `position:"body" name:"categories"`
+	Categories []AddCategory `position:"body" name:"categories" json:"categories"`
 }
 
 type AddCategory struct {
 	First int64 `name:"first"`
-	Second int64 `name:"second"`
-	Certicates []AddCategoryCerticate `name:"certicates"`
+	Second int64 `name:"second" json:"second"`
+	Certicates []AddCategoryCerticate `name:"certicates" json:"certicates"`
 }
 
 type AddCategoryCerticate struct {
-	Key string `name:"key"`
-	Value string `name:"value"`
+	Key string `name:"key" json:"key"`
+	Value string `name:"value" json:"value"`
 }

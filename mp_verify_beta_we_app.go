@@ -9,7 +9,7 @@ func (client *WeChatClient) MpVerifyBetaWeApp() {
 }
 
 type MpVerifyBetaWeAppRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	MpAppID     string `position:"body" name:"mp_appid"`
-	Ticket      string `position:"body" name:"ticket"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	MpAppID     string `position:"body" name:"mp_appid" json:"mp_appid"`
+	Ticket      string `position:"body" name:"ticket" json:"ticket"`
 }

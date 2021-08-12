@@ -9,6 +9,6 @@ func (client *WeChatClient) GetTemplateList() {
 }
 
 type GetTemplateListRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	TemplateType string `position:"query" name:"template_type"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	TemplateType string `position:"query" name:"template_type" json:"-"`
 }

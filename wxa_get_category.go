@@ -9,5 +9,5 @@ func (client *WeChatClient) WxaGetCategory() {
 }
 
 type WxaGetCategoryRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

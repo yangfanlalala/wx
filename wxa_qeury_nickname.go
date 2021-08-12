@@ -9,6 +9,6 @@ func (client *WeChatClient) WxaQueryNickname() {
 }
 
 type WxaQueryNickname struct {
-	AccessToken string `position:"access_token" name:"access_token"`
-	AuditID string `position:"body" name:"audit_id"`
+	AccessToken string `position:"access_token" name:"access_token" json:"-"`
+	AuditID string `position:"body" name:"audit_id" json:"audit_id"`
 }

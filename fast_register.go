@@ -9,6 +9,6 @@ func (client *WeChatClient) FastRegister() {
 }
 
 type FastRegisterRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	Ticket      string `position:"ticket" name:"ticket"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	Ticket      string `position:"body" name:"ticket" json:"ticket"`
 }

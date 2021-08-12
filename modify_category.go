@@ -9,13 +9,13 @@ func (client *WeChatClient) ModifyCategory() {
 }
 
 type ModifyCategoryRequest struct {
-	AccessToken string `name:"access_token"`
-	First string `name:"first"`
-	Second string `name:"second"`
-	Certicates []ModifyCategoryCerticate `name:"certicates"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	First string `position:"body" name:"first" json:"first"`
+	Second string `position:"body" name:"second" json:"second"`
+	Certicates []ModifyCategoryCerticate `position:"body" name:"certicates" json:"certicates"`
 }
 
 type ModifyCategoryCerticate struct {
-	Key string `name:"key"`
-	Value string `name:"value"`
+	Key string `name:"key" json:"key"`
+	Value string `name:"value" json:"value"`
 }

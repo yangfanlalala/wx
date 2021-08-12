@@ -9,7 +9,7 @@ func (client *WeChatClient) GetMpAdminAuth() {
 }
 
 type GetMpAdminAuthRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	MpAppID     string `position:"mp_appid" name:"mp_appid"`
-	SameAdmin   int64  `position:"body" name:"same_admin"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	MpAppID     string `position:"mp_appid" name:"mp_appid" json:"mp_appid"`
+	SameAdmin   int64  `position:"body" name:"same_admin" json:"same_admin"`
 }

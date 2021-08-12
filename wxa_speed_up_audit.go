@@ -9,6 +9,6 @@ func (client *WeChatClient) WxaSpeedUpAudit() {
 }
 
 type WxaSpeedUpAuditRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	AuditID int64 `position:"body" name:"auditid"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	AuditID int64 `position:"body" name:"auditid" json:"audit_id"`
 }

@@ -9,7 +9,7 @@ func (client *WeChatClient) GetAuthorizerInfo() {
 }
 
 type GetAuthorizerInfoRequest struct {
-	ComponentAccessToken string `position:"query" name:"component_access_token"`
-	ComponentAppID string `position:"body" name:"component_appid"`
-	AuthorizerAppID string `position:"body" name:"authorizer_appid"`
+	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
+	ComponentAppID string `position:"body" name:"component_appid" json:"component_appid"`
+	AuthorizerAppID string `position:"body" name:"authorizer_appid" json:"authorizer_appid"`
 }

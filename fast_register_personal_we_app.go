@@ -9,9 +9,9 @@ func (client *WeChatClient) FastRegisterPersonalWeApp() {
 }
 
 type FastRegisterPersonalWeAppRequest struct {
-	Action               string `position:"query" name:"action"`
-	ComponentAccessToken string `position:"query" name:"component_access_token"`
-	IDName               string `position:"body" name:"idname"`
-	WxUser               string `position:"body" name:"wxuser"`
-	ComponentPhone       string `position:"body" name:"component_phone"`
+	Action               string `position:"query" name:"action" json:"-"`
+	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
+	IDName               string `position:"body" name:"idname" json:"idname"`
+	WxUser               string `position:"body" name:"wxuser" json:"wxuser"`
+	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone"`
 }

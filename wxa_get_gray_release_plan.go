@@ -9,5 +9,5 @@ func (client *WeChatClient) WxaGetGrayReleasePlan() {
 }
 
 type WxaGetGrayReleasePlanRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

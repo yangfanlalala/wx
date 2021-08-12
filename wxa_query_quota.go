@@ -11,5 +11,5 @@ func (client *WeChatClient) WxaQueryQuota() {
 }
 
 type WxaQueryQuotaRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

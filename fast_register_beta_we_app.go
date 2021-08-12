@@ -9,7 +9,7 @@ func (client *WeChatClient) FastRegisterBetaWeApp() {
 }
 
 type FastRegisterBetaWeAppRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	Name        string `position:"body" name:"name"`
-	OpenID      string `position:"body" name:"openid"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	Name        string `position:"body" name:"name" json:"name"`
+	OpenID      string `position:"body" name:"openid" json:"openid"`
 }

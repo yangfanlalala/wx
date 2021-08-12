@@ -9,6 +9,6 @@ func (client *WeChatClient) SetBetaWeAppNickname() {
 }
 
 type SetBetaWeAppNickname struct {
-	AccessToken string `position:"query" name:"access_token"`
-	Name        string `position:"Body" name:"name"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	Name        string `position:"Body" name:"name" json:"name"`
 }

@@ -9,6 +9,6 @@ func (client *WeChatClient) ModifySignature() {
 }
 
 type ModifySignatureRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	Signature string `position:"body" name:"signature"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	Signature string `position:"body" name:"signature" json:"signature"`
 }

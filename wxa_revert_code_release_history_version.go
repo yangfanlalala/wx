@@ -9,7 +9,7 @@ func (client *WeChatClient) WxaRevertCodeReleaseHistoryVersion() {
 }
 
 type WxaRevertCodeReleaseHistoryVersion struct {
-	AccessToken string `position:"query" name:"access_token"`
-	Action string `position:"query" name:"action"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	Action string `position:"query" name:"action" json:"action"`
 }
 

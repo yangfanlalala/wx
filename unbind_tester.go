@@ -9,7 +9,7 @@ func (client *WeChatClient) UnbindTester () {
 }
 
 type UnbindTesterRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	WeChatID string `position:"body" name:"wechatid"`
-	UserString string `position:"body" name:"userstr"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	WeChatID string `position:"body" name:"wechatid" json:"wechatid"`
+	UserString string `position:"body" name:"userstr" json:"userstr"`
 }

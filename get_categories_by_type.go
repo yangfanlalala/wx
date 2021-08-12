@@ -9,6 +9,6 @@ func (client *WeChatClient) GetCategoriesByType() {
 }
 
 type GetCategoriesByTypeRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	VerifyType string `position:"body" name:"verify_type"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
+	VerifyType string `position:"body" name:"verify_type" json:"verify_type"`
 }

@@ -9,7 +9,7 @@ func (client *WeChatClient) ComponentToken() {
 }
 
 type ComponentTokenRequest struct {
-	ComponentAppID string `position:"body" name:"component_appid"`
-	ComponentAppSecret string `position:"body" name:"component_appsecret"`
-	ComponentVerifyTicket string `position:"body" name:"component_verify_ticket"`
+	ComponentAppID string `position:"body" name:"component_appid" json:"component_appid"`
+	ComponentAppSecret string `position:"body" name:"component_appsecret" json:"component_appsecret"`
+	ComponentVerifyTicket string `position:"body" name:"component_verify_ticket" json:"component_verify_ticket"`
 }
