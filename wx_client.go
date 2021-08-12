@@ -1,7 +1,10 @@
  package wx
 
  import (
+	 "bytes"
+	 "encoding/json"
 	 "net/http"
+	 "github.com/json-iterator/go"
  )
 
 const (
@@ -49,6 +52,24 @@ func (client *WeChatClient) GetHttpsProxy() string {
 
 func (client *WeChatClient) getHttpProxy() {
 
+}
+
+func (client *WeChatClient) DoRequest(url, method string, input interface{}, output interface{}) error {
+	buf := &bytes.Buffer{}
+	if err := json.NewEncoder(buf).Encode(input); err != nil {
+		return err
+	}
+	req, err := http.NewRequest(method, url, buf)
+	if err != nil {
+		return err
+	}
+	rsp, err := client.httpClient.Do(req)
+	if err != nil {
+		return err
+	}
+	defer func() {_ = rsp.Body.Close()}()
+	jsoniter.NewDecoder(rsp.Body).Decode(output)
+	return nil
 }
 
 func NewWeChatClient() *WeChatClient {
