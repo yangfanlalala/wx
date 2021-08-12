@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaGetGrayReleasePlan = "https://api.weixin.qq.com/wxa/getgrayreleaseplan"
 
-func (client WeChatClient) WxaGetGrayReleasePlan() {
+func (client *WeChatClient) WxaGetGrayReleasePlan() {
 
 }
 

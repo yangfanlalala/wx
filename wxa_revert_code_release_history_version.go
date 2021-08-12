@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaRevertCodeReleaseHistoryVersion = "https://api.weixin.qq.com/wxa/revertcoderelease"
 
-func (client WeChatClient) WxaRevertCodeReleaseHistoryVersion() {
+func (client *WeChatClient) WxaRevertCodeReleaseHistoryVersion() {
 
 }
 

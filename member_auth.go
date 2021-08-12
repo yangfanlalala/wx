@@ -5,7 +5,7 @@ package wx
 const MemberAuthActionGetExperiencer = "get_experiencer"
 const ApiMemberAuth = "https://api.weixin.qq.com/wxa/memberauth"
 
-func (client WeChatClient) MemberAuth() {
+func (client *WeChatClient) MemberAuth() {
 
 }
 

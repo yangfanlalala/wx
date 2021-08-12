@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaGetPage = "https://api.weixin.qq.com/wxa/get_page"
 
-func (client WeChatClient) WxaGetPage() {
+func (client *WeChatClient) WxaGetPage() {
 
 }
 

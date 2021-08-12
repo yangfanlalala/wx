@@ -4,7 +4,7 @@ package wx
 
 const ApiGetTemplateDraftList = "https://api.weixin.qq.com/wxa/gettemplatedraftlist?access_token=ACCESS_TOKEN"
 
-func (client WeChatClient) GetTemplateDraftList() {
+func (client *WeChatClient) GetTemplateDraftList() {
 
 }
 

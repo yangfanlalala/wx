@@ -4,7 +4,7 @@ package wx
 
 const ApiModifyCategory = "https://api.weixin.qq.com/cgi-bin/wxopen/modifycategory"
 
-func (client WeChatClient) ModifyCategory() {
+func (client *WeChatClient) ModifyCategory() {
 
 }
 

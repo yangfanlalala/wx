@@ -8,7 +8,7 @@ const SetWebViewDomainActionDelete = "delete"
 const SetWebViewDomainActionSet = "set"
 const SetWebViewDomainActionGet = "get"
 
-func (client WeChatClient) SetWebViewDomain() {
+func (client *WeChatClient) SetWebViewDomain() {
 
 }
 

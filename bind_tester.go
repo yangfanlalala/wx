@@ -4,7 +4,7 @@ package wx
 
 const ApiBindTester = "https://api.weixin.qq.com/wxa/bind_tester"
 
-func (client WeChatClient) BindTester() {
+func (client *WeChatClient) BindTester() {
 
 }
 

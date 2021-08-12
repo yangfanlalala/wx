@@ -4,7 +4,7 @@ package wx
 
 const ApiFastRegisterPersonalWeApp = "https://api.weixin.qq.com/wxa/component/fastregisterpersonalweapp?action=query&component_access_token=ACCESS_TOKEN" //快速注册个人小程序
 
-func (client WeChatClient) FastRegisterPersonalWeApp() {
+func (client *WeChatClient) FastRegisterPersonalWeApp() {
 
 }
 

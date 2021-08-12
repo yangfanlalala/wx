@@ -4,7 +4,7 @@ package wx
 
 const ApiDeleteTemplate = "https://api.weixin.qq.com/wxa/deletetemplate"
 
-func (client WeChatClient) DeleteTemplate() {
+func (client *WeChatClient) DeleteTemplate() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiGetMpAdminAuth = "https://api.weixin.qq.com/wxa/getmpadminauth?access_token=ACCESS_TOKEN" //获取公众号管理员授权
 
-func (client WeChatClient) GetMpAdminAuth() {
+func (client *WeChatClient) GetMpAdminAuth() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiCheckWxVerifyNickname = "https://api.weixin.qq.com/cgi-bin/wxverify/checkwxverifynickname"
 
-func (client WeChatClient) CheckWxVerifyNickname() {
+func (client *WeChatClient) CheckWxVerifyNickname() {
 
 }
 

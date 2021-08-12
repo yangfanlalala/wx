@@ -4,7 +4,7 @@ package wx
 
 const ApiUnbindTester = "https://api.weixin.qq.com/wxa/unbind_tester"
 
-func (client WeChatClient) UnbindTester () {
+func (client *WeChatClient) UnbindTester () {
 
 }
 

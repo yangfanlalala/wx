@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaRevertCodeRelease = "https://api.weixin.qq.com/wxa/revertcoderelease"
 
-func (client WeChatClient) WxaRevertCodeRelease() {
+func (client *WeChatClient) WxaRevertCodeRelease() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const WxaSubmitAudit = "https://api.weixin.qq.com/wxa/submit_audit"
 
-func (client WeChatClient) WxaSubmitAudit() {
+func (client *WeChatClient) WxaSubmitAudit() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaGetCategory = "https://api.weixin.qq.com/wxa/get_category"
 
-func (client WeChatClient) WxaGetCategory() {
+func (client *WeChatClient) WxaGetCategory() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiVerifyBetaWeApp = "https://api.weixin.qq.com/wxa/verifybetaweapp?access_token=ACCESS_TOKEN" //快速认证试用小程序
 
-func (client WeChatClient) VerifyBetaWeApp() {
+func (client *WeChatClient) VerifyBetaWeApp() {
 
 }
 

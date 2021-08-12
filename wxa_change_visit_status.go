@@ -6,7 +6,7 @@ const WxaVisitStatusOpen = "open"
 const WxaVisitStatusClose = "close"
 const ApiWxaChangeVisitStatus = "https://api.weixin.qq.com/wxa/change_visitstatus"
 
-func (client WeChatClient) WxaChangeVisitStatus() {
+func (client *WeChatClient) WxaChangeVisitStatus() {
 
 }
 

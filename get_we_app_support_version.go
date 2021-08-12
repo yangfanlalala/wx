@@ -4,7 +4,7 @@ package wx
 
 const ApiGetWeAppSupportVersion = "https://api.weixin.qq.com/cgi-bin/wxopen/getweappsupportversion"
 
-func (client WeChatClient) GetWeAppSupportVersion() {
+func (client *WeChatClient) GetWeAppSupportVersion() {
 	
 }
 

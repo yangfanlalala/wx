@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaCommit = "https://api.weixin.qq.com/wxa/commit"
 
-func (client WeChatClient) WxaCommit () {
+func (client *WeChatClient) WxaCommit () {
 
 }
 

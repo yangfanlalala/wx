@@ -4,7 +4,7 @@ package wx
 
 const ApiUndoCodeAudit = "https://api.weixin.qq.com/wxa/undocodeaudit"
 
-func (client WeChatClient) UndoCodeAudit() {
+func (client *WeChatClient) UndoCodeAudit() {
 
 }
 

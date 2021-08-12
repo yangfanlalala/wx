@@ -8,7 +8,7 @@ const ModifyDomainActionDelete = "delete"
 const ModifyDomainActionSet = "set"
 const ModifyDomainActionGet = "get"
 
-func (client WeChatClient) ModifyDomain() {
+func (client *WeChatClient) ModifyDomain() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaGetLastAuditStatus = "https://api.weixin.qq.com/wxa/get_latest_auditstatus"
 
-func (client WeChatClient) WxaGetLastAuditStatus() {
+func (client *WeChatClient) WxaGetLastAuditStatus() {
 
 }
 

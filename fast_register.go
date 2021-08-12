@@ -4,7 +4,7 @@ package wx
 
 const ApiFastRegister = "https://api.weixin.qq.com/cgi-bin/account/fastregister?access_token=TOKEN" //复用公众号主体注册小程序
 
-func (client WeChatClient) FastRegister() {
+func (client *WeChatClient) FastRegister() {
 
 }
 

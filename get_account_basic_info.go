@@ -4,7 +4,7 @@ package wx
 
 const ApiGetAccountBasicInfo = "https://api.weixin.qq.com/cgi-bin/account/getaccountbasicinfo"
 
-func (client WeChatClient) GetAccountBasicInfo() {
+func (client *WeChatClient) GetAccountBasicInfo() {
 
 }
 

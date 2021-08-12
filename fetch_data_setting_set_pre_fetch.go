@@ -7,7 +7,7 @@ const FetchDataSettingActionSetPreFetch = "set_pre_fetch"
 const FetchDataSettingActionSetPeriodFetch = "set_period_fetch"
 const ApiFetchDataSetting = "https://api.weixin.qq.com/wxa/fetchdatasetting"
 
-func (client WeChatClient) FetchDataSettingSetPreFetch() {
+func (client *WeChatClient) FetchDataSettingSetPreFetch() {
 
 }
 

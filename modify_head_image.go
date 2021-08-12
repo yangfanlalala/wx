@@ -4,7 +4,7 @@ package wx
 
 const ApiModifyHeadImage = "https://api.weixin.qq.com/cgi-bin/account/modifyheadimage"
 
-func (client WeChatClient) ModifyHeadImage() {
+func (client *WeChatClient) ModifyHeadImage() {
 
 }
 

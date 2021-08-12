@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaSpeedUpAudit = "https://api.weixin.qq.com/wxa/speedupaudit"
 
-func (client WeChatClient) WxaSpeedUpAudit() {
+func (client *WeChatClient) WxaSpeedUpAudit() {
 
 }
 

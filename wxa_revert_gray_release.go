@@ -4,7 +4,7 @@ package wx
 
 const ApiRevertGrayRelease = "https://api.weixin.qq.com/wxa/revertgrayrelease"
 
-func (client WeChatClient) RevertGrayRelease() {
+func (client *WeChatClient) RevertGrayRelease() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiSetBetaWeAppNickname = "https://api.weixin.qq.com/wxa/setbetaweappnickname?access_token=ACCESS_TOKEN" //设置微信小程序名称
 
-func (client WeChatClient) SetBetaWeAppNickname() {
+func (client *WeChatClient) SetBetaWeAppNickname() {
 
 }
 

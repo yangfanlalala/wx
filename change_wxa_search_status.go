@@ -6,7 +6,7 @@ const WxaSearchStatusEnable = "1"
 const WxaSearchStatusDisabled = "0"
 const ApiChangeWxaSearchStatus = "https://api.weixin.qq.com/wxa/changewxasearchstatus"
 
-func (client WeChatClient) ChangeWxaSearchStatus() {
+func (client *WeChatClient) ChangeWxaSearchStatus() {
 
 }
 

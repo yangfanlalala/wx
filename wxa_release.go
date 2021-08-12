@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaRelease = "https://api.weixin.qq.com/wxa/release"
 
-func (client WeChatClient) WxaRelease() {
+func (client *WeChatClient) WxaRelease() {
 
 }
 

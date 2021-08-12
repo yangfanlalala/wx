@@ -4,7 +4,7 @@ package wx
 
 const ApiGetAllCategories = ""
 
-func (client WeChatClient) GetAllCategories() {
+func (client *WeChatClient) GetAllCategories() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiDeleteCategory = "https://api.weixin.qq.com/cgi-bin/wxopen/deletecategory"
 
-func (client WeChatClient) DeleteCategory() {
+func (client *WeChatClient) DeleteCategory() {
 
 }
 

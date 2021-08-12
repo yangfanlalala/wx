@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaGrayRelease = "https://api.weixin.qq.com/wxa/grayrelease"
 
-func (client WeChatClient) WxaGrayRelease() {
+func (client *WeChatClient) WxaGrayRelease() {
 
 }
 

@@ -4,7 +4,7 @@ package wx
 
 const ApiSetNickname = "https://api.weixin.qq.com/wxa/setnickname"
 
-func (client WeChatClient) SetNickname() {
+func (client *WeChatClient) SetNickname() {
 
 }
 

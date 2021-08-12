@@ -4,7 +4,7 @@ package wx
 
 const ApiModifySignature = "https://api.weixin.qq.com/cgi-bin/account/modifysignature"
 
-func (client WeChatClient) ModifySignature() {
+func (client *WeChatClient) ModifySignature() {
 
 }
 

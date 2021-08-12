@@ -4,7 +4,7 @@ package wx
 
 const ApiFastRegisterBetaWeApp = "https://api.weixin.qq.com/wxa/component/fastregisterbetaweapp?access_token=ACCESS_TOKEN" //创建试用小程序
 
-func (client WeChatClient) FastRegisterBetaWeApp() {
+func (client *WeChatClient) FastRegisterBetaWeApp() {
 
 }
 

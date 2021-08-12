@@ -6,7 +6,7 @@ const ApiWxaQueryQuota = "https://api.weixin.qq.com/wxa/queryquota"
 
 
 
-func (client WeChatClient) WxaQueryQuota() {
+func (client *WeChatClient) WxaQueryQuota() {
 
 }
 

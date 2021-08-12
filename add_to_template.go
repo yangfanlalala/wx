@@ -4,7 +4,7 @@ package wx
 
 const ApiAddToTemplate = "https://api.weixin.qq.com/wxa/addtotemplate?access_token=TOKEN"
 
-func (client WeChatClient) AddToTemplate() {
+func (client *WeChatClient) AddToTemplate() {
 
 }
 

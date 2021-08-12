@@ -4,7 +4,7 @@ package wx
 
 const ApiWxaGetQRCode = "https://api.weixin.qq.com/wxa/get_qrcode"
 
-func (client WeChatClient) WxaGetQRCode() {
+func (client *WeChatClient) WxaGetQRCode() {
 
 }
 

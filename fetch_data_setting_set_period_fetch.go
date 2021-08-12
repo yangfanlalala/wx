@@ -2,7 +2,7 @@ package wx
 
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Mini_Program_Basic_Info/set_period_fetchdatasetting.html
 
-func (client WeChatClient) SetDataSettingSetPeriodFetch() {
+func (client *WeChatClient) SetDataSettingSetPeriodFetch() {
 
 }
 
