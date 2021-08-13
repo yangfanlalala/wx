@@ -1,14 +1,19 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html
 
 const ApiAuthorizerToken = "https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token"
 
 func (client *WeChatClient) AuthorizerToken() {
+	req := &AuthorizerTokenRequest{}
+	req.WithMethod(http.MethodPost).WithURL(ApiAuthorizerToken).WithContentType("application/json")
 
 }
 
 type AuthorizerTokenRequest struct {
+	CommonRequest
 	ComponentAccessToken   string `position:"query" name:"component_access_token" json:"-"`
 	ComponentAppID         string `position:"body" name:"component_appid" json:"component_app_id"`
 	AuthorizerAppID        string `position:"body" name:"authorizer_appid" json:"authorizer_app_id"`

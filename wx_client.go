@@ -1,8 +1,6 @@
 package wx
 
 import (
-	"bytes"
-	"encoding/json"
 	"github.com/json-iterator/go"
 	"net/http"
 )
@@ -45,12 +43,8 @@ func (client *WeChatClient) getHttpProxy() {
 
 }
 
-func (client *WeChatClient) DoRequest(url, method string, input interface{}, output Response) error {
-	buf := &bytes.Buffer{}
-	if err := json.NewEncoder(buf).Encode(input); err != nil {
-		return err
-	}
-	req, err := http.NewRequest(method, url, buf)
+func (client *WeChatClient) DoRequest(input Request, output *Response) error {
+	req, err := input.BuildRequest()
 	if err != nil {
 		return err
 	}
