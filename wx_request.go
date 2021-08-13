@@ -3,6 +3,7 @@ package wx
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -18,22 +19,23 @@ type CommonRequest struct {
 	URL string `json:"-"`
 }
 
-func (cr CommonRequest) WithURL(url string) CommonRequest {
+func (cr *CommonRequest) WithURL(url string) *CommonRequest {
 	cr.URL = url
 	return cr
 }
 
-func (cr CommonRequest) WithMethod(method string) CommonRequest {
+func (cr *CommonRequest) WithMethod(method string) *CommonRequest {
 	cr.Method = method
 	return cr
 }
 
-func (cr CommonRequest) WithContentType(ct string) CommonRequest {
+func (cr *CommonRequest) WithContentType(ct string) *CommonRequest {
 	cr.ContentType = ct
 	return cr
 }
 
-func (cr CommonRequest) BuildRequest() (*http.Request, error)  {
+func (cr *CommonRequest) BuildRequest() (*http.Request, error)  {
+	fmt.Println(cr)
 	val := reflect.ValueOf(cr)
 	typ := val.Type()
 	u, err := url.Parse(cr.URL)
@@ -41,13 +43,14 @@ func (cr CommonRequest) BuildRequest() (*http.Request, error)  {
 		return nil, err
 	}
 	for i :=0; i < typ.Elem().NumField(); i++ {
-		if typ.Field(i).Tag.Get("position") == "query" {
-			fn := typ.Field(i).Tag.Get("name")
-			if fn == "" {
-				fn = typ.Field(i).Name
-			}
-			u.Query().Add(fn, val.Field(i).String())
-		}
+		//typ.Field(i)
+		//if typ.Field(i).Tag.Get("position") == "query" {
+		//	//fn := typ.Field(i).Tag.Get("name")
+		//	//if fn == "" {
+		//	//	fn = typ.Field(i).Name
+		//	//}
+		//	//u.Query().Add(fn, val.Field(i).String())
+		//}
 	}
 	buf := bytes.Buffer{}
 	if err = json.NewEncoder(&buf).Encode(cr); err != nil {

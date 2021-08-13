@@ -39,8 +39,8 @@ func (client *WeChatClient) GetHttpsProxy() string {
 	return client.httpsProxy
 }
 
-func (client *WeChatClient) getHttpProxy() {
-
+func (client *WeChatClient) SetHttpClient(httpClient *http.Client) {
+	client.httpClient = httpClient
 }
 
 func (client *WeChatClient) DoRequest(input Request, output Response) error {

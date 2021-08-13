@@ -1,6 +1,8 @@
 package wx
 
-import "net/http"
+import (
+	"net/http"
+)
 
 //api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html
 
