@@ -33,7 +33,7 @@ func (cr CommonRequest) WithContentType(ct string) CommonRequest {
 	return cr
 }
 
-func (cr *CommonRequest) BuildRequest() (*http.Request, error)  {
+func (cr CommonRequest) BuildRequest() (*http.Request, error)  {
 	val := reflect.ValueOf(cr)
 	typ := val.Type()
 	u, err := url.Parse(cr.URL)

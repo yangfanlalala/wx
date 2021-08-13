@@ -43,7 +43,7 @@ func (client *WeChatClient) getHttpProxy() {
 
 }
 
-func (client *WeChatClient) DoRequest(input Request, output *Response) error {
+func (client *WeChatClient) DoRequest(input Request, output Response) error {
 	req, err := input.BuildRequest()
 	if err != nil {
 		return err

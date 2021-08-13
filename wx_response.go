@@ -5,10 +5,10 @@ type Response interface {
 }
 
 type CommonResponse struct {
-	ErrorCodex int64 `json:"errcode"`
-	ErrorMessagex string `json:"errmsg"`
+	ErrorCode int64 `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }
 
 func (r CommonResponse) Success() bool {
-	return r.ErrorCodex == 0
+	return r.ErrorCode == 0
 }

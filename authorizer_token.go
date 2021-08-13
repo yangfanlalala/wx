@@ -2,14 +2,16 @@ package wx
 
 import "net/http"
 
-// api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html
+//api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/api_authorizer_token.html
 
 const ApiAuthorizerToken = "https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token"
 
-func (client *WeChatClient) AuthorizerToken() {
-	req := &AuthorizerTokenRequest{}
+//AuthorizerToken 获取授权Token
+func (client *WeChatClient) AuthorizerToken(req *AuthorizerTokenRequest) (*AuthorizerTokenResponse, error) {
 	req.WithMethod(http.MethodPost).WithURL(ApiAuthorizerToken).WithContentType("application/json")
-
+	rsp := &AuthorizerTokenResponse{}
+	err := client.DoRequest(req, rsp)
+	return rsp, err
 }
 
 type AuthorizerTokenRequest struct {
