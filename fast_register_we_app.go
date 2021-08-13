@@ -21,6 +21,5 @@ type FastRegisterWeAppRequest struct {
 }
 
 type FastRegisterWeAppResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

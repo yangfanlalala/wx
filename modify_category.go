@@ -21,6 +21,5 @@ type ModifyCategoryCerticate struct {
 }
 
 type ModifyCategoryResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

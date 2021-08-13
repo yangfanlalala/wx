@@ -21,6 +21,5 @@ type SetNicknameRequest struct {
 }
 
 type SetNicknameResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

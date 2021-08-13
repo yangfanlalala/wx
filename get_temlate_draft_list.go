@@ -13,8 +13,7 @@ type GetTemplateDraftListRequest struct {
 }
 
 type GetTemplateDraftListResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	DraftList    []struct {
 		CreateTime  int64  `json:"create_time"`
 		UserVersion string `json:"user_version"`

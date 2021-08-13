@@ -13,8 +13,7 @@ type GetWeAppSupportVersionRequest struct {
 }
 
 type GetWeAppSupportVersionResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	NowVersion   string `json:"now_version"`
 	UVInfo       struct {
 		Items []struct {

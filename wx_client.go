@@ -16,8 +16,7 @@ const (
 )
 
 type Reply struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }
 
 type WeChatClient struct {
@@ -25,14 +24,6 @@ type WeChatClient struct {
 	httpsProxy string
 	httpClient *http.Client
 }
-
-//func (client *WeChatClient) SetHTTPSInsecure(isInsecure bool) {
-//	client.isInsecure = isInsecure
-//}
-//
-//func (client *WeChatClient) GetHTTPSInsecure() bool {
-//	return client.isInsecure
-//}
 
 func (client *WeChatClient) SetHttpProxy(proxy string) {
 	client.httpProxy = proxy
@@ -54,7 +45,7 @@ func (client *WeChatClient) getHttpProxy() {
 
 }
 
-func (client *WeChatClient) DoRequest(url, method string, input interface{}, output interface{}) error {
+func (client *WeChatClient) DoRequest(url, method string, input interface{}, output Response) error {
 	buf := &bytes.Buffer{}
 	if err := json.NewEncoder(buf).Encode(input); err != nil {
 		return err
@@ -68,7 +59,10 @@ func (client *WeChatClient) DoRequest(url, method string, input interface{}, out
 		return err
 	}
 	defer func() { _ = rsp.Body.Close() }()
-	jsoniter.NewDecoder(rsp.Body).Decode(output)
+	err = jsoniter.NewDecoder(rsp.Body).Decode(output)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

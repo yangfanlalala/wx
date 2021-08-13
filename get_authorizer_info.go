@@ -15,8 +15,7 @@ type GetAuthorizerInfoRequest struct {
 }
 
 type GetAuthorizerInfoResponse struct {
-	ErrorCode         int64             `json:"errcode"`
-	ErrorMessage      string            `json:"errmsg"`
+	CommonResponse
 	AuthorizerInfo    AuthorizerInfo    `json:"authorizer_info"`
 	AuthorizationInfo AuthorizationInfo `json:"authorization_info"`
 }

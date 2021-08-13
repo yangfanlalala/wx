@@ -14,7 +14,6 @@ type WxaRevertCodeReleaseHistoryVersionRequest struct {
 }
 
 type WxaRevertCodeReleaseHistoryVersionResponse struct {
-	ErrorCode    int64        `json:"errcode"`
-	ErrorMessage string       `json:"errmsg"`
+	CommonResponse
 	VersionList  []AppVersion `json:"version_list"`
 }

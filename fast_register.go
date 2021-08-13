@@ -14,8 +14,7 @@ type FastRegisterRequest struct {
 }
 
 type FastRegisterResponse struct {
-	ErrorCode         int64  `json:"errcode"`
-	ErrorMessage      string `json:"errmsg"`
+	CommonResponse
 	AppID             string `json:"appid"`
 	AuthorizationCode string `json:"authorization_code"`
 	IsWxVerifySucc    string `json:"is_wx_verify_succ"`

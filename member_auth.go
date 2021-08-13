@@ -15,8 +15,7 @@ type MemberAuthRequest struct {
 }
 
 type MemberAuthResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	Members      []struct {
 		UserString string `json:"userstr"`
 	} `json:"members"`

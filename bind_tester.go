@@ -14,7 +14,6 @@ type BindTesterRequest struct {
 }
 
 type BindTesterResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	UserString   string `json:"userstr"`
 }

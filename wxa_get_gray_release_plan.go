@@ -13,8 +13,7 @@ type WxaGetGrayReleasePlanRequest struct {
 }
 
 type WxaGetGrayReleasePlanResponse struct {
-	ErrorCode       int64  `json:"errcode"`
-	ErrorMessage    string `json:"errmsg"`
+	CommonResponse
 	GrayReleasePlan struct {
 		Status         int64 `json:"status"`
 		CreateTime     int64 `json:"create_time"`

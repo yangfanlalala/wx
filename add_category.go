@@ -25,6 +25,5 @@ type AddCategoryCerticate struct {
 }
 
 type AddCategoryResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

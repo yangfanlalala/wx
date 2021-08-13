@@ -14,8 +14,7 @@ type SetBetaWeAppNicknameRequest struct {
 }
 
 type SetBetaWeAppNicknameResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	Wording      string `json:"wording"`
 	AuditID      int64  `json:"audit_id"`
 }

@@ -15,6 +15,5 @@ type AddToTemplateRequest struct {
 }
 
 type AddToTemplateResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

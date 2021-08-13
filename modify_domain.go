@@ -22,8 +22,7 @@ type ModifyDomainRequest struct {
 }
 
 type ModifyDomainResponse struct {
-	ErrorCode       int64    `json:"errcode"`
-	ErrorMessage    string   `json:"errmsg"`
+	CommonResponse
 	RequestDomain   []string `position:"body" name:"requestdomain" json:"requestdomain"`
 	WsRequestDomain []string `position:"body" name:"wsrequestdomain" json:"wsrequestdomain"`
 	UploadDomain    []string `position:"body" name:"uploaddomain" json:"uploaddomain"`

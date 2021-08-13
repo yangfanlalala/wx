@@ -13,8 +13,7 @@ type WxaQueryQuotaRequest struct {
 }
 
 type WxaQueryQuotaResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	Rest         int64  `json:"rest"`
 	Limit        int64  `json:"limit"`
 	SpeedupRest  int64  `json:"speedup_rest"`

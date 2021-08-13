@@ -16,6 +16,5 @@ type ChangeWxaSearchStatusRequest struct {
 }
 
 type ChangeWxaSearchStatusResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

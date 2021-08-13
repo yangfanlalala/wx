@@ -14,6 +14,5 @@ type WxaRevertCodeReleaseRequest struct {
 }
 
 type WxaRevertCodeReleaseResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

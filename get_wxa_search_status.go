@@ -13,7 +13,6 @@ type GetWxaSearchStatusRequest struct {
 }
 
 type GetWxaSearchStatusResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	Status       int64  `json:"status"`
 }

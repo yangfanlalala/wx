@@ -18,6 +18,5 @@ type ModifyHeadImageRequest struct {
 }
 
 type ModifyHeadImageResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

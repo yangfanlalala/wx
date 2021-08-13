@@ -15,8 +15,7 @@ type FastRegisterBetaWeAppRequest struct {
 }
 
 type FastRegisterBetaWeAppResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	UniqueID     string `json:"unique_id"`
 	AuthorizeURL string `json:"authorize_url"`
 }

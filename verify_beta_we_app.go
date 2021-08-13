@@ -24,6 +24,5 @@ type VerifyBetaWeAppInfo struct {
 }
 
 type VerifyBetaWeAppResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

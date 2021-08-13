@@ -16,8 +16,7 @@ type AuthorizerTokenRequest struct {
 }
 
 type AuthorizerTokenResponse struct {
-	ErrorCode              int64  `json:"errcode"`
-	ErrorMessage           string `json:"errmsg"`
+	CommonResponse
 	AuthorizerAccessToken  string `json:"authorizer_access_token"`
 	ExpiresIn              int64  `json:"expires_in"`
 	AuthorizerRefreshToken string `json:"authorizer_refresh_token"`

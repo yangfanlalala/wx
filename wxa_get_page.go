@@ -13,7 +13,6 @@ type WxaGetPageRequest struct {
 }
 
 type WxaGetPageResponse struct {
-	ErrorCode    int64    `json:"errcode"`
-	ErrorMessage string   `json:"errmsg"`
+	CommonResponse
 	PageList     []string `json:"page_list"`
 }

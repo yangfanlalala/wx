@@ -13,8 +13,7 @@ type GetAppCategoriesRequest struct {
 }
 
 type GetAppCategoriesResponse struct {
-	ErrorCode      int64  `json:"errcode"`
-	ErrorMessage   string `json:"errmsg"`
+	CommonResponse
 	CategoriesList struct {
 		Categories []WxaCategory `json:"categories"`
 	} `json:"categories_list"`

@@ -14,8 +14,7 @@ type GetAccountBasicInfoRequest struct {
 }
 
 type GetAccountBasicInfoResponse struct {
-	ErrorCode         int64         `json:"errcode"`
-	ErrorMessage      string        `json:"errmsg"`
+	CommonResponse
 	AppID             string        `json:"appid"`
 	AccountType       string        `json:"account_type"`
 	PrincipalType     int64         `json:"principal_type"`

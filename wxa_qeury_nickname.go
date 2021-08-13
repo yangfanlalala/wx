@@ -14,8 +14,7 @@ type WxaQueryNicknameRequest struct {
 }
 
 type WxaQueryNicknameResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	Nickname     string `json:"nickname"`
 	AuditStatus  int64  `json:"audit_stat"`
 	FailReason   string `json:"fail_reason"`

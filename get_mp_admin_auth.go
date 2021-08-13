@@ -15,7 +15,6 @@ type GetMpAdminAuthRequest struct {
 }
 
 type GetMpAdminAuthResponse struct {
-	ErrorCode     int64  `json:"errcode"`
-	ErrorMessage  string `json:"errmsg"`
+	CommonResponse
 	AuthorizerURL string `json:"authorizer_url"`
 }

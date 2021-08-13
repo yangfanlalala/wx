@@ -15,8 +15,7 @@ type ComponentTokenRequest struct {
 }
 
 type ComponentTokenResponse struct {
-	ErrorCode            int64  `json:"errcode"`
-	ErrorMessage         string `json:"errmsg"`
+	CommonResponse
 	ComponentAccessToken string `json:"component_access_token"`
 	ExpiresIn            int64  `json:"expires_in"`
 }

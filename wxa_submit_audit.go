@@ -44,7 +44,6 @@ type WxaSubmitAuditUGC struct {
 }
 
 type WxaSubmitAuditResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	AuditID      int64  `json:"auditid"`
 }

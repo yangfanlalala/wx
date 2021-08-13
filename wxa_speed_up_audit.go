@@ -5,10 +5,13 @@ package wx
 const ApiWxaSpeedupAudit = "https://api.weixin.qq.com/wxa/speedupaudit"
 
 func (client *WeChatClient) WxaSpeedupAudit() {
-
 }
 
 type WxaSpeedupAuditRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	AuditID     int64  `position:"body" name:"auditid" json:"audit_id"`
+}
+
+type WxaSpeedupAuditResponse struct {
+	CommonResponse
 }

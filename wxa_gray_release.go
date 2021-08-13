@@ -14,6 +14,5 @@ type WxaGrayReleaseRequest struct {
 }
 
 type WxaGrayReleaseResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

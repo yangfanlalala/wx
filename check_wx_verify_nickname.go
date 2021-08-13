@@ -14,8 +14,7 @@ type CheckWxVerifyNicknameRequest struct {
 }
 
 type CheckWxVerifyNicknameResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	HitCondition bool   `json:"hit_condition"`
 	Wording      string `json:"wording"`
 }

@@ -14,8 +14,7 @@ type CreatePreAuthCodeRequest struct {
 }
 
 type CreatePreAuthCodeResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	PreAuthCode  string `json:"pre_auth_code"`
 	ExpiresIn    int64  `json:"expires_in"` //有效期，单位:秒
 }

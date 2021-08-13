@@ -12,8 +12,7 @@ type FetchDataSettingGetRequest struct {
 }
 
 type FetchDataSettingGetResponse struct {
-	ErrorCode          int64  `json:"errcode"`
-	ErrorMessage       string `json:"errmsg"`
+	CommonResponse
 	IsPreFetchOpen     bool   `json:"is_pre_fetch_open"`
 	PreFetchType       int64  `json:"pre_fetch_type"`
 	PreFetchURL        string `json:"pre_fetch_url"`

@@ -13,6 +13,5 @@ type UndoCodeAuditRequest struct {
 }
 
 type UndoCodeAuditResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 }

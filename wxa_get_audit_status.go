@@ -14,8 +14,7 @@ type WxaGetAuditStatusRequest struct {
 }
 
 type WxaGetAuditStatusResponse struct {
-	ErrorCode    int64  `json:"errcode"`
-	ErrorMessage string `json:"errmsg"`
+CommonResponse
 	Status       int64  `json:"status"`
 	Reason       string `json:"reason"`
 	ScreenShot   string `json:"screen_shot"`
