@@ -15,3 +15,11 @@ type FastRegisterPersonalWeAppRequest struct {
 	WxUser               string `position:"body" name:"wxuser" json:"wxuser"`
 	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone"`
 }
+
+type FastRegisterPersonalWeAppResponse struct {
+	ErrorCode     int64  `json:"errcode"`
+	ErrorMessage  string `json:"errmsg"`
+	TaskID        string `json:"taskid"`
+	AuthorizerURL string `json:"authorizer_url"`
+	Status        int64  `json:"status"`
+}

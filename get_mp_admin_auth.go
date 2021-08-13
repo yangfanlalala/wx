@@ -13,3 +13,9 @@ type GetMpAdminAuthRequest struct {
 	MpAppID     string `position:"mp_appid" name:"mp_appid" json:"mp_appid"`
 	SameAdmin   int64  `position:"body" name:"same_admin" json:"same_admin"`
 }
+
+type GetMpAdminAuthResponse struct {
+	ErrorCode     int64  `json:"errcode"`
+	ErrorMessage  string `json:"errmsg"`
+	AuthorizerURL string `json:"authorizer_url"`
+}

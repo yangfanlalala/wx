@@ -12,5 +12,10 @@ func (client *WeChatClient) WxaChangeVisitStatus() {
 
 type WxaChangeVisitStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Action string `position:"body" name:"action" json:"action"`
+	Action      string `position:"body" name:"action" json:"action"`
+}
+
+type WxaChangeVisitStatusResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

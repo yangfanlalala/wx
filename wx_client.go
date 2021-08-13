@@ -1,11 +1,11 @@
- package wx
+package wx
 
- import (
-	 "bytes"
-	 "encoding/json"
-	 "net/http"
-	 "github.com/json-iterator/go"
- )
+import (
+	"bytes"
+	"encoding/json"
+	"github.com/json-iterator/go"
+	"net/http"
+)
 
 const (
 	MiniProgramStateDeveloper = "developer" // 开发版本
@@ -21,7 +21,7 @@ type Reply struct {
 }
 
 type WeChatClient struct {
-	httpProxy string
+	httpProxy  string
 	httpsProxy string
 	httpClient *http.Client
 }
@@ -67,7 +67,7 @@ func (client *WeChatClient) DoRequest(url, method string, input interface{}, out
 	if err != nil {
 		return err
 	}
-	defer func() {_ = rsp.Body.Close()}()
+	defer func() { _ = rsp.Body.Close() }()
 	jsoniter.NewDecoder(rsp.Body).Decode(output)
 	return nil
 }
@@ -75,4 +75,3 @@ func (client *WeChatClient) DoRequest(url, method string, input interface{}, out
 func NewWeChatClient() *WeChatClient {
 	return &WeChatClient{}
 }
-

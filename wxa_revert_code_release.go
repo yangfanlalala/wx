@@ -10,5 +10,10 @@ func (client *WeChatClient) WxaRevertCodeRelease() {
 
 type WxaRevertCodeReleaseRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	AppVersion string `position:"query" name:"app_version" json:"app_version"`
+	AppVersion  string `position:"query" name:"app_version" json:"app_version"`
+}
+
+type WxaRevertCodeReleaseResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

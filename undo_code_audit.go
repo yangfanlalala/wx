@@ -11,3 +11,8 @@ func (client *WeChatClient) UndoCodeAudit() {
 type UndoCodeAuditRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type UndoCodeAuditResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+}

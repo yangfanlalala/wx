@@ -10,5 +10,10 @@ func (client *WeChatClient) DeleteTemplate() {
 
 type DeleteTemplateRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	TemplateID string `position:"body" name:"template_id" json:"template_id"`
+	TemplateID  string `position:"body" name:"template_id" json:"template_id"`
+}
+
+type DeleteTemplateResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

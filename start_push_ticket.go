@@ -9,6 +9,11 @@ func (client *WeChatClient) StartPushTicket() {
 }
 
 type StartPushTicketRequest struct {
-	ComponentAppID string `position:"body" name:"component_appid" json:"component_appid"`
+	ComponentAppID  string `position:"body" name:"component_appid" json:"component_appid"`
 	ComponentSecret string `position:"body" name:"component_secret" json:"component_secret"`
+}
+
+type StartPushTicketResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

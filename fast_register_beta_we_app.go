@@ -13,3 +13,10 @@ type FastRegisterBetaWeAppRequest struct {
 	Name        string `position:"body" name:"name" json:"name"`
 	OpenID      string `position:"body" name:"openid" json:"openid"`
 }
+
+type FastRegisterBetaWeAppResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	UniqueID     string `json:"unique_id"`
+	AuthorizeURL string `json:"authorize_url"`
+}

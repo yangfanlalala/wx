@@ -10,5 +10,5 @@ func (client *WeChatClient) WxaGetQRCode() {
 
 type WxaGetQRCodeRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Path string `position:"query" name:"path" json:"path"`
+	Path        string `position:"query" name:"path" json:"path"`
 }

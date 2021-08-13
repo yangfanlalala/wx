@@ -10,5 +10,10 @@ func (client *WeChatClient) WxaGrayRelease() {
 
 type WxaGrayReleaseRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	GrayPercent int64 `position:"query" name:"gray_percent" json:"gray_percent"`
+	GrayPercent int64  `position:"query" name:"gray_percent" json:"gray_percent"`
+}
+
+type WxaGrayReleaseResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

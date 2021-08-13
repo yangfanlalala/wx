@@ -13,10 +13,19 @@ func (client *WeChatClient) ModifyDomain() {
 }
 
 type ModifyDomainRequest struct {
-	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Action string `position:"body" name:"action" json:"action"`
-	RequestDomain []string `position:"body" name:"requestdomain" json:"requestdomain"`
+	AccessToken     string   `position:"query" name:"access_token" json:"-"`
+	Action          string   `position:"body" name:"action" json:"action"`
+	RequestDomain   []string `position:"body" name:"requestdomain" json:"requestdomain"`
 	WsRequestDomain []string `position:"body" name:"wsrequestdomain" json:"wsrequestdomain"`
-	UploadDomain []string `position:"body" name:"uploaddomain" json:"uploaddomain"`
-	DownloadDomain []string `position:"body" name:"downloaddomain" json:"downloaddomain"`
+	UploadDomain    []string `position:"body" name:"uploaddomain" json:"uploaddomain"`
+	DownloadDomain  []string `position:"body" name:"downloaddomain" json:"downloaddomain"`
+}
+
+type ModifyDomainResponse struct {
+	ErrorCode       int64    `json:"errcode"`
+	ErrorMessage    string   `json:"errmsg"`
+	RequestDomain   []string `position:"body" name:"requestdomain" json:"requestdomain"`
+	WsRequestDomain []string `position:"body" name:"wsrequestdomain" json:"wsrequestdomain"`
+	UploadDomain    []string `position:"body" name:"uploaddomain" json:"uploaddomain"`
+	DownloadDomain  []string `position:"body" name:"downloaddomain" json:"downloaddomain"`
 }

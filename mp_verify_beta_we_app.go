@@ -13,3 +13,9 @@ type MpVerifyBetaWeAppRequest struct {
 	MpAppID     string `position:"body" name:"mp_appid" json:"mp_appid"`
 	Ticket      string `position:"body" name:"ticket" json:"ticket"`
 }
+
+type MpVerifyBetaWeAppResponse struct {
+	ErrorCode     int64  `json:"errcode"`
+	ErrorMessage  string `json:"errmsg"`
+	AuthorizerURL string `json:"authorizer_url"`
+}

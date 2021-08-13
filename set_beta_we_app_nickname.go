@@ -8,7 +8,14 @@ func (client *WeChatClient) SetBetaWeAppNickname() {
 
 }
 
-type SetBetaWeAppNickname struct {
+type SetBetaWeAppNicknameRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Name        string `position:"Body" name:"name" json:"name"`
+}
+
+type SetBetaWeAppNicknameResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	Wording      string `json:"wording"`
+	AuditID      int64  `json:"audit_id"`
 }

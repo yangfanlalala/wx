@@ -11,3 +11,8 @@ func (client *WeChatClient) GetCategory() {
 type GetCategoryRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type GetCategoryResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+}

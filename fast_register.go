@@ -12,3 +12,12 @@ type FastRegisterRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Ticket      string `position:"body" name:"ticket" json:"ticket"`
 }
+
+type FastRegisterResponse struct {
+	ErrorCode         int64  `json:"errcode"`
+	ErrorMessage      string `json:"errmsg"`
+	AppID             string `json:"appid"`
+	AuthorizationCode string `json:"authorization_code"`
+	IsWxVerifySucc    string `json:"is_wx_verify_succ"`
+	IsLinkSucc        string `json:"is_link_succ"`
+}

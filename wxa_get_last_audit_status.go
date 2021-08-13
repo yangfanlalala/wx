@@ -11,3 +11,12 @@ func (client *WeChatClient) WxaGetLastAuditStatus() {
 type WxaGetLastAuditStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type WxaGetLastAuditStatusResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	AuditID      int64  `json:"auditid"`
+	Status       int64  `json:"status"`
+	Reason       string `json:"reason"`
+	ScreenShot   string `json:"ScreenShot"`
+}

@@ -10,5 +10,10 @@ func (client *WeChatClient) ModifySignature() {
 
 type ModifySignatureRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Signature string `position:"body" name:"signature" json:"signature"`
+	Signature   string `position:"body" name:"signature" json:"signature"`
+}
+
+type ModifySignatureResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

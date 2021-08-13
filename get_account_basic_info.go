@@ -4,10 +4,27 @@ package wx
 
 const ApiGetAccountBasicInfo = "https://api.weixin.qq.com/cgi-bin/account/getaccountbasicinfo"
 
+// GetAccountBasicInfo 获取基本信息
 func (client *WeChatClient) GetAccountBasicInfo() {
 
 }
 
 type GetAccountBasicInfoRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
+}
+
+type GetAccountBasicInfoResponse struct {
+	ErrorCode         int64         `json:"errcode"`
+	ErrorMessage      string        `json:"errmsg"`
+	AppID             string        `json:"appid"`
+	AccountType       string        `json:"account_type"`
+	PrincipalType     int64         `json:"principal_type"`
+	PrincipalName     string        `json:"principal_name"`
+	Credential        string        `json:"credential"`
+	RealNameStatus    int64         `json:"realname_status"` //实名验证状态
+	WxVerifyInfo      VerifyInfo    `json:"wx_verify_info"`
+	SignatureInfo     SignatureInfo `json:"signature_info"`
+	HeadImageInfo     HeadImageInfo `json:"head_image_info"`
+	NicknameInfo      NicknameInfo  `json:"nickname_info"`
+	RegisteredCountry int64         `json:"registered_country"`
 }

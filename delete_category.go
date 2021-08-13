@@ -10,6 +10,11 @@ func (client *WeChatClient) DeleteCategory() {
 
 type DeleteCategoryRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	First int64 `position:"body" name:"first" json:"first"`
-	Second int64 `position:"body" name:"second" json:"second"`
+	First       int64  `position:"body" name:"first" json:"first"`
+	Second      int64  `position:"body" name:"second" json:"second"`
+}
+
+type DeleteCategoryResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

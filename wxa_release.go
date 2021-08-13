@@ -11,3 +11,8 @@ func (client *WeChatClient) WxaRelease() {
 type WxaReleaseRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type WxaReleaseResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+}

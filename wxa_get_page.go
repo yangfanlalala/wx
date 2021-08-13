@@ -11,3 +11,9 @@ func (client *WeChatClient) WxaGetPage() {
 type WxaGetPageRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type WxaGetPageResponse struct {
+	ErrorCode    int64    `json:"errcode"`
+	ErrorMessage string   `json:"errmsg"`
+	PageList     []string `json:"page_list"`
+}

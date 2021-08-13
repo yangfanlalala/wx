@@ -8,7 +8,17 @@ func (client *WeChatClient) WxaQueryNickname() {
 
 }
 
-type WxaQueryNickname struct {
+type WxaQueryNicknameRequest struct {
 	AccessToken string `position:"access_token" name:"access_token" json:"-"`
-	AuditID string `position:"body" name:"audit_id" json:"audit_id"`
+	AuditID     string `position:"body" name:"audit_id" json:"audit_id"`
+}
+
+type WxaQueryNicknameResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	Nickname     string `json:"nickname"`
+	AuditStatus  int64  `json:"audit_stat"`
+	FailReason   string `json:"fail_reason"`
+	CreateTime   int64  `json:"create_time"`
+	AuditTime    int64  `json:"audit_time"`
 }

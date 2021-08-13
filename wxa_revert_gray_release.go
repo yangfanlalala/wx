@@ -11,3 +11,8 @@ func (client *WeChatClient) RevertGrayRelease() {
 type RevertGrayReleaseRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type RevertGrayReleaseResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+}

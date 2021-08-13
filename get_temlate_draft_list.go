@@ -11,3 +11,14 @@ func (client *WeChatClient) GetTemplateDraftList() {
 type GetTemplateDraftListRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type GetTemplateDraftListResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	DraftList    []struct {
+		CreateTime  int64  `json:"create_time"`
+		UserVersion string `json:"user_version"`
+		UserDesc    string `json:"user_desc"`
+		DraftID     string `json:"draft_id"`
+	} `json:"draft_list"`
+}

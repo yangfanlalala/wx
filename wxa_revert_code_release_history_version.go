@@ -8,8 +8,13 @@ func (client *WeChatClient) WxaRevertCodeReleaseHistoryVersion() {
 
 }
 
-type WxaRevertCodeReleaseHistoryVersion struct {
+type WxaRevertCodeReleaseHistoryVersionRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Action string `position:"query" name:"action" json:"action"`
+	Action      string `position:"query" name:"action" json:"action"`
 }
 
+type WxaRevertCodeReleaseHistoryVersionResponse struct {
+	ErrorCode    int64        `json:"errcode"`
+	ErrorMessage string       `json:"errmsg"`
+	VersionList  []AppVersion `json:"version_list"`
+}

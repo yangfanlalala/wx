@@ -10,5 +10,10 @@ func (client *WeChatClient) SetWeAppSupportVersion() {
 
 type SetWeAppSupportVersionRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Version string `position:"body" name:"version" json:"version"`
+	Version     string `position:"body" name:"version" json:"version"`
+}
+
+type SetWeAppSupportVersionResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

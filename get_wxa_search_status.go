@@ -11,3 +11,9 @@ func (client *WeChatClient) GetWxaSearchStatus() {
 type GetWxaSearchStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type GetWxaSearchStatusResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	Status       int64  `json:"status"`
+}

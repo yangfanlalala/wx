@@ -22,3 +22,8 @@ type VerifyBetaWeAppInfo struct {
 	LegalPersonaIDCard string `name:"legal_persona_idcard" json:"legal_persona_idcard"`
 	ComponentPhone     string `name:"component_phone" json:"component_phone"`
 }
+
+type VerifyBetaWeAppResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+}

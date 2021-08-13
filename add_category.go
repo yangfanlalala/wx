@@ -9,17 +9,22 @@ func (client *WeChatClient) AddCategory() {
 }
 
 type AddCategoryRequest struct {
-	AccessToken string `position:"query" name:"access_token"`
-	Categories []AddCategory `position:"body" name:"categories" json:"categories"`
+	AccessToken string        `position:"query" name:"access_token"`
+	Categories  []AddCategory `position:"body" name:"categories" json:"categories"`
 }
 
 type AddCategory struct {
-	First int64 `name:"first"`
-	Second int64 `name:"second" json:"second"`
+	First      int64                  `name:"first"`
+	Second     int64                  `name:"second" json:"second"`
 	Certicates []AddCategoryCerticate `name:"certicates" json:"certicates"`
 }
 
 type AddCategoryCerticate struct {
-	Key string `name:"key" json:"key"`
+	Key   string `name:"key" json:"key"`
 	Value string `name:"value" json:"value"`
+}
+
+type AddCategoryResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }

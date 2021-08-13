@@ -11,3 +11,9 @@ func (client *WeChatClient) WxaGetCategory() {
 type WxaGetCategoryRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
+
+type WxaGetCategoryResponse struct {
+	ErrorCode      int64         `json:"errcode"`
+	ErrorMessage   string        `json:"errmsg"`
+	CategoriesList []WxaCategory `json:"categories_list"`
+}

@@ -10,6 +10,12 @@ func (client *WeChatClient) QueryAuth() {
 
 type QueryAuthRequest struct {
 	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
-	ComponentAppID string `position:"body" name:"component_appid" json:"component_appid"`
-	AuthorizationCode string `position:"body" name:"authorization_code" json:"authorization_code"`
+	ComponentAppID       string `position:"body" name:"component_appid" json:"component_appid"`
+	AuthorizationCode    string `position:"body" name:"authorization_code" json:"authorization_code"`
+}
+
+type QueryAuthResponse struct {
+	ErrorCode         int64          `json:"errcode"`
+	ErrorMessage      string         `json:"errmsg"`
+	AuthorizationInfo AuthorizerInfo `json:"authorization_info"`
 }

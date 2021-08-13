@@ -4,12 +4,19 @@ package wx
 
 const ApiWxaQueryQuota = "https://api.weixin.qq.com/wxa/queryquota"
 
-
-
 func (client *WeChatClient) WxaQueryQuota() {
 
 }
 
 type WxaQueryQuotaRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
+}
+
+type WxaQueryQuotaResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
+	Rest         int64  `json:"rest"`
+	Limit        int64  `json:"limit"`
+	SpeedupRest  int64  `json:"speedup_rest"`
+	SpeedupLimit int64  `json:"speedup_limit"`
 }

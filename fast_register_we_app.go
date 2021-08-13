@@ -10,12 +10,17 @@ func (client *WeChatClient) FastRegisterWeApp() {
 }
 
 type FastRegisterWeAppRequest struct {
-	Action             string `position:"query" name:"action" json:"-"`
-	ComponentAccessToken         string `position:"query" name:"component_access_token" json:"-"`
-	Name               string `position:"body" name:"name" json:"name"`
-	Code               string `position:"body" name:"code" json:"code"`
-	CodeType           int64  `position:"body" name:"code_type" json:"code_type"`
-	LegalPersonaWechat string `position:"body" name:"legal_persona_wechat" json:"legal_persona_wechat"`
-	LegalPersonaName   string `position:"body" name:"legal_persona_name" json:"legal_persona_name"`
-	ComponentPhone     string `position:"body" name:"component_phone" json:"component_phone"`
+	Action               string `position:"query" name:"action" json:"-"`
+	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
+	Name                 string `position:"body" name:"name" json:"name"`
+	Code                 string `position:"body" name:"code" json:"code"`
+	CodeType             int64  `position:"body" name:"code_type" json:"code_type"`
+	LegalPersonaWechat   string `position:"body" name:"legal_persona_wechat" json:"legal_persona_wechat"`
+	LegalPersonaName     string `position:"body" name:"legal_persona_name" json:"legal_persona_name"`
+	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone"`
+}
+
+type FastRegisterWeAppResponse struct {
+	ErrorCode    int64  `json:"errcode"`
+	ErrorMessage string `json:"errmsg"`
 }
