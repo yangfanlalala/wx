@@ -1,5 +1,7 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Mini_Program_Basic_Info/set_pre_fetchdatasetting.html
 
 const FetchDataSettingActionGet = "get"
@@ -7,8 +9,20 @@ const FetchDataSettingActionSetPreFetch = "set_pre_fetch"
 const FetchDataSettingActionSetPeriodFetch = "set_period_fetch"
 const ApiFetchDataSetting = "https://api.weixin.qq.com/wxa/fetchdatasetting"
 
-func (client *WeChatClient) FetchDataSettingSetPreFetch() {
-
+func (client *WeChatClient) FetchDataSettingSetPreFetch(data FetchDataSettingSetPreFetchRequest) error {
+	req := &CommonRequest{}
+	req.WithURL(ApiFetchDataSetting).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &CommonResponse{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return err
+	}
+	if err := rsp.Error(); err != nil {
+		return err
+	}
+	return nil
 }
 
 type FetchDataSettingSetPreFetchRequest struct {

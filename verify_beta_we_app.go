@@ -2,7 +2,7 @@ package wx
 
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/beta_Mini_Programs/fastverify.html
 
-const ApiVerifyBetaWeApp = "https://api.weixin.qq.com/wxa/verifybetaweapp?access_token=ACCESS_TOKEN" //快速认证试用小程序
+const ApiVerifyBetaWeApp = "https://api.weixin.qq.com/wxa/verifybetaweapp" //快速认证试用小程序
 
 func (client *WeChatClient) VerifyBetaWeApp() {
 

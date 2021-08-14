@@ -1,12 +1,26 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Register_Mini_Programs/Fast_Registration_Interface_document.html
 
 const ApiFastRegisterWeApp = "https://api.weixin.qq.com/cgi-bin/component/fastregisterweapp?action=create&component_access_token=TOKEN"
 
 // FastRegisterWeApp 快速注册小程序
-func (client *WeChatClient) FastRegisterWeApp() {
-
+func (client *WeChatClient) FastRegisterWeApp(data *FastRegisterWeAppRequest) error {
+	req := &CommonRequest{}
+	req.WithURL(ApiFastRegisterWeApp).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &CommonResponse{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return err
+	}
+	if err := rsp.Error(); err != nil {
+		return err
+	}
+	return  nil
 }
 
 type FastRegisterWeAppRequest struct {

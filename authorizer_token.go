@@ -14,21 +14,20 @@ func (client *WeChatClient) AuthorizerToken(data *AuthorizerTokenRequest) (*Auth
 	req := &CommonRequest{}
 	req.WithMethod(http.MethodPost).
 		WithURL(ApiAuthorizerToken).
-		WithContentType("application/json").
+		WithContentType(MineJson).
 		WithData(data)
 	rsp := &struct {
 		CommonResponse
 		AuthorizerTokenResponse
 	}{}
-	err := client.DoRequest(req, rsp)
-	if err != nil {
+	if err := client.DoRequest(req, rsp); err != nil {
 		return nil, err
 	}
-	if rsp.ErrorCode != 0 {
+	if err := rsp.Error(); err != nil {
 		log.Println(rsp.ErrorMessage)
 		return nil, err
 	}
-	return &rsp.AuthorizerTokenResponse, err
+	return &rsp.AuthorizerTokenResponse, nil
 }
 
 type AuthorizerTokenRequest struct {

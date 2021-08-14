@@ -1,11 +1,27 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/code/get_page.html
 
 const ApiWxaGetPage = "https://api.weixin.qq.com/wxa/get_page"
 
-func (client *WeChatClient) WxaGetPage() {
-
+func (client *WeChatClient) WxaGetPage(data *WxaGetPageRequest) (*WxaGetPageResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiWxaGetPage).
+		WithMethod(http.MethodGet).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		WxaGetPageResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.WxaGetPageResponse, nil
 }
 
 type WxaGetPageRequest struct {

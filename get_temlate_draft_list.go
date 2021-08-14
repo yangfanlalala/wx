@@ -1,11 +1,27 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/code_template/gettemplatedraftlist.html
 
-const ApiGetTemplateDraftList = "https://api.weixin.qq.com/wxa/gettemplatedraftlist?access_token=ACCESS_TOKEN"
+const ApiGetTemplateDraftList = "https://api.weixin.qq.com/wxa/gettemplatedraftlist"
 
-func (client *WeChatClient) GetTemplateDraftList() {
-
+func (client *WeChatClient) GetTemplateDraftList(data *GetTemplateDraftListRequest) (*GetTemplateDraftListResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiGetTemplateDraftList).
+		WithMethod(http.MethodGet).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		GetTemplateDraftListResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.GetTemplateDraftListResponse, nil
 }
 
 type GetTemplateDraftListRequest struct {

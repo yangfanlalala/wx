@@ -1,9 +1,26 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Mini_Program_Basic_Info/get_fetchdatasetting.html
 
-func (client *WeChatClient) FetchDataSettingGet() {
-
+func (client *WeChatClient) FetchDataSettingGet(data *FetchDataSettingGetRequest) (*FetchDataSettingGetResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiFetchDataSetting).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		FetchDataSettingGetResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.FetchDataSettingGetResponse, nil
 }
 
 type FetchDataSettingGetRequest struct {

@@ -1,11 +1,28 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/code/submit_audit.html
 
-const WxaSubmitAudit = "https://api.weixin.qq.com/wxa/submit_audit"
+const ApiWxaSubmitAudit = "https://api.weixin.qq.com/wxa/submit_audit"
 
-func (client *WeChatClient) WxaSubmitAudit() {
-
+func (client *WeChatClient) WxaSubmitAudit(data *WxaSubmitAuditRequest) (*WxaSubmitAuditResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiWxaSubmitAudit).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		WxaSubmitAuditResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.WxaSubmitAuditResponse, nil
 }
 
 type WxaSubmitAuditRequest struct {

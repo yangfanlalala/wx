@@ -11,6 +11,7 @@ const (
 	MiniProgramStateFormal    = "formal"    // 正式
 
 	ErrorCodeSuccess = 0
+	MineJson = "application/json;charset=utf-8"
 )
 
 type WeChatClient struct {

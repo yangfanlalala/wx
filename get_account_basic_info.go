@@ -1,12 +1,28 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Mini_Program_Basic_Info/Mini_Program_Information_Settings.html
 
 const ApiGetAccountBasicInfo = "https://api.weixin.qq.com/cgi-bin/account/getaccountbasicinfo"
 
 // GetAccountBasicInfo 获取基本信息
-func (client *WeChatClient) GetAccountBasicInfo() {
-
+func (client *WeChatClient) GetAccountBasicInfo(data *GetAccountBasicInfoRequest) (*GetAccountBasicInfoResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiGetAccountBasicInfo).
+		WithMethod(http.MethodGet).
+		WithData(data)
+	rsp := struct {
+		CommonResponse
+		GetAccountBasicInfoResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.GetAccountBasicInfoResponse, nil
 }
 
 type GetAccountBasicInfoRequest struct {

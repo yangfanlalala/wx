@@ -10,7 +10,7 @@ func (client *WeChatClient) AddToTemplate(data *AddToTemplateRequest) error {
 	req := &CommonRequest{}
 	req.WithURL(ApiAddToTemplate).
 		WithMethod(http.MethodPost).
-		WithContentType("application/json").
+		WithContentType(MineJson).
 		WithData(data)
 	rsp := CommonResponse{}
 	err := client.DoRequest(req, rsp)

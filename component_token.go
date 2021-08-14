@@ -1,11 +1,28 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/token/component_access_token.html
 
-const ApdComponentToken = "https://api.weixin.qq.com/cgi-bin/component/api_component_token"
+const ApiComponentToken = "https://api.weixin.qq.com/cgi-bin/component/api_component_token"
 
-func (client *WeChatClient) ComponentToken() {
-
+func (client *WeChatClient) ComponentToken(data *ComponentTokenRequest) (*ComponentTokenResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiComponentToken).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := struct {
+		CommonResponse
+		ComponentTokenResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.ComponentTokenResponse, nil
 }
 
 type ComponentTokenRequest struct {

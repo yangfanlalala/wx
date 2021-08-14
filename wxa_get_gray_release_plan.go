@@ -1,11 +1,27 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/code/getgrayreleaseplan.html
 
 const ApiWxaGetGrayReleasePlan = "https://api.weixin.qq.com/wxa/getgrayreleaseplan"
 
-func (client *WeChatClient) WxaGetGrayReleasePlan() {
-
+func (client *WeChatClient) WxaGetGrayReleasePlan(data *WxaGetGrayReleasePlanRequest) (*WxaGetGrayReleasePlanResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiWxaGetGrayReleasePlan).
+		WithMethod(http.MethodGet).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		WxaGetGrayReleasePlanResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.WxaGetGrayReleasePlanResponse, nil
 }
 
 type WxaGetGrayReleasePlanRequest struct {
