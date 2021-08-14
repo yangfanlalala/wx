@@ -13,5 +13,4 @@ type GetCategoryRequest struct {
 }
 
 type GetCategoryResponse struct {
-CommonResponse
 }

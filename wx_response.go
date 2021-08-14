@@ -2,6 +2,7 @@ package wx
 
 type Response interface {
 	Success() bool
+	Error() error
 }
 
 type CommonResponse struct {
@@ -11,4 +12,8 @@ type CommonResponse struct {
 
 func (r CommonResponse) Success() bool {
 	return r.ErrorCode == 0
+}
+
+func (r CommonResponse) Error() error {
+	return nil
 }

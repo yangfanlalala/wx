@@ -15,7 +15,6 @@ type GetCategoriesByTypeRequest struct {
 }
 
 type GetCategoriesByTypeResponse struct {
-	CommonResponse
 	CategoriesList struct {
 		Categories []WxaCategory `json:"categories"`
 	} `json:"categories_list"`

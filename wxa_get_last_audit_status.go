@@ -13,9 +13,8 @@ type WxaGetLastAuditStatusRequest struct {
 }
 
 type WxaGetLastAuditStatusResponse struct {
-CommonResponse
-	AuditID      int64  `json:"auditid"`
-	Status       int64  `json:"status"`
-	Reason       string `json:"reason"`
-	ScreenShot   string `json:"ScreenShot"`
+	AuditID    int64  `json:"auditid"`
+	Status     int64  `json:"status"`
+	Reason     string `json:"reason"`
+	ScreenShot string `json:"ScreenShot"`
 }

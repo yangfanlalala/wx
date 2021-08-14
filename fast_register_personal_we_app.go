@@ -17,7 +17,6 @@ type FastRegisterPersonalWeAppRequest struct {
 }
 
 type FastRegisterPersonalWeAppResponse struct {
-	CommonResponse
 	TaskID        string `json:"taskid"`
 	AuthorizerURL string `json:"authorizer_url"`
 	Status        int64  `json:"status"`

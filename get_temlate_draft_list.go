@@ -13,8 +13,7 @@ type GetTemplateDraftListRequest struct {
 }
 
 type GetTemplateDraftListResponse struct {
-CommonResponse
-	DraftList    []struct {
+	DraftList []struct {
 		CreateTime  int64  `json:"create_time"`
 		UserVersion string `json:"user_version"`
 		UserDesc    string `json:"user_desc"`

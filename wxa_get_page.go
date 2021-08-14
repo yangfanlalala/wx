@@ -13,6 +13,5 @@ type WxaGetPageRequest struct {
 }
 
 type WxaGetPageResponse struct {
-	CommonResponse
-	PageList     []string `json:"page_list"`
+	PageList []string `json:"page_list"`
 }

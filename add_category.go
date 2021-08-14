@@ -25,5 +25,4 @@ type AddCategoryCerticate struct {
 }
 
 type AddCategoryResponse struct {
-CommonResponse
 }

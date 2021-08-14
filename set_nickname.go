@@ -21,5 +21,4 @@ type SetNicknameRequest struct {
 }
 
 type SetNicknameResponse struct {
-CommonResponse
 }

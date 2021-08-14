@@ -12,7 +12,6 @@ type FetchDataSettingGetRequest struct {
 }
 
 type FetchDataSettingGetResponse struct {
-	CommonResponse
 	IsPreFetchOpen     bool   `json:"is_pre_fetch_open"`
 	PreFetchType       int64  `json:"pre_fetch_type"`
 	PreFetchURL        string `json:"pre_fetch_url"`

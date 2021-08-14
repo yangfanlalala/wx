@@ -14,7 +14,6 @@ type CheckWxVerifyNicknameRequest struct {
 }
 
 type CheckWxVerifyNicknameResponse struct {
-CommonResponse
 	HitCondition bool   `json:"hit_condition"`
 	Wording      string `json:"wording"`
 }

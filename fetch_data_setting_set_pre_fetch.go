@@ -22,5 +22,4 @@ type FetchDataSettingSetPreFetchRequest struct {
 }
 
 type FetchDataSettingSetPreFetchResponse struct {
-CommonResponse
 }

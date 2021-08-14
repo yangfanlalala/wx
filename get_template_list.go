@@ -14,7 +14,6 @@ type GetTemplateListRequest struct {
 }
 
 type GetTemplateListResponse struct {
-CommonResponse
 	TemplateList []struct {
 		CreateTime   int64  `json:"create_time"`
 		UserVersion  string `json:"user_version"`

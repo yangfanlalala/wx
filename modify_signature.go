@@ -14,5 +14,4 @@ type ModifySignatureRequest struct {
 }
 
 type ModifySignatureResponse struct {
-CommonResponse
 }

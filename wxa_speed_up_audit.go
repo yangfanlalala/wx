@@ -13,5 +13,4 @@ type WxaSpeedupAuditRequest struct {
 }
 
 type WxaSpeedupAuditResponse struct {
-	CommonResponse
 }

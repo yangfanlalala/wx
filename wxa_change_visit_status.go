@@ -16,5 +16,4 @@ type WxaChangeVisitStatusRequest struct {
 }
 
 type WxaChangeVisitStatusResponse struct {
-CommonResponse
 }

@@ -17,5 +17,4 @@ type WxaCommitRequest struct {
 }
 
 type WxaCommitResponse struct {
-CommonResponse
 }

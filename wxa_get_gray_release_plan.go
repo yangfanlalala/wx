@@ -13,7 +13,6 @@ type WxaGetGrayReleasePlanRequest struct {
 }
 
 type WxaGetGrayReleasePlanResponse struct {
-	CommonResponse
 	GrayReleasePlan struct {
 		Status         int64 `json:"status"`
 		CreateTime     int64 `json:"create_time"`

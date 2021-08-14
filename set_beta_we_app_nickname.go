@@ -14,7 +14,6 @@ type SetBetaWeAppNicknameRequest struct {
 }
 
 type SetBetaWeAppNicknameResponse struct {
-CommonResponse
-	Wording      string `json:"wording"`
-	AuditID      int64  `json:"audit_id"`
+	Wording string `json:"wording"`
+	AuditID int64  `json:"audit_id"`
 }

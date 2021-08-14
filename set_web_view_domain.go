@@ -19,5 +19,4 @@ type SetWebViewDomainRequest struct {
 }
 
 type SetWebViewDomainResponse struct {
-CommonResponse
 }

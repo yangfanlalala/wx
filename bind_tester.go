@@ -14,6 +14,5 @@ type BindTesterRequest struct {
 }
 
 type BindTesterResponse struct {
-CommonResponse
-	UserString   string `json:"userstr"`
+	UserString string `json:"userstr"`
 }

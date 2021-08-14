@@ -16,5 +16,4 @@ type ChangeWxaSearchStatusRequest struct {
 }
 
 type ChangeWxaSearchStatusResponse struct {
-CommonResponse
 }

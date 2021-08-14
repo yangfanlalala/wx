@@ -22,7 +22,6 @@ type ModifyDomainRequest struct {
 }
 
 type ModifyDomainResponse struct {
-	CommonResponse
 	RequestDomain   []string `position:"body" name:"requestdomain" json:"requestdomain"`
 	WsRequestDomain []string `position:"body" name:"wsrequestdomain" json:"wsrequestdomain"`
 	UploadDomain    []string `position:"body" name:"uploaddomain" json:"uploaddomain"`

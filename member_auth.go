@@ -15,8 +15,7 @@ type MemberAuthRequest struct {
 }
 
 type MemberAuthResponse struct {
-CommonResponse
-	Members      []struct {
+	Members []struct {
 		UserString string `json:"userstr"`
 	} `json:"members"`
 }

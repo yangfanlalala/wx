@@ -13,9 +13,8 @@ type WxaQueryQuotaRequest struct {
 }
 
 type WxaQueryQuotaResponse struct {
-CommonResponse
-	Rest         int64  `json:"rest"`
-	Limit        int64  `json:"limit"`
-	SpeedupRest  int64  `json:"speedup_rest"`
-	SpeedupLimit int64  `json:"speedup_limit"`
+	Rest         int64 `json:"rest"`
+	Limit        int64 `json:"limit"`
+	SpeedupRest  int64 `json:"speedup_rest"`
+	SpeedupLimit int64 `json:"speedup_limit"`
 }

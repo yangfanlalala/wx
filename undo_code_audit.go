@@ -13,5 +13,4 @@ type UndoCodeAuditRequest struct {
 }
 
 type UndoCodeAuditResponse struct {
-CommonResponse
 }

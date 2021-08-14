@@ -21,5 +21,4 @@ type ModifyCategoryCerticate struct {
 }
 
 type ModifyCategoryResponse struct {
-CommonResponse
 }

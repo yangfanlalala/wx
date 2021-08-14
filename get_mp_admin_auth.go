@@ -15,6 +15,5 @@ type GetMpAdminAuthRequest struct {
 }
 
 type GetMpAdminAuthResponse struct {
-	CommonResponse
 	AuthorizerURL string `json:"authorizer_url"`
 }

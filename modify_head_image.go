@@ -18,5 +18,4 @@ type ModifyHeadImageRequest struct {
 }
 
 type ModifyHeadImageResponse struct {
-CommonResponse
 }

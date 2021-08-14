@@ -14,5 +14,4 @@ type DeleteTemplateRequest struct {
 }
 
 type DeleteTemplateResponse struct {
-CommonResponse
 }

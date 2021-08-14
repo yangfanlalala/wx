@@ -14,10 +14,9 @@ type WxaQueryNicknameRequest struct {
 }
 
 type WxaQueryNicknameResponse struct {
-CommonResponse
-	Nickname     string `json:"nickname"`
-	AuditStatus  int64  `json:"audit_stat"`
-	FailReason   string `json:"fail_reason"`
-	CreateTime   int64  `json:"create_time"`
-	AuditTime    int64  `json:"audit_time"`
+	Nickname    string `json:"nickname"`
+	AuditStatus int64  `json:"audit_stat"`
+	FailReason  string `json:"fail_reason"`
+	CreateTime  int64  `json:"create_time"`
+	AuditTime   int64  `json:"audit_time"`
 }

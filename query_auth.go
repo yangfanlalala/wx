@@ -15,6 +15,5 @@ type QueryAuthRequest struct {
 }
 
 type QueryAuthResponse struct {
-	CommonResponse
 	AuthorizationInfo AuthorizerInfo `json:"authorization_info"`
 }

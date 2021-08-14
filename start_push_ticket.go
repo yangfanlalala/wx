@@ -14,5 +14,4 @@ type StartPushTicketRequest struct {
 }
 
 type StartPushTicketResponse struct {
-CommonResponse
 }

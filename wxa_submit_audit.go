@@ -44,6 +44,5 @@ type WxaSubmitAuditUGC struct {
 }
 
 type WxaSubmitAuditResponse struct {
-CommonResponse
-	AuditID      int64  `json:"auditid"`
+	AuditID int64 `json:"auditid"`
 }

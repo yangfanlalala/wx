@@ -14,9 +14,10 @@ type Request interface {
 }
 
 type CommonRequest struct {
-	Method string `json:"-"`
-	ContentType string `json:"-"`
-	URL string `json:"-"`
+	Method      string
+	ContentType string
+	URL         string
+	Data        interface{}
 }
 
 func (cr *CommonRequest) WithURL(url string) *CommonRequest {
@@ -34,28 +35,37 @@ func (cr *CommonRequest) WithContentType(ct string) *CommonRequest {
 	return cr
 }
 
-func (cr *CommonRequest) BuildRequest() (*http.Request, error)  {
-	fmt.Println(cr)
-	val := reflect.ValueOf(cr)
-	typ := val.Type()
+func (cr *CommonRequest) WithData(data interface{}) *CommonRequest {
+	cr.Data = data
+	return cr
+}
+
+func (cr *CommonRequest) BuildRequest() (*http.Request, error) {
+	val := reflect.ValueOf(cr.Data)
+	typ := val.Type().Elem()
 	u, err := url.Parse(cr.URL)
 	if err != nil {
 		return nil, err
 	}
-	for i :=0; i < typ.Elem().NumField(); i++ {
-		//typ.Field(i)
-		//if typ.Field(i).Tag.Get("position") == "query" {
-		//	//fn := typ.Field(i).Tag.Get("name")
-		//	//if fn == "" {
-		//	//	fn = typ.Field(i).Name
-		//	//}
-		//	//u.Query().Add(fn, val.Field(i).String())
-		//}
+	values := u.Query()
+	for i := 0; i < typ.NumField(); i++ {
+		if t, _ := typ.Field(i).Tag.Lookup("position"); t == "query" {
+			fn := typ.Field(i).Tag.Get("name")
+			if fn == "" {
+				fn = typ.Field(i).Name
+			}
+			fmt.Println(fn)
+			if typ.Field(i).Type.Kind() == reflect.String {
+				values.Add(fn, val.Elem().Field(i).String())
+			}
+		}
 	}
 	buf := bytes.Buffer{}
 	if err = json.NewEncoder(&buf).Encode(cr); err != nil {
 		return nil, err
 	}
+	u.RawQuery = values.Encode()
+	fmt.Println(u.String())
 	req, err := http.NewRequest(cr.Method, u.String(), &buf)
 	return req, err
 }

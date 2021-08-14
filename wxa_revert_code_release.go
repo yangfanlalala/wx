@@ -14,5 +14,4 @@ type WxaRevertCodeReleaseRequest struct {
 }
 
 type WxaRevertCodeReleaseResponse struct {
-CommonResponse
 }

@@ -13,6 +13,5 @@ type GetWxaSearchStatusRequest struct {
 }
 
 type GetWxaSearchStatusResponse struct {
-CommonResponse
-	Status       int64  `json:"status"`
+	Status int64 `json:"status"`
 }

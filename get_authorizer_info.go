@@ -15,7 +15,6 @@ type GetAuthorizerInfoRequest struct {
 }
 
 type GetAuthorizerInfoResponse struct {
-	CommonResponse
 	AuthorizerInfo    AuthorizerInfo    `json:"authorizer_info"`
 	AuthorizationInfo AuthorizationInfo `json:"authorization_info"`
 }

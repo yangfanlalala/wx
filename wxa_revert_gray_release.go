@@ -13,5 +13,4 @@ type RevertGrayReleaseRequest struct {
 }
 
 type RevertGrayReleaseResponse struct {
-CommonResponse
 }

@@ -14,7 +14,6 @@ type GetAccountBasicInfoRequest struct {
 }
 
 type GetAccountBasicInfoResponse struct {
-	CommonResponse
 	AppID             string        `json:"appid"`
 	AccountType       string        `json:"account_type"`
 	PrincipalType     int64         `json:"principal_type"`

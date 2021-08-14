@@ -13,7 +13,6 @@ type GetAppCategoriesRequest struct {
 }
 
 type GetAppCategoriesResponse struct {
-	CommonResponse
 	CategoriesList struct {
 		Categories []WxaCategory `json:"categories"`
 	} `json:"categories_list"`

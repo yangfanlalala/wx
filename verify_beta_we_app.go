@@ -24,5 +24,4 @@ type VerifyBetaWeAppInfo struct {
 }
 
 type VerifyBetaWeAppResponse struct {
-CommonResponse
 }

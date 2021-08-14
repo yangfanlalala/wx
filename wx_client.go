@@ -13,10 +13,6 @@ const (
 	ErrorCodeSuccess = 0
 )
 
-type Reply struct {
-CommonResponse
-}
-
 type WeChatClient struct {
 	httpProxy  string
 	httpsProxy string

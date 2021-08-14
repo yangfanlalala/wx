@@ -15,7 +15,6 @@ type FastRegisterBetaWeAppRequest struct {
 }
 
 type FastRegisterBetaWeAppResponse struct {
-CommonResponse
 	UniqueID     string `json:"unique_id"`
 	AuthorizeURL string `json:"authorize_url"`
 }

@@ -15,5 +15,4 @@ type UnbindTesterRequest struct {
 }
 
 type UnbindTesterResponse struct {
-CommonResponse
 }

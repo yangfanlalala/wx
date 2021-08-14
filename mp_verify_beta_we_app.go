@@ -15,6 +15,5 @@ type MpVerifyBetaWeAppRequest struct {
 }
 
 type MpVerifyBetaWeAppResponse struct {
-	CommonResponse
 	AuthorizerURL string `json:"authorizer_url"`
 }

@@ -1,11 +1,26 @@
 package wx
 
+import "net/http"
+
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/ThirdParty/code_template/addtotemplate.html
 
-const ApiAddToTemplate = "https://api.weixin.qq.com/wxa/addtotemplate?access_token=TOKEN"
+const ApiAddToTemplate = "https://api.weixin.qq.com/wxa/addtotemplate"
 
-func (client *WeChatClient) AddToTemplate() {
-
+func (client *WeChatClient) AddToTemplate(data *AddToTemplateRequest) error {
+	req := &CommonRequest{}
+	req.WithURL(ApiAddToTemplate).
+		WithMethod(http.MethodPost).
+		WithContentType("application/json").
+		WithData(data)
+	rsp := CommonResponse{}
+	err := client.DoRequest(req, rsp)
+	if err != nil {
+		return err
+	}
+	if err = rsp.Error(); err != nil {
+		return err
+	}
+	return nil
 }
 
 type AddToTemplateRequest struct {
@@ -15,5 +30,4 @@ type AddToTemplateRequest struct {
 }
 
 type AddToTemplateResponse struct {
-CommonResponse
 }

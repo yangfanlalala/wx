@@ -14,5 +14,4 @@ type WxaGrayReleaseRequest struct {
 }
 
 type WxaGrayReleaseResponse struct {
-CommonResponse
 }

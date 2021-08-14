@@ -14,5 +14,4 @@ type SetWeAppSupportVersionRequest struct {
 }
 
 type SetWeAppSupportVersionResponse struct {
-CommonResponse
 }

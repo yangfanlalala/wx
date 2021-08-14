@@ -17,5 +17,4 @@ type SetDataSettingSetPeriodFetchRequest struct {
 }
 
 type SetDataSettingSetPeriodFetchResponse struct {
-CommonResponse
 }

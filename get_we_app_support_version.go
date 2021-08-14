@@ -13,9 +13,8 @@ type GetWeAppSupportVersionRequest struct {
 }
 
 type GetWeAppSupportVersionResponse struct {
-CommonResponse
-	NowVersion   string `json:"now_version"`
-	UVInfo       struct {
+	NowVersion string `json:"now_version"`
+	UVInfo     struct {
 		Items []struct {
 			Percentage float64 `json:"percentage"`
 			Version    string  `json:"version"`

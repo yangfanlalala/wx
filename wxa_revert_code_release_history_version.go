@@ -14,6 +14,5 @@ type WxaRevertCodeReleaseHistoryVersionRequest struct {
 }
 
 type WxaRevertCodeReleaseHistoryVersionResponse struct {
-	CommonResponse
-	VersionList  []AppVersion `json:"version_list"`
+	VersionList []AppVersion `json:"version_list"`
 }

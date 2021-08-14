@@ -21,5 +21,4 @@ type FastRegisterWeAppRequest struct {
 }
 
 type FastRegisterWeAppResponse struct {
-CommonResponse
 }

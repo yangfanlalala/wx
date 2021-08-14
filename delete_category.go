@@ -15,5 +15,4 @@ type DeleteCategoryRequest struct {
 }
 
 type DeleteCategoryResponse struct {
-CommonResponse
 }
