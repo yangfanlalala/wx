@@ -1,5 +1,0 @@
-package wx
-
-func aesDecrypt() {
-	 
-}

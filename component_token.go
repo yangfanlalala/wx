@@ -12,7 +12,7 @@ func (client *WeChatClient) ComponentToken(data *ComponentTokenRequest) (*Compon
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := struct {
+	rsp := &struct {
 		CommonResponse
 		ComponentTokenResponse
 	}{}
@@ -29,6 +29,14 @@ type ComponentTokenRequest struct {
 	ComponentAppID        string `position:"body" name:"component_appid" json:"component_appid"`
 	ComponentAppSecret    string `position:"body" name:"component_appsecret" json:"component_appsecret"`
 	ComponentVerifyTicket string `position:"body" name:"component_verify_ticket" json:"component_verify_ticket"`
+}
+
+func (client *WeChatClient) BuildComponentTokenRequest() *ComponentTokenRequest {
+	return &ComponentTokenRequest{
+		ComponentAppID:        client.options.AppID,
+		ComponentAppSecret:    client.options.AppSecret,
+		ComponentVerifyTicket: "",
+	}
 }
 
 type ComponentTokenResponse struct {

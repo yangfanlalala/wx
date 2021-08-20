@@ -1,5 +1,7 @@
 package wx
 
+import "errors"
+
 type Response interface {
 	Success() bool
 	Error() error
@@ -15,5 +17,8 @@ func (r CommonResponse) Success() bool {
 }
 
 func (r CommonResponse) Error() error {
+	if r.ErrorCode != 0 {
+		return errors.New(r.ErrorMessage)
+	}
 	return nil
 }

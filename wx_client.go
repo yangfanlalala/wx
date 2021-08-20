@@ -14,10 +14,26 @@ const (
 	MineJson = "application/json;charset=utf-8"
 )
 
+type WeChatOption struct {
+	AppID string
+	AppSecret string
+	VerifyKey string
+	EncryptKey string
+}
+
 type WeChatClient struct {
+	options *WeChatOption
 	httpProxy  string
 	httpsProxy string
 	httpClient *http.Client
+}
+
+func (client *WeChatClient) SetOptions (options *WeChatOption) {
+	client.options = options
+}
+
+func (client *WeChatClient) GetOptions() *WeChatOption {
+	return client.options
 }
 
 func (client *WeChatClient) SetHttpProxy(proxy string) {

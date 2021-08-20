@@ -1,8 +1,11 @@
 package wx
 
 import (
+	"bytes"
+	"encoding/binary"
 	"encoding/xml"
 	"errors"
+	"github.com/yangfanlalala/wx/crypt/aes"
 )
 
 const NotifyTypeComponentVerifyTicket = "component_verify_ticket"
@@ -33,7 +36,7 @@ type NotificationProto struct {
 	Encrypt string `xml:"Encrypt"`
 }
 
-func ParseNotification(raw []byte) (*Notification, error) {
+func (client *WeChatClient) ParseNotification(raw []byte) (*Notification, error) {
 	proto := &NotificationProto{}
 	if err := xml.Unmarshal(raw, proto); err != nil {
 		return nil, err
@@ -41,5 +44,19 @@ func ParseNotification(raw []byte) (*Notification, error) {
 	if proto.Encrypt == "" {
 		return nil, errors.New("encrypt content empty")
 	}
-
+	plainTxt, err := aes.WxDecrypt([]byte(proto.Encrypt), []byte(client.options.EncryptKey))
+	if err != nil {
+		return nil, err
+	}
+	buff := bytes.NewReader(plainTxt[16:20])
+	var length uint32
+	if err = binary.Read(buff, binary.BigEndian, &length); err != nil {
+		return nil, err
+	}
+	plainTxt = plainTxt[20:length+20]
+	notify := &Notification{}
+	if err = xml.Unmarshal(plainTxt, notify); err != nil {
+		return nil, err
+	}
+	return notify, nil
 }

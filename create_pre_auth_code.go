@@ -30,6 +30,13 @@ type CreatePreAuthCodeRequest struct {
 	ComponentAppID       string `position:"body" name:"component_appid" json:"component_appid"`
 }
 
+func (client *WeChatClient) BuildCreatePreAuthCodeRequest() *CreatePreAuthCodeRequest {
+	return &CreatePreAuthCodeRequest{
+		ComponentAccessToken: "",
+		ComponentAppID:       client.options.AppID,
+	}
+}
+
 type CreatePreAuthCodeResponse struct {
 	PreAuthCode string `json:"pre_auth_code"`
 	ExpiresIn   int64  `json:"expires_in"` //有效期，单位:秒

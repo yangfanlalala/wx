@@ -37,6 +37,15 @@ type AuthorizerTokenRequest struct {
 	AuthorizerRefreshToken string `position:"body" name:"authorizer_refresh_token" json:"authorizer_refresh_token"`
 }
 
+func (client WeChatClient) BuildAuthorizerTokenRequest() *AuthorizerTokenRequest {
+	return &AuthorizerTokenRequest{
+		ComponentAccessToken:   "",
+		ComponentAppID:         client.options.AppID,
+		AuthorizerAppID:        "",
+		AuthorizerRefreshToken: "",
+	}
+}
+
 type AuthorizerTokenResponse struct {
 	AuthorizerAccessToken  string `json:"authorizer_access_token"`
 	ExpiresIn              int64  `json:"expires_in"`
