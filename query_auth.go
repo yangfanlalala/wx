@@ -25,6 +25,12 @@ func (client *WeChatClient) QueryAuth(data *QueryAuthRequest) (*QueryAuthRespons
 	return &rsp.QueryAuthResponse, nil
 }
 
+func (client *WeChatClient) BuildQueryAuthRequest() *QueryAuthRequest {
+	return &QueryAuthRequest{
+		ComponentAppID:       client.options.AppID,
+	}
+}
+
 type QueryAuthRequest struct {
 	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
 	ComponentAppID       string `position:"body" name:"component_appid" json:"component_appid"`

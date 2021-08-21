@@ -6,7 +6,7 @@ import "net/http"
 
 const ApiSetNickname = "https://api.weixin.qq.com/wxa/setnickname"
 
-func (client *WeChatClient) SetNickname(data *SetNicknameRequest) (*SetNicknameResponse, error) {
+func (client *WeChatClient) WxaSetNickname(data *WxaSetNicknameRequest) (*WxaSetNicknameResponse, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiSetNickname).
 		WithMethod(http.MethodPost).
@@ -14,7 +14,7 @@ func (client *WeChatClient) SetNickname(data *SetNicknameRequest) (*SetNicknameR
 		WithData(data)
 	rsp := &struct {
 		CommonResponse
-		SetNicknameResponse
+		WxaSetNicknameResponse
 	}{}
 	if err := client.DoRequest(req, rsp); err != nil {
 		return nil, err
@@ -22,10 +22,14 @@ func (client *WeChatClient) SetNickname(data *SetNicknameRequest) (*SetNicknameR
 	if err := rsp.Error(); err != nil {
 		return nil, err
 	}
-	return &rsp.SetNicknameResponse, nil
+	return &rsp.WxaSetNicknameResponse, nil
 }
 
-type SetNicknameRequest struct {
+func (client *WeChatClient) BuildWxaSetNicknameRequest() *WxaSetNicknameRequest {
+	return &WxaSetNicknameRequest{}
+}
+
+type WxaSetNicknameRequest struct {
 	AccessToken       string `position:"query" name:"access_token" json:"-"`
 	Nickname          string `position:"body" name:"nick_name" json:"nickname"`
 	IDCard            string `position:"body" name:"id_card" json:"id_card"`
@@ -37,7 +41,7 @@ type SetNicknameRequest struct {
 	NamingOtherStuff5 string `position:"body" name:"naming_other_stuff_5" json:"naming_other_stuff_5"`
 }
 
-type SetNicknameResponse struct {
+type WxaSetNicknameResponse struct {
 	Wording string `json:"wording"`
 	AuditID int64 `json:"audit_id"`
 }

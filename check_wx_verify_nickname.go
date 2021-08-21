@@ -25,6 +25,10 @@ func (client *WeChatClient) CheckWxVerifyNickname(data *CheckWxVerifyNicknameReq
 	return &rsp.CheckWxVerifyNicknameResponse, nil
 }
 
+func (client *WeChatClient) BuildCheckWxVerifyNicknameRequest() *CheckWxVerifyNicknameRequest {
+	return &CheckWxVerifyNicknameRequest{}
+}
+
 type CheckWxVerifyNicknameRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Nickname    string `position:"body" name:"nick_name" json:"nickname"`

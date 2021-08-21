@@ -4,7 +4,7 @@ import "net/http"
 
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Register_Mini_Programs/Fast_Registration_Interface_document.html
 
-const ApiFastRegisterWeApp = "https://api.weixin.qq.com/cgi-bin/component/fastregisterweapp?action=create&component_access_token=TOKEN"
+const ApiFastRegisterWeApp = "https://api.weixin.qq.com/cgi-bin/component/fastregisterweapp"
 
 // FastRegisterWeApp 快速注册小程序
 func (client *WeChatClient) FastRegisterWeApp(data *FastRegisterWeAppRequest) error {
@@ -21,6 +21,12 @@ func (client *WeChatClient) FastRegisterWeApp(data *FastRegisterWeAppRequest) er
 		return err
 	}
 	return  nil
+}
+
+func (client *WeChatClient) BuildFastRegisterWeAppRequest() *FastRegisterWeAppRequest {
+	return &FastRegisterWeAppRequest{
+		Action: "create",
+	}
 }
 
 type FastRegisterWeAppRequest struct {
