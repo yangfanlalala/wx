@@ -38,5 +38,5 @@ type QueryAuthRequest struct {
 }
 
 type QueryAuthResponse struct {
-	AuthorizationInfo AuthorizerInfo `json:"authorization_info"`
+	AuthorizationInfo AuthorizationInfo `json:"authorization_info"`
 }
