@@ -1,6 +1,8 @@
 package wx
 
-import "errors"
+import (
+	"fmt"
+)
 
 type Response interface {
 	Success() bool
@@ -18,7 +20,7 @@ func (r CommonResponse) Success() bool {
 
 func (r CommonResponse) Error() error {
 	if r.ErrorCode != 0 {
-		return errors.New(r.ErrorMessage)
+		return fmt.Errorf("code[%d] message[%s]", r.ErrorCode, r.ErrorMessage)
 	}
 	return nil
 }
