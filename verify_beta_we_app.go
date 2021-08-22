@@ -8,6 +8,10 @@ func (client *WeChatClient) VerifyBetaWeApp() {
 
 }
 
+func (client *WeChatClient) BuildVerifyBeataWeAppRequest() *VerifyBetaWeAppRequest {
+	return &VerifyBetaWeAppRequest{}
+}
+
 type VerifyBetaWeAppRequest struct {
 	AccessToken string              `position:"query" name:"access_token" json:"-"`
 	VerifyInfo  VerifyBetaWeAppInfo `position:"body" name:"verify_info" json:"verify_info"`

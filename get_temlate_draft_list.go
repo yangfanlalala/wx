@@ -24,6 +24,10 @@ func (client *WeChatClient) GetTemplateDraftList(data *GetTemplateDraftListReque
 	return &rsp.GetTemplateDraftListResponse, nil
 }
 
+func (client *WeChatClient) BuildGetTemplateDraftListRequest() *GetTemplateDraftListRequest {
+	return &GetTemplateDraftListRequest{}
+}
+
 type GetTemplateDraftListRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

@@ -25,6 +25,10 @@ func (client *WeChatClient) FastRegisterBetaWeApp(data *FastRegisterBetaWeAppReq
 	return &rsp.FastRegisterBetaWeAppResponse, nil
 }
 
+func (client *WeChatClient) BuildFastRegisterBetaWeAppRequest() *FastRegisterBetaWeAppRequest {
+	return &FastRegisterBetaWeAppRequest{}
+}
+
 type FastRegisterBetaWeAppRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Name        string `position:"body" name:"name" json:"name"`

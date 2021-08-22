@@ -25,6 +25,10 @@ func (client *WeChatClient) GetAuthorizerInfo(data *GetAuthorizerInfoRequest) (*
 	return &rsp.GetAccountBasicInfoResponse, nil
 }
 
+func (client *WeChatClient) BuildGetAuthorizerInfoRequest() *GetAuthorizerInfoRequest {
+	return &GetAuthorizerInfoRequest{}
+}
+
 type GetAuthorizerInfoRequest struct {
 	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
 	ComponentAppID       string `position:"body" name:"component_appid" json:"component_appid"`

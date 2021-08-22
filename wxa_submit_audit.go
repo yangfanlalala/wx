@@ -25,6 +25,10 @@ func (client *WeChatClient) WxaSubmitAudit(data *WxaSubmitAuditRequest) (*WxaSub
 	return &rsp.WxaSubmitAuditResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaSubmitAuditRequest() *WxaSubmitAuditRequest {
+	return &WxaSubmitAuditRequest{}
+}
+
 type WxaSubmitAuditRequest struct {
 	AccessToken   string                  `name:"access_token" json:"-"`
 	ItemList      []WxaSubmitAuditItem    `name:"item_list" json:"item_list"`

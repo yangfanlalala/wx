@@ -25,6 +25,10 @@ func (client *WeChatClient) MpVerifyBetaWeApp(data *MpVerifyBetaWeAppRequest) (*
 	return &rsp.MpVerifyBetaWeAppResponse, nil
 }
 
+func (client *WeChatClient) BuildMpVerifyBetaWeAppRequest() *MpVerifyBetaWeAppRequest {
+	return &MpVerifyBetaWeAppRequest{}
+}
+
 type MpVerifyBetaWeAppRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	MpAppID     string `position:"body" name:"mp_appid" json:"mp_appid"`

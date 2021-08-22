@@ -25,6 +25,10 @@ func (client *WeChatClient) FastRegister(data *FastRegisterRequest) (*FastRegist
 	return &rsp.FastRegisterResponse, nil
 }
 
+func (client *WeChatClient) BuildFastRegisterRequest() *FastRegisterRequest {
+	return &FastRegisterRequest{}
+}
+
 type FastRegisterRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Ticket      string `position:"body" name:"ticket" json:"ticket"`

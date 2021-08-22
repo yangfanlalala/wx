@@ -24,6 +24,10 @@ func (client *WeChatClient) GetWeAppSupportVersion(data *GetWeAppSupportVersionR
 	return &rsp.GetWeAppSupportVersionResponse, nil
 }
 
+func (client WeChatClient) BuildGetWeAppSupportVersionRequest() *GetWeAppSupportVersionRequest {
+	return &GetWeAppSupportVersionRequest{}
+}
+
 type GetWeAppSupportVersionRequest struct {
 	AccessToken string `name:"access_token" json:"-"`
 }

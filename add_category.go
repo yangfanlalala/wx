@@ -22,6 +22,10 @@ func (client *WeChatClient) AddCategory(data *AddCategoryRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildAddCategoryRequest() *AddCategoryRequest {
+	return &AddCategoryRequest{}
+}
+
 type AddCategoryRequest struct {
 	AccessToken string        `position:"query" name:"access_token"`
 	Categories  []AddCategory `position:"body" name:"categories" json:"categories"`

@@ -26,6 +26,12 @@ func (client *WeChatClient) MemberAuth(data *MemberAuthRequest) (*MemberAuthResp
 	return &rsp.MemberAuthResponse, nil
 }
 
+func (client WeChatClient) BuildMemberAuthRequest() *MemberAuthRequest {
+	return &MemberAuthRequest{
+		Action: MemberAuthActionGetExperiencer,
+	}
+}
+
 type MemberAuthRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Action      string `position:"body" name:"action" json:"action"`

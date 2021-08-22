@@ -24,6 +24,12 @@ func (client *WeChatClient) WxaRevertCodeReleaseHistoryVersion(data *WxaRevertCo
 	return &rsp.WxaRevertCodeReleaseHistoryVersionResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaRevertCodeReleaseHistoryVersionRequest() *WxaRevertCodeReleaseHistoryVersionRequest{
+	return &WxaRevertCodeReleaseHistoryVersionRequest{
+		Action: "get_history_version",
+	}
+}
+
 type WxaRevertCodeReleaseHistoryVersionRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Action      string `position:"query" name:"action" json:"action"`

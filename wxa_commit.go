@@ -22,6 +22,10 @@ func (client *WeChatClient) WxaCommit(data *WxaCommitRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildWxaCommitRequest() *WxaCommitRequest {
+	return &WxaCommitRequest{}
+}
+
 type WxaCommitRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	TemplateID  string `name:"template_id" json:"template_id"`

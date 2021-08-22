@@ -25,6 +25,10 @@ func (client *WeChatClient) WxaGetCategory(data *WxaGetCategoryRequest) (*WxaGet
 	return &rsp.WxaGetCategoryResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaGetCategoryRequest() *WxaGetCategoryRequest {
+	return &WxaGetCategoryRequest{}
+}
+
 type WxaGetCategoryRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

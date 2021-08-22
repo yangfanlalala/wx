@@ -24,6 +24,10 @@ func (client *WeChatClient) WxaGetPage(data *WxaGetPageRequest) (*WxaGetPageResp
 	return &rsp.WxaGetPageResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaGetPageRequest() *WxaGetPageRequest {
+	return &WxaGetPageRequest{}
+}
+
 type WxaGetPageRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

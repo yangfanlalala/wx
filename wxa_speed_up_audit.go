@@ -22,6 +22,10 @@ func (client *WeChatClient) WxaSpeedupAudit(data *WxaSpeedupAuditRequest) error 
 	return nil
 }
 
+func (client *WeChatClient) BuildWxaSpeedupAuditRequest() *WxaSpeedupAuditRequest {
+	return &WxaSpeedupAuditRequest{}
+}
+
 type WxaSpeedupAuditRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	AuditID     int64  `position:"body" name:"auditid" json:"audit_id"`

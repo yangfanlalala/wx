@@ -25,6 +25,10 @@ func (client *WeChatClient) GetAccountBasicInfo(data *GetAccountBasicInfoRequest
 	return &rsp.GetAccountBasicInfoResponse, nil
 }
 
+func (client *WeChatClient) BuildGetAccountBasicInfoRequest() *GetAccountBasicInfoRequest {
+	return &GetAccountBasicInfoRequest{}
+}
+
 type GetAccountBasicInfoRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

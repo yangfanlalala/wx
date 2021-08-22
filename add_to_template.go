@@ -23,6 +23,10 @@ func (client *WeChatClient) AddToTemplate(data *AddToTemplateRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildAddToTemplateRequest() *AddToTemplateRequest {
+	return &AddToTemplateRequest{}
+}
+
 type AddToTemplateRequest struct {
 	AccessToken  string `position:"query" name:"access_token" json:"-"`
 	DraftID      string `position:"body" name:"draft_id" json:"draft_id"`

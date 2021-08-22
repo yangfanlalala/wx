@@ -24,6 +24,10 @@ func (client *WeChatClient) GetAllCategories(data *GetAppCategoriesRequest) (*Ge
 	return &rsp.GetAppCategoriesResponse, nil
 }
 
+func (client *WeChatClient) BuildGetAppCategoriesRequest() *GetAppCategoriesRequest {
+	return &GetAppCategoriesRequest{}
+}
+
 type GetAppCategoriesRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

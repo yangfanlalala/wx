@@ -25,6 +25,10 @@ func (client *WeChatClient) BindTester(data *BindTesterRequest) (*BindTesterResp
 	return &rsp.BindTesterResponse, nil
 }
 
+func (client *WeChatClient) BuildBindTesterRequest() *BindTesterRequest {
+	return &BindTesterRequest{}
+}
+
 type BindTesterRequest struct {
 	AccessToken string `name:"access_token" json:"-"`
 	WeChatID    string `name:"wechatid" json:"wechatid"`

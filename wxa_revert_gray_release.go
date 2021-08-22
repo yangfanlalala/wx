@@ -21,6 +21,10 @@ func (client *WeChatClient) RevertGrayRelease(data *RevertGrayReleaseRequest) er
 	return  nil
 }
 
+func (client *WeChatClient) BuildRevertGrayReleaseRequest() *RevertGrayReleaseRequest {
+	return &RevertGrayReleaseRequest{}
+}
+
 type RevertGrayReleaseRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

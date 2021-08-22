@@ -22,6 +22,10 @@ func (client *WeChatClient) ModifyCategory(data *ModifyCategoryRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildModifyCategoryRequest() *ModifyCategoryRequest {
+	return &ModifyCategoryRequest{}
+}
+
 type ModifyCategoryRequest struct {
 	AccessToken string                    `position:"query" name:"access_token" json:"-"`
 	First       string                    `position:"body" name:"first" json:"first"`

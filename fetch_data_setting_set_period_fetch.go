@@ -23,6 +23,12 @@ func (client *WeChatClient) SetDataSettingSetPeriodFetch(data *SetDataSettingSet
 	return nil
 }
 
+func (client *WeChatClient) BuildSetDataSettingSetPeriodFetchRequest() *SetDataSettingSetPeriodFetchRequest {
+	return &SetDataSettingSetPeriodFetchRequest{
+		Action: "set_period_fetch",
+	}
+}
+
 type SetDataSettingSetPeriodFetchRequest struct {
 	AccessToken        string `position:"query" name:"access_token" json:"-"`
 	Action             string `position:"body" name:"action" json:"action"`

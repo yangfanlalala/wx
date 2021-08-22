@@ -29,6 +29,12 @@ func (client *WeChatClient) ModifyDomain(data *ModifyDomainRequest) (*ModifyDoma
 	return &rsp.ModifyDomainResponse, nil
 }
 
+func (client WeChatClient) BuildModifyDomainRequest() *ModifyDomainRequest {
+	return &ModifyDomainRequest{
+		Action: ModifyDomainActionSet,
+	}
+}
+
 type ModifyDomainRequest struct {
 	AccessToken     string   `position:"query" name:"access_token" json:"-"`
 	Action          string   `position:"body" name:"action" json:"action"`

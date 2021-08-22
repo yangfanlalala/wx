@@ -23,6 +23,12 @@ func (client *WeChatClient) FetchDataSettingGet(data *FetchDataSettingGetRequest
 	return &rsp.FetchDataSettingGetResponse, nil
 }
 
+func (client *WeChatClient) BuildDataSettingGetRequest() *FetchDataSettingGetRequest {
+	return &FetchDataSettingGetRequest{
+		Action: "get",
+	}
+}
+
 type FetchDataSettingGetRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Action      string `position:"body" name:"action" json:"action"`

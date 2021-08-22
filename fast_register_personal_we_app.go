@@ -4,7 +4,7 @@ import "net/http"
 
 // api document https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Register_Mini_Programs/fastregisterpersonalweapp.html
 
-const ApiFastRegisterPersonalWeApp = "https://api.weixin.qq.com/wxa/component/fastregisterpersonalweapp?action=query&component_access_token=ACCESS_TOKEN" //快速注册个人小程序
+const ApiFastRegisterPersonalWeApp = "https://api.weixin.qq.com/wxa/component/fastregisterpersonalweapp" //快速注册个人小程序
 
 func (client *WeChatClient) FastRegisterPersonalWeApp(data *FastRegisterPersonalWeAppRequest) (*FastRegisterPersonalWeAppResponse, error) {
 	req := &CommonRequest{}
@@ -25,6 +25,12 @@ func (client *WeChatClient) FastRegisterPersonalWeApp(data *FastRegisterPersonal
 	return &rsp.FastRegisterPersonalWeAppResponse, nil
 }
 
+func (client *WeChatClient) BuildFastRegisterPersonalWeAppRequest() *FastRegisterPersonalWeAppRequest {
+	return &FastRegisterPersonalWeAppRequest{
+		Action: "create",
+	}
+}
+
 type FastRegisterPersonalWeAppRequest struct {
 	Action               string `position:"query" name:"action" json:"-"`
 	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
@@ -37,4 +43,35 @@ type FastRegisterPersonalWeAppResponse struct {
 	TaskID        string `json:"taskid"`
 	AuthorizerURL string `json:"authorizer_url"`
 	Status        int64  `json:"status"`
+}
+
+func (client *WeChatClient) FastRegisterPersonalWeAppQuery(data *FastRegisterPersonalWeAppQueryRequest) (*FastRegisterPersonalWeAppQueryResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiFastRegisterPersonalWeApp).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		FastRegisterPersonalWeAppQueryResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.FastRegisterPersonalWeAppQueryResponse, nil
+}
+
+func (client *WeChatClient) BuildFastRegisterPersonalWeAppQueryRequest() *FastRegisterPersonalWeAppQueryResponse {
+	return &FastRegisterPersonalWeAppQueryResponse{}
+}
+
+type FastRegisterPersonalWeAppQueryRequest struct {
+
+}
+
+type FastRegisterPersonalWeAppQueryResponse struct {
+
 }

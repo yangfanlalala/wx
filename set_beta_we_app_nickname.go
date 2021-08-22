@@ -27,6 +27,10 @@ func (client *WeChatClient) SetBetaWeAppNickname(data *SetBetaWeAppNicknameReque
 	return &rsp.SetBetaWeAppNicknameResponse, nil
 }
 
+func (client *WeChatClient) BuildSetBataWeAppNicknameRequest() *SetBetaWeAppNicknameRequest {
+	return &SetBetaWeAppNicknameRequest{}
+}
+
 type SetBetaWeAppNicknameRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Name        string `position:"Body" name:"name" json:"name"`

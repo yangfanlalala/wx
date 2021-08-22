@@ -22,6 +22,10 @@ func (client *WeChatClient) WxaRelease(data *WxaReleaseRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildWxaReleaseRequest() *WxaReleaseRequest {
+	return &WxaReleaseRequest{}
+}
+
 type WxaReleaseRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

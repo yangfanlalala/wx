@@ -22,6 +22,10 @@ func (client *WeChatClient) ModifyHeadImage(data *ModifyHeadImageRequest) error 
 	return nil
 }
 
+func (client *WeChatClient) BuildModifyHeadImageRequest() *ModifyHeadImageRequest {
+	return &ModifyHeadImageRequest{}
+}
+
 type ModifyHeadImageRequest struct {
 	AccessToken      string `position:"query" name:"access_token" json:"-"`
 	HeadImageMediaID string `position:"body" name:"head_img_media_id" json:"head_image_media_id"`

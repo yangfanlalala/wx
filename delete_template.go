@@ -22,6 +22,10 @@ func (client *WeChatClient) DeleteTemplate(data *DeleteTemplateRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildDeleteTemplateRequest() *DeleteTemplateRequest {
+	return &DeleteTemplateRequest{}
+}
+
 type DeleteTemplateRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	TemplateID  string `position:"body" name:"template_id" json:"template_id"`

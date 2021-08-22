@@ -22,6 +22,10 @@ func (client *WeChatClient) ModifySignature(data *ModifySignatureRequest) error 
 	return nil
 }
 
+func (client *WeChatClient) BuildModifySignatureRequest() *ModifySignatureRequest {
+	return &ModifySignatureRequest{}
+}
+
 type ModifySignatureRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Signature   string `position:"body" name:"signature" json:"signature"`

@@ -24,6 +24,10 @@ func (client *WeChatClient) ChangeWxaSearchStatus(data *ChangeWxaSearchStatusReq
 	return nil
 }
 
+func (client *WeChatClient) BuildChangeWxaSearchStatusRequest() *ChangeWxaSearchStatusRequest {
+	return &ChangeWxaSearchStatusRequest{}
+}
+
 type ChangeWxaSearchStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Status      string `position:"body" name:"status" json:"status"`

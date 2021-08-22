@@ -24,6 +24,10 @@ func (client *WeChatClient) GetWxaSearchStatus(data *GetWxaSearchStatusRequest) 
 	return &rsp.GetWxaSearchStatusResponse, nil
 }
 
+func (client *WeChatClient) BuildGetWxaSearchStatusRequest() *GetWxaSearchStatusRequest {
+	return &GetWxaSearchStatusRequest{}
+}
+
 type GetWxaSearchStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

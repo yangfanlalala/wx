@@ -22,6 +22,10 @@ func (client *WeChatClient) UnbindTester(data *UnbindTesterRequest) error {
 	return nil
 }
 
+func (client *WeChatClient) BuildUnbindTesterRequest() *UnbindTesterRequest {
+	return &UnbindTesterRequest{}
+}
+
 type UnbindTesterRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	WeChatID    string `position:"body" name:"wechatid" json:"wechatid"`

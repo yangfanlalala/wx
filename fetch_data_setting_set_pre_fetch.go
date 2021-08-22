@@ -25,6 +25,12 @@ func (client *WeChatClient) FetchDataSettingSetPreFetch(data FetchDataSettingSet
 	return nil
 }
 
+func (client *WeChatClient) BuildFetchDataSettingSetPreFetchRequest() *FetchDataSettingSetPreFetchRequest {
+	return &FetchDataSettingSetPreFetchRequest{
+		Action: "set_pre_fetch",
+	}
+}
+
 type FetchDataSettingSetPreFetchRequest struct {
 	AccessToken     string `position:"query" name:"access_token" json:"-"`
 	Action          string `position:"body" name:"action" json:"action"`

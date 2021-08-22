@@ -25,6 +25,10 @@ func (client *WeChatClient) WxaGetAuditStatus(data *WxaGetAuditStatusRequest) (*
 	return &rsp.WxaGetAuditStatusResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaGetAuditStatusRequest() *WxaGetAuditStatusRequest {
+	return &WxaGetAuditStatusRequest{}
+}
+
 type WxaGetAuditStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	AuditID     int64  `position:"body" name:"auditid" json:"auditid"`

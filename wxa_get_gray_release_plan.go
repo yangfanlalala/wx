@@ -24,6 +24,10 @@ func (client *WeChatClient) WxaGetGrayReleasePlan(data *WxaGetGrayReleasePlanReq
 	return &rsp.WxaGetGrayReleasePlanResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaGetGrayReleasePlanRequest() *WxaGetGrayReleasePlanRequest {
+	return &WxaGetGrayReleasePlanRequest{}
+}
+
 type WxaGetGrayReleasePlanRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }

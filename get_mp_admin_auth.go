@@ -25,6 +25,10 @@ func (client *WeChatClient) GetMpAdminAuth(data *GetMpAdminAuthRequest) (*GetMpA
 	return &rsp.GetMpAdminAuthResponse, nil
 }
 
+func (client *WeChatClient) BuildGetMpAdminAuthRequest() *GetMpAdminAuthRequest {
+	return &GetMpAdminAuthRequest{}
+}
+
 type GetMpAdminAuthRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	MpAppID     string `position:"body" name:"mp_appid" json:"mp_appid"`

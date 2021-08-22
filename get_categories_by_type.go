@@ -26,6 +26,10 @@ func (client *WeChatClient) GetCategoriesByType(data *GetCategoriesByTypeRequest
 	return &rsp.GetCategoriesByTypeResponse, nil
 }
 
+func (client *WeChatClient) BuildGetCategoriesByTypeRequest() *GetCategoriesByTypeRequest {
+	return &GetCategoriesByTypeRequest{}
+}
+
 type GetCategoriesByTypeRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	VerifyType  string `position:"body" name:"verify_type" json:"verify_type"`

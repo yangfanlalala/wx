@@ -25,6 +25,10 @@ func (client *WeChatClient) WxaQueryNickname(data *WxaQueryNicknameRequest) (*Wx
 	return &rsp.WxaQueryNicknameResponse, nil
 }
 
+func (client *WeChatClient) BuildWxaQueryNicknameRequest() *WxaQueryNicknameRequest {
+	return &WxaQueryNicknameRequest{}
+}
+
 type WxaQueryNicknameRequest struct {
 	AccessToken string `position:"access_token" name:"access_token" json:"-"`
 	AuditID     string `position:"body" name:"audit_id" json:"audit_id"`
