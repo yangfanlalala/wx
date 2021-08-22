@@ -3,6 +3,7 @@ package wx
 import (
 	"bytes"
 	"encoding/json"
+	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -58,11 +59,16 @@ func (cr *CommonRequest) BuildRequest() (*http.Request, error) {
 			}
 		}
 	}
-	buf := bytes.Buffer{}
-	if err = json.NewEncoder(&buf).Encode(cr.Data); err != nil {
-		return nil, err
+	buf := &bytes.Buffer{}
+	if cr.Method == http.MethodPost || cr.Method == http.MethodPut || cr.Method == http.MethodPatch {
+		if err = json.NewEncoder(buf).Encode(cr.Data); err != nil {
+			return nil, err
+		}
+	} else {
+		buf = nil
 	}
 	u.RawQuery = values.Encode()
-	req, err := http.NewRequest(cr.Method, u.String(), &buf)
+	log.Println("URL", u.String())
+	req, err := http.NewRequest(cr.Method, u.String(), buf)
 	return req, err
 }
