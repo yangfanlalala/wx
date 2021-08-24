@@ -12,6 +12,8 @@ const NotifyTypeComponentVerifyTicket = "component_verify_ticket"
 const NotifyTypeUnauthorized = "unauthorized"
 const NotifyTypeUpdateAuthorized = "updateauthorized"
 const NotifyAuthorized = "authorized"
+const NotifyThirdFastRegisterBetaApp = "notify_third_fastregisterbetaapp"
+const NotifyThirdFastRegister = "notify_third_fasteregister"
 
 type NotifySignature struct {
 	Signature string
@@ -29,6 +31,22 @@ type Notification struct {
 	AuthorizationCode string `xml:"AuthorizationCode"`
 	AuthorizationCodeExpiredTime int64 `xml:"AuthorizationCodeExpiredTime"`
 	PreAuthCode string `xml:"PreAuthCode"`
+	FastRegister
+}
+
+type FastRegister struct {
+	Appid string `xml:"appid"`
+	Status int64 `xml:"status"`
+	AuthCode string `xml:"auth_code"`
+	Msg string `xml:"msg"`
+	Info struct{
+		Name string `xml:"name"`
+		Code string `xml:"code"`
+		CodeType int64 `xml:"code_type"`
+		LegalPersonaWechat string `xml:"legal_personal_wechat"`
+		LegalPersonaName string `xml:"legal_persona_name"`
+		ComponentPhone string `xml:"component_phone"`
+	} `xml:"info"`
 }
 
 type NotificationProto struct {
