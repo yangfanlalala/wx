@@ -32,8 +32,8 @@ func (client *WeChatClient) AuthorizerToken(data *AuthorizerTokenRequest) (*Auth
 
 type AuthorizerTokenRequest struct {
 	ComponentAccessToken   string `position:"query" name:"component_access_token" json:"-"`
-	ComponentAppID         string `position:"body" name:"component_appid" json:"component_app_id"`
-	AuthorizerAppID        string `position:"body" name:"authorizer_appid" json:"authorizer_app_id"`
+	ComponentAppID         string `position:"body" name:"component_appid" json:"component_appid"`
+	AuthorizerAppID        string `position:"body" name:"authorizer_appid" json:"authorizer_appid"`
 	AuthorizerRefreshToken string `position:"body" name:"authorizer_refresh_token" json:"authorizer_refresh_token"`
 }
 
