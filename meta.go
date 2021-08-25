@@ -92,9 +92,12 @@ type Category struct {
 	SensitiveType int64 `json:"sensitive_type"`
 	Qualify struct{
 		ExterList []struct{
-			Name string `json:"name"`
-			URL string `json:"url"`
+			InnerList []struct{
+				Name string `json:"name"`
+				URL string `json:"url"`
+			} `json:"inner_list"`
 		} `json:"exter_list"`
+		Remark string `json:"remark"]`
 	} `json:"qualify"`
 }
 
