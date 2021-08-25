@@ -94,6 +94,18 @@ type Category struct {
 }
 
 type WxaCategory struct {
+	ID int64 `json:"id"`
+	Name string `json:"name"`
+	Level int64 `json:"level"`
+	Father int64 `json:"father"`
+	Children []int64 `json:"children"`
+	SensitiveType int64 `json:"sensitive_type"`
+	Qualify struct{
+		ExterList []struct{
+			Name string `json:"name"`
+			URL string `json:"url"`
+		} `json:"exter_list"`
+	} `json:"qualify"`
 }
 
 type AppVersion struct {
