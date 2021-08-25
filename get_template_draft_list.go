@@ -33,10 +33,5 @@ type GetTemplateDraftListRequest struct {
 }
 
 type GetTemplateDraftListResponse struct {
-	DraftList []struct {
-		CreateTime  int64  `json:"create_time"`
-		UserVersion string `json:"user_version"`
-		UserDesc    string `json:"user_desc"`
-		DraftID     string `json:"draft_id"`
-	} `json:"draft_list"`
+	DraftList []TemplateDraft `json:"draft_list"`
 }

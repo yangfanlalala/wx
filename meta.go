@@ -102,3 +102,18 @@ type AppVersion struct {
 	UserDesc    string `json:"user_desc"`
 	CommitTime  int64  `json:"commit_time"`
 }
+
+type Template struct {
+	CreateTime   int64  `json:"create_time"`
+	UserVersion  string `json:"user_version"`
+	UserDesc     string `json:"user_desc"`
+	TemplateID   int64  `json:"template_id"`
+	TemplateType int64  `json:"template_type"`
+}
+
+type TemplateDraft struct {
+	CreateTime  int64  `json:"create_time"`
+	UserVersion string `json:"user_version"`
+	UserDesc    string `json:"user_desc"`
+	DraftID     string `json:"draft_id"`
+}

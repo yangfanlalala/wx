@@ -24,8 +24,8 @@ func (client *WeChatClient) GetTemplateList(data *GetTemplateListRequest) (*GetT
 	return &rsp.GetTemplateListResponse, nil
 }
 
-func (client *WeChatClient) BuildGetTemplateListRequest() *GetTemplateDraftListRequest {
-	return &GetTemplateDraftListRequest{}
+func (client *WeChatClient) BuildGetTemplateListRequest() *GetTemplateListRequest {
+	return &GetTemplateListRequest{}
 }
 
 type GetTemplateListRequest struct {
@@ -34,11 +34,6 @@ type GetTemplateListRequest struct {
 }
 
 type GetTemplateListResponse struct {
-	TemplateList []struct {
-		CreateTime   int64  `json:"create_time"`
-		UserVersion  string `json:"user_version"`
-		UserDesc     string `json:"user_desc"`
-		TemplateID   int64  `json:"template_id"`
-		TemplateType int64  `json:"template_type"`
-	} `json:"template_list"`
+	TemplateList []Template `json:"template_list"`
 }
+
