@@ -31,7 +31,7 @@ func (client *WeChatClient) BuildCheckWxVerifyNicknameRequest() *CheckWxVerifyNi
 
 type CheckWxVerifyNicknameRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
-	Nickname    string `position:"body" name:"nick_name" json:"nickname"`
+	Nickname    string `position:"body" name:"nick_name" json:"nick_name"`
 }
 
 type CheckWxVerifyNicknameResponse struct {
