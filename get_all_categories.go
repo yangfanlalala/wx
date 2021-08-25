@@ -34,6 +34,6 @@ type GetAppCategoriesRequest struct {
 
 type GetAppCategoriesResponse struct {
 	CategoriesList struct {
-		Categories []WxaCategory `json:"categories"`
+		Categories []Category `json:"categories"`
 	} `json:"categories_list"`
 }

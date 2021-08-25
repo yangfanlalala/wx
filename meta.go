@@ -84,16 +84,6 @@ type WxaNetwork struct {
 }
 
 type Category struct {
-	ID            int64    `json:"id"`
-	Name          string   `json:"name"`
-	Level         int64    `json:"level"`
-	Father        int64    `json:"father"`
-	Children      []int64  `json:"children"`
-	SensitiveType int64    `json:"sensitive_type"`
-	Qualify       struct{} `json:"qualify"`
-}
-
-type WxaCategory struct {
 	ID int64 `json:"id"`
 	Name string `json:"name"`
 	Level int64 `json:"level"`
@@ -106,6 +96,10 @@ type WxaCategory struct {
 			URL string `json:"url"`
 		} `json:"exter_list"`
 	} `json:"qualify"`
+}
+
+type WxaCategory struct {
+
 }
 
 type AppVersion struct {
