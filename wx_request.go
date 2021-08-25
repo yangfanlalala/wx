@@ -64,8 +64,6 @@ func (cr *CommonRequest) BuildRequest() (*http.Request, error) {
 		if err = json.NewEncoder(buf).Encode(cr.Data); err != nil {
 			return nil, err
 		}
-	} else {
-		buf = nil
 	}
 	u.RawQuery = values.Encode()
 	log.Println("URL", u.String())
