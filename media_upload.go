@@ -7,6 +7,7 @@ import (
 	"fmt"
 	jsoniter "github.com/json-iterator/go"
 	"io"
+	"log"
 	"mime/multipart"
 	"net/http"
 )
@@ -22,8 +23,8 @@ const (
 
 func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadResponse, error) {
 	// 构建From
-	buff := &bytes.Buffer{}
-	writer := multipart.NewWriter(buff)
+	payload := &bytes.Buffer{}
+	writer := multipart.NewWriter(payload)
 	fileWriter, err := writer.CreateFormFile("media", "media")
 	if err != nil {
 		return nil, err
@@ -32,7 +33,9 @@ func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadR
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s?access_token=%s&type=%s", ApiMediaUpload, data.AccessToken, data.Type), buff)
+	_ = writer.Close()
+	log.Println("########################################payload\n", payload.Len())
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s?access_token=%s&type=%s", ApiMediaUpload, data.AccessToken, data.Type), payload)
 	if err != nil {
 		return nil, err
 	}
