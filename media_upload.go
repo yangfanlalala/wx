@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	ApiMediaUpload = "https://api.weixin.qq.com/cgi-bin/media/upload?"
+	ApiMediaUpload = "https://api.weixin.qq.com/cgi-bin/media/upload"
 
 	MediaTypeImage = "image"
 	MediaTypeVoice = "voice"
