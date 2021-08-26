@@ -25,7 +25,7 @@ func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadR
 	// 构建From
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
-	fileWriter, err := writer.CreateFormFile("media", "media")
+	fileWriter, err := writer.CreateFormFile("media", "media.png")
 	if err != nil {
 		return nil, err
 	}
