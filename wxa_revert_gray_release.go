@@ -18,7 +18,7 @@ func (client *WeChatClient) RevertGrayRelease(data *RevertGrayReleaseRequest) er
 	if err := rsp.Error(); err != nil {
 		return err
 	}
-	return  nil
+	return nil
 }
 
 func (client *WeChatClient) BuildRevertGrayReleaseRequest() *RevertGrayReleaseRequest {

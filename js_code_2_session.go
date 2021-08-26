@@ -21,7 +21,6 @@ func (client *WeChatClient) JSCodeToSession(data *JSCodeToSessionRequest) (*JSCo
 	return &rsp.JSCodeToSessionResponse, nil
 }
 
-
 func (client *WeChatClient) BuildJSCodeToSessionRequest() *JSCodeToSessionRequest {
 	return &JSCodeToSessionRequest{
 		GrantType: "authorization_code",
@@ -29,15 +28,15 @@ func (client *WeChatClient) BuildJSCodeToSessionRequest() *JSCodeToSessionReques
 }
 
 type JSCodeToSessionRequest struct {
-	AppID string `position:"query" name:"appid" json:"-"`
-	JSCode string `position:"query" name:"js_code" json:"-"`
-	GrantType string `position:"query" name:"grant_type" json:"-"`
-	ComponentAppID string `position:"query" name:"component_appid" json:"-"`
+	AppID                string `position:"query" name:"appid" json:"-"`
+	JSCode               string `position:"query" name:"js_code" json:"-"`
+	GrantType            string `position:"query" name:"grant_type" json:"-"`
+	ComponentAppID       string `position:"query" name:"component_appid" json:"-"`
 	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
 }
 
 type JSCodeToSessionResponse struct {
-	OpenID string `json:"openid"`
+	OpenID     string `json:"openid"`
 	SessionKey string `json:"session_key"`
-	UnionID string `json:"unionid"`
+	UnionID    string `json:"unionid"`
 }

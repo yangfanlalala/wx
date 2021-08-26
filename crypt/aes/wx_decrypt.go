@@ -14,14 +14,14 @@ func base64decode(txt []byte) ([]byte, error) {
 	return dec[:l], nil
 }
 
-func WxDecrypt(cipherTxt, key []byte) ([]byte, error){
+func WxDecrypt(cipherTxt, key []byte) ([]byte, error) {
 	//base64decode
 	cipherTxt, err := base64decode(cipherTxt)
 	if err != nil {
 		return nil, err
 	}
 	iv := key[:16]
-	key, err= base64decode(key)
+	key, err = base64decode(key)
 	if err != nil {
 		return nil, err
 	}

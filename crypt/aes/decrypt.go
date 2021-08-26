@@ -40,7 +40,7 @@ func Encrypt(plainTxt, key, iv []byte, mod, pad int) ([]byte, error) {
 	return cipherTxt, nil
 }
 
-func Decrypt(cipherTxt, key ,iv []byte, mod, pad int) ([]byte, error) {
+func Decrypt(cipherTxt, key, iv []byte, mod, pad int) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
@@ -64,7 +64,7 @@ func Decrypt(cipherTxt, key ,iv []byte, mod, pad int) ([]byte, error) {
 }
 
 func pkcs7padding(cipherTxt []byte, blockSize int) []byte {
-	padding := blockSize - len(cipherTxt) % blockSize
+	padding := blockSize - len(cipherTxt)%blockSize
 	padText := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(cipherTxt, padText...)
 }

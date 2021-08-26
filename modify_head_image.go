@@ -13,7 +13,7 @@ func (client *WeChatClient) ModifyHeadImage(data *ModifyHeadImageRequest) error 
 		WithContentType(MineJson).
 		WithData(data)
 	rsp := &CommonResponse{}
-	if err := client.DoRequest(req, rsp); err != nil{
+	if err := client.DoRequest(req, rsp); err != nil {
 		return err
 	}
 	if err := rsp.Error(); err != nil {

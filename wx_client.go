@@ -11,24 +11,24 @@ const (
 	MiniProgramStateFormal    = "formal"    // 正式
 
 	ErrorCodeSuccess = 0
-	MineJson = "application/json;charset=utf-8"
+	MineJson         = "application/json;charset=utf-8"
 )
 
 type WeChatOption struct {
-	AppID string
-	AppSecret string
-	VerifyKey string
+	AppID      string
+	AppSecret  string
+	VerifyKey  string
 	EncryptKey string
 }
 
 type WeChatClient struct {
-	options *WeChatOption
+	options    *WeChatOption
 	httpProxy  string
 	httpsProxy string
 	httpClient *http.Client
 }
 
-func (client *WeChatClient) SetOptions (options *WeChatOption) {
+func (client *WeChatClient) SetOptions(options *WeChatOption) {
 	client.options = options
 }
 

@@ -16,41 +16,41 @@ const NotifyThirdFastRegisterBetaApp = "notify_third_fastregisterbetaapp"
 const NotifyThirdFastRegister = "notify_third_fasteregister"
 
 type NotifySignature struct {
-	Signature string
-	Nonce string
-	EncryptType string
+	Signature        string
+	Nonce            string
+	EncryptType      string
 	MessageSignature string
 }
 
 type Notification struct {
-	AppID string `xml:"AppId"`
-	InfoType string `xml:"InfoType"`
-	CreateTime int64 `xml:"CreateTime"`
-	ComponentVerifyTicket string `xml:"ComponentVerifyTicket"` //验证票据
-	AuthorizerAppID string `xml:"AuthorizerAppid"`
-	AuthorizationCode string `xml:"AuthorizationCode"`
-	AuthorizationCodeExpiredTime int64 `xml:"AuthorizationCodeExpiredTime"`
-	PreAuthCode string `xml:"PreAuthCode"`
+	AppID                        string `xml:"AppId"`
+	InfoType                     string `xml:"InfoType"`
+	CreateTime                   int64  `xml:"CreateTime"`
+	ComponentVerifyTicket        string `xml:"ComponentVerifyTicket"` //验证票据
+	AuthorizerAppID              string `xml:"AuthorizerAppid"`
+	AuthorizationCode            string `xml:"AuthorizationCode"`
+	AuthorizationCodeExpiredTime int64  `xml:"AuthorizationCodeExpiredTime"`
+	PreAuthCode                  string `xml:"PreAuthCode"`
 	FastRegister
 }
 
 type FastRegister struct {
-	Appid string `xml:"appid"`
-	Status int64 `xml:"status"`
+	Appid    string `xml:"appid"`
+	Status   int64  `xml:"status"`
 	AuthCode string `xml:"auth_code"`
-	Msg string `xml:"msg"`
-	Info struct{
-		Name string `xml:"name"`
-		Code string `xml:"code"`
-		CodeType int64 `xml:"code_type"`
+	Msg      string `xml:"msg"`
+	Info     struct {
+		Name               string `xml:"name"`
+		Code               string `xml:"code"`
+		CodeType           int64  `xml:"code_type"`
 		LegalPersonaWechat string `xml:"legal_personal_wechat"`
-		LegalPersonaName string `xml:"legal_persona_name"`
-		ComponentPhone string `xml:"component_phone"`
+		LegalPersonaName   string `xml:"legal_persona_name"`
+		ComponentPhone     string `xml:"component_phone"`
 	} `xml:"info"`
 }
 
 type NotificationProto struct {
-	AppID string `xml:"AppId"`
+	AppID   string `xml:"AppId"`
 	Encrypt string `xml:"Encrypt"`
 }
 
@@ -71,7 +71,7 @@ func (client *WeChatClient) ParseNotification(raw []byte) (*Notification, error)
 	if err = binary.Read(buff, binary.BigEndian, &length); err != nil {
 		return nil, err
 	}
-	plainTxt = plainTxt[20:length+20]
+	plainTxt = plainTxt[20 : length+20]
 	notify := &Notification{}
 	if err = xml.Unmarshal(plainTxt, notify); err != nil {
 		return nil, err

@@ -34,5 +34,5 @@ type GetCategoryRequest struct {
 
 type GetCategoryResponse struct {
 	Categories []*WxaCategory `json:"categories"`
-	Limit int64 `json:"limit"` //?access_token=TOKEN
+	Limit      int64          `json:"limit"` //?access_token=TOKEN
 }

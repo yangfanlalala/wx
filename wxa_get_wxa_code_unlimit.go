@@ -23,13 +23,13 @@ func (client *WeChatClient) BuildWxaGetWxaCodeUnlimitRequest() *WxaGetWxaCodeUnl
 }
 
 type WxaGetWxaCodeUnlimitRequest struct {
-	AccessToken string `position:"query" name:"access_token"  json:"access_token"`
-	Scene string `position:"body" name:"scene"  json:"scene"`
-	Page string `position:"body" name:"page"  json:"page"`
-	Width int64 `position:"body" name:"width"  json:"width"`
-	AutoColor bool `position:"body" name:"auto_color"  json:"auto_color"`
-	LineColor RGBColor `position:"body" name:"line_color"  json:"line_color"`
-	IsHyaline bool `position:"body" name:"is_hyaline"  json:"is_hyaline"`
+	AccessToken string   `position:"query" name:"access_token"  json:"access_token"`
+	Scene       string   `position:"body" name:"scene"  json:"scene"`
+	Page        string   `position:"body" name:"page"  json:"page"`
+	Width       int64    `position:"body" name:"width"  json:"width"`
+	AutoColor   bool     `position:"body" name:"auto_color"  json:"auto_color"`
+	LineColor   RGBColor `position:"body" name:"line_color"  json:"line_color"`
+	IsHyaline   bool     `position:"body" name:"is_hyaline"  json:"is_hyaline"`
 }
 
 type RGBColor struct {

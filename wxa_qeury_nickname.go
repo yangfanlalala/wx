@@ -19,7 +19,7 @@ func (client *WeChatClient) WxaQueryNickname(data *WxaQueryNicknameRequest) (*Wx
 	if err := client.DoRequest(req, rsp); err != nil {
 		return nil, err
 	}
-	if err := rsp.Error(); err != nil{
+	if err := rsp.Error(); err != nil {
 		return nil, err
 	}
 	return &rsp.WxaQueryNicknameResponse, nil

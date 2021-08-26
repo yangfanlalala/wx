@@ -6,7 +6,7 @@ import "net/http"
 
 const ApiSetWeAppSupportVersion = "https://api.weixin.qq.com/cgi-bin/wxopen/setweappsupportversion"
 
-func (client *WeChatClient) SetWeAppSupportVersion(data *SetWeAppSupportVersionRequest)  error {
+func (client *WeChatClient) SetWeAppSupportVersion(data *SetWeAppSupportVersionRequest) error {
 	req := &CommonRequest{}
 	req.WithURL(ApiSetWeAppSupportVersion).
 		WithMethod(http.MethodPost).

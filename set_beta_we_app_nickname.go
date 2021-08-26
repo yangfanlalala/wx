@@ -14,7 +14,7 @@ func (client *WeChatClient) SetBetaWeAppNickname(data *SetBetaWeAppNicknameReque
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := &struct{
+	rsp := &struct {
 		CommonResponse
 		SetBetaWeAppNicknameResponse
 	}{}

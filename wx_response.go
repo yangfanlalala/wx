@@ -10,7 +10,7 @@ type Response interface {
 }
 
 type CommonResponse struct {
-	ErrorCode int64 `json:"errcode"`
+	ErrorCode    int64  `json:"errcode"`
 	ErrorMessage string `json:"errmsg"`
 }
 

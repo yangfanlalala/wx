@@ -69,9 +69,7 @@ func (client *WeChatClient) BuildFastRegisterPersonalWeAppQueryRequest() *FastRe
 }
 
 type FastRegisterPersonalWeAppQueryRequest struct {
-
 }
 
 type FastRegisterPersonalWeAppQueryResponse struct {
-
 }

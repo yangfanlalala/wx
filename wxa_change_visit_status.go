@@ -15,7 +15,7 @@ func (client *WeChatClient) WxaChangeVisitStatus(data *WxaChangeVisitStatusReque
 		WithContentType(MineJson).
 		WithData(data)
 	rsp := &CommonResponse{}
-	if err := client.DoRequest(req, rsp); err != nil{
+	if err := client.DoRequest(req, rsp); err != nil {
 		return err
 	}
 	if err := rsp.Error(); err != nil {
@@ -27,7 +27,6 @@ func (client *WeChatClient) WxaChangeVisitStatus(data *WxaChangeVisitStatusReque
 func (client *WeChatClient) BuildWxaChangeVisitStatusRequest() *WxaChangeVisitStatusRequest {
 	return &WxaChangeVisitStatusRequest{}
 }
-
 
 type WxaChangeVisitStatusRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`

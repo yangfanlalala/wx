@@ -9,14 +9,14 @@ import (
 const ApiWxaGrayRelease = "https://api.weixin.qq.com/wxa/grayrelease"
 
 func (client *WeChatClient) WxaGrayRelease(data *WxaGrayReleaseRequest) error {
- 	req := &CommonRequest{}
- 	req.WithURL(ApiWxaGrayRelease).
- 		WithMethod(http.MethodPost).
- 		WithContentType(MineJson).
- 		WithData(data)
- 	rsp := &CommonResponse{}
- 	if err := client.DoRequest(req, rsp); err != nil {
- 		return err
+	req := &CommonRequest{}
+	req.WithURL(ApiWxaGrayRelease).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &CommonResponse{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return err
 	}
 	if err := rsp.Error(); err != nil {
 		return err

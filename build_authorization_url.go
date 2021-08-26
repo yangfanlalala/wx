@@ -7,6 +7,7 @@ const H5AuthorizationURLTpl = "https://mp.weixin.qq.com/safe/bindcomponent?actio
 const AuthTypeMP = "1"
 const AuthTypeWxa = "2"
 const AuthTypeMpAndWxa = "3"
+
 func (client *WeChatClient) BuildAuthorizationURL(preCode, redirectURL, authType string) *AuthorizationURL {
 	return &AuthorizationURL{
 		PC: fmt.Sprintf(PCAuthorizationURLTpl, client.options.AppID, preCode, redirectURL, authType),

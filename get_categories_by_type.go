@@ -17,7 +17,7 @@ func (client *WeChatClient) GetCategoriesByType(data *GetCategoriesByTypeRequest
 		CommonResponse
 		GetCategoriesByTypeResponse
 	}{}
-	if err := client.DoRequest(req,rsp); err != nil {
+	if err := client.DoRequest(req, rsp); err != nil {
 		return nil, err
 	}
 	if err := rsp.Error(); err != nil {

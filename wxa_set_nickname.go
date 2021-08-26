@@ -43,5 +43,5 @@ type WxaSetNicknameRequest struct {
 
 type WxaSetNicknameResponse struct {
 	Wording string `json:"wording"`
-	AuditID int64 `json:"audit_id"`
+	AuditID int64  `json:"audit_id"`
 }

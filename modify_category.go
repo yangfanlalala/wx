@@ -28,8 +28,8 @@ func (client *WeChatClient) BuildModifyCategoryRequest() *ModifyCategoryRequest 
 
 type ModifyCategoryRequest struct {
 	AccessToken string                    `position:"query" name:"access_token" json:"-"`
-	First       string                    `position:"body" name:"first" json:"first"`
-	Second      string                    `position:"body" name:"second" json:"second"`
+	First       int64                     `position:"body" name:"first" json:"first"`
+	Second      int64                     `position:"body" name:"second" json:"second"`
 	Certicates  []ModifyCategoryCerticate `position:"body" name:"certicates" json:"certicates"`
 }
 

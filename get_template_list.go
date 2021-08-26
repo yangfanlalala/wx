@@ -36,4 +36,3 @@ type GetTemplateListRequest struct {
 type GetTemplateListResponse struct {
 	TemplateList []Template `json:"template_list"`
 }
-

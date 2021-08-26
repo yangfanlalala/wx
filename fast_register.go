@@ -12,7 +12,7 @@ func (client *WeChatClient) FastRegister(data *FastRegisterRequest) (*FastRegist
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := &struct{
+	rsp := &struct {
 		CommonResponse
 		FastRegisterResponse
 	}{}

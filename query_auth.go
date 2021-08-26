@@ -17,7 +17,7 @@ func (client *WeChatClient) QueryAuth(data *QueryAuthRequest) (*QueryAuthRespons
 		QueryAuthResponse
 	}{}
 	if err := client.DoRequest(req, rsp); err != nil {
-		return nil,  err
+		return nil, err
 	}
 	if err := rsp.Error(); err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func (client *WeChatClient) QueryAuth(data *QueryAuthRequest) (*QueryAuthRespons
 
 func (client *WeChatClient) BuildQueryAuthRequest() *QueryAuthRequest {
 	return &QueryAuthRequest{
-		ComponentAppID:       client.options.AppID,
+		ComponentAppID: client.options.AppID,
 	}
 }
 

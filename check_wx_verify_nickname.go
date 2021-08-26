@@ -6,7 +6,7 @@ import "net/http"
 
 const ApiCheckWxVerifyNickname = "https://api.weixin.qq.com/cgi-bin/wxverify/checkwxverifynickname"
 
-func (client *WeChatClient) CheckWxVerifyNickname(data *CheckWxVerifyNicknameRequest)(*CheckWxVerifyNicknameResponse, error) {
+func (client *WeChatClient) CheckWxVerifyNickname(data *CheckWxVerifyNicknameRequest) (*CheckWxVerifyNicknameResponse, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiCheckWxVerifyNickname).
 		WithMethod(http.MethodPost).

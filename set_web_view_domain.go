@@ -12,7 +12,7 @@ const SetWebViewDomainActionGet = "get"
 
 func (client *WeChatClient) SetWebViewDomain(data *SetWebViewDomainRequest) error {
 	req := &CommonRequest{}
- 	req.WithURL(ApiSetWebViewDomain).
+	req.WithURL(ApiSetWebViewDomain).
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)

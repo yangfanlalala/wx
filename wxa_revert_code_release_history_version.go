@@ -24,7 +24,7 @@ func (client *WeChatClient) WxaRevertCodeReleaseHistoryVersion(data *WxaRevertCo
 	return &rsp.WxaRevertCodeReleaseHistoryVersionResponse, nil
 }
 
-func (client *WeChatClient) BuildWxaRevertCodeReleaseHistoryVersionRequest() *WxaRevertCodeReleaseHistoryVersionRequest{
+func (client *WeChatClient) BuildWxaRevertCodeReleaseHistoryVersionRequest() *WxaRevertCodeReleaseHistoryVersionRequest {
 	return &WxaRevertCodeReleaseHistoryVersionRequest{
 		Action: "get_history_version",
 	}

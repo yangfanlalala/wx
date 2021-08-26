@@ -20,7 +20,7 @@ func (client *WeChatClient) FastRegisterWeApp(data *FastRegisterWeAppRequest) er
 	if err := rsp.Error(); err != nil {
 		return err
 	}
-	return  nil
+	return nil
 }
 
 func (client *WeChatClient) BuildFastRegisterWeAppRequest() *FastRegisterWeAppRequest {

@@ -14,7 +14,7 @@ func (client *WeChatClient) SetDataSettingSetPeriodFetch(data *SetDataSettingSet
 		CommonResponse
 		SetDataSettingSetPeriodFetchResponse
 	}{}
-	if err := client.DoRequest(req, rsp); err !=nil {
+	if err := client.DoRequest(req, rsp); err != nil {
 		return err
 	}
 	if err := rsp.Error(); err != nil {

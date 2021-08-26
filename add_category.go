@@ -32,7 +32,7 @@ type AddCategoryRequest struct {
 }
 
 type AddCategory struct {
-	First      int64                  `name:"first"`
+	First      int64                  `name:"first" json:"first"`
 	Second     int64                  `name:"second" json:"second"`
 	Certicates []AddCategoryCerticate `name:"certicates" json:"certicates"`
 }
