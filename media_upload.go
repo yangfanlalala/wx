@@ -3,9 +3,11 @@ package wx
 //Api Document https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/New_temporary_materials.html
 
 import (
+	"bytes"
 	"fmt"
 	jsoniter "github.com/json-iterator/go"
 	"io"
+	"mime/multipart"
 	"net/http"
 )
 
@@ -19,10 +21,22 @@ const (
 )
 
 func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadResponse, error) {
+	// 构建From
+	buff := &bytes.Buffer{}
+	writer := multipart.NewWriter(buff)
+	fileWriter, err := writer.CreateFormFile("media", "media")
+	if err != nil {
+		return nil, err
+	}
+	_, err = io.Copy(fileWriter, data.Media)
+	if err != nil {
+		return nil, err
+	}
 	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s?access_token=%s&type=%s", ApiMediaUpload, data.AccessToken, data.Type), data.Media)
 	if err != nil {
 		return nil, err
 	}
+	req.Header.Set("Content-Type", writer.FormDataContentType())
 	rsp, err := client.httpClient.Do(req)
 	if err != nil {
 		return nil, err
