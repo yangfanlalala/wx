@@ -28,7 +28,7 @@ func (client *WeChatClient) BuildModifyHeadImageRequest() *ModifyHeadImageReques
 
 type ModifyHeadImageRequest struct {
 	AccessToken      string `position:"query" name:"access_token" json:"-"`
-	HeadImageMediaID string `position:"body" name:"head_img_media_id" json:"head_image_media_id"`
+	HeadImageMediaID string `position:"body" name:"head_img_media_id" json:"head_img_media_id"`
 	X1               string `position:"body" name:"x1" json:"x1"`
 	Y1               string `position:"body" name:"y1" json:"y1"`
 	X2               string `position:"body" name:"x2" json:"x2"`

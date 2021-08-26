@@ -7,7 +7,6 @@ import (
 	"fmt"
 	jsoniter "github.com/json-iterator/go"
 	"io"
-	"log"
 	"mime/multipart"
 	"net/http"
 )
@@ -34,7 +33,6 @@ func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadR
 		return nil, err
 	}
 	_ = writer.Close()
-	log.Println("########################################payload\n", payload.Len())
 	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s?access_token=%s&type=%s", ApiMediaUpload, data.AccessToken, data.Type), payload)
 	if err != nil {
 		return nil, err
