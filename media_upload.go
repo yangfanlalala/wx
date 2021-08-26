@@ -45,6 +45,10 @@ func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadR
 	return &reply.MediaUploadResponse, nil
 }
 
+func (client *WeChatClient) BuildMediaUploadRequest() *MediaUploadRequest {
+	return &MediaUploadRequest{}
+}
+
 type MediaUploadRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Type string `position:"query" name:"type" json:"-"`
