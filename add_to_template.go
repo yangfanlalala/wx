@@ -14,7 +14,7 @@ func (client *WeChatClient) AddToTemplate(data *AddToTemplateRequest) error {
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := CommonResponse{}
+	rsp := &CommonResponse{}
 	err := client.DoRequest(req, rsp)
 	if err != nil {
 		return err

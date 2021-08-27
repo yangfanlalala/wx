@@ -11,7 +11,7 @@ func (client *WeChatClient) UndoCodeAudit(data *UndoCodeAuditRequest) error {
 	req.WithURL(ApiUndoCodeAudit).
 		WithMethod(http.MethodGet).
 		WithData(data)
-	rsp := CommonResponse{}
+	rsp := &CommonResponse{}
 	if err := client.DoRequest(req, rsp); err != nil {
 		return err
 	}
