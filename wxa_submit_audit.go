@@ -30,13 +30,13 @@ func (client *WeChatClient) BuildWxaSubmitAuditRequest() *WxaSubmitAuditRequest 
 }
 
 type WxaSubmitAuditRequest struct {
-	AccessToken   string                  `name:"access_token" json:"-"`
-	ItemList      []WxaSubmitAuditItem    `name:"item_list" json:"item_list"`
-	PreviewInfo   []WxaSubmitAuditPreview `name:"preview_info" json:"preview_info"`
-	VersionDesc   string                  `name:"version_desc" json:"version_desc"`
-	FeedbackInfo  string                  `name:"feedback_info"`
-	FeedbackStuff string                  `name:"feedback_stuff" json:"feedback_stuff"`
-	UgcDeclare    WxaSubmitAuditUGC       `name:"ugc_declare" json:"ugc_declare"`
+	AccessToken   string                  `position:"query" name:"access_token" json:"-"`
+	ItemList      []WxaSubmitAuditItem    `position:"body" name:"item_list" json:"item_list"`
+	PreviewInfo   []WxaSubmitAuditPreview `position:"body" name:"preview_info" json:"preview_info"`
+	VersionDesc   string                  `position:"body" name:"version_desc" json:"version_desc"`
+	FeedbackInfo  string                  `position:"body" name:"feedback_info"`
+	FeedbackStuff string                  `position:"body" name:"feedback_stuff" json:"feedback_stuff"`
+	UgcDeclare    WxaSubmitAuditUGC       `position:"body" name:"ugc_declare" json:"ugc_declare"`
 }
 
 type WxaSubmitAuditItem struct {
