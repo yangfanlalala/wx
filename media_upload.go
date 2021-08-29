@@ -3,14 +3,16 @@ package wx
 //Api Document https://developers.weixin.qq.com/doc/offiaccount/Asset_Management/New_temporary_materials.html
 
 import (
+	"bytes"
 	"fmt"
 	jsoniter "github.com/json-iterator/go"
 	"io"
+	"mime/multipart"
 	"net/http"
 )
 
 const (
-	ApiMediaUpload = "https://api.weixin.qq.com/cgi-bin/media/upload?"
+	ApiMediaUpload = "https://api.weixin.qq.com/cgi-bin/media/upload"
 
 	MediaTypeImage = "image"
 	MediaTypeVoice = "voice"
@@ -19,10 +21,23 @@ const (
 )
 
 func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadResponse, error) {
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s?access_token=%s&type=%s", ApiMediaUpload, data.AccessToken, data.Type), data.Media)
+	// 构建From
+	payload := &bytes.Buffer{}
+	writer := multipart.NewWriter(payload)
+	fileWriter, err := writer.CreateFormFile("media", "media.png")
 	if err != nil {
 		return nil, err
 	}
+	_, err = io.Copy(fileWriter, data.Media)
+	if err != nil {
+		return nil, err
+	}
+	_ = writer.Close()
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("%s?access_token=%s&type=%s", ApiMediaUpload, data.AccessToken, data.Type), payload)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", writer.FormDataContentType())
 	rsp, err := client.httpClient.Do(req)
 	if err != nil {
 		return nil, err
@@ -45,6 +60,10 @@ func (client *WeChatClient) MediaUpload(data *MediaUploadRequest) (*MediaUploadR
 	return &reply.MediaUploadResponse, nil
 }
 
+func (client *WeChatClient) BuildMediaUploadRequest() *MediaUploadRequest {
+	return &MediaUploadRequest{}
+}
+
 type MediaUploadRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 	Type string `position:"query" name:"type" json:"-"`
@@ -52,5 +71,7 @@ type MediaUploadRequest struct {
 }
 
 type MediaUploadResponse struct {
-
+	Type string `json:"type"`
+	MediaID string `json:"media_id"`
+	CreatedAt int64 `json:"created_at"`
 }

@@ -123,5 +123,5 @@ type TemplateDraft struct {
 	CreateTime  int64  `json:"create_time"`
 	UserVersion string `json:"user_version"`
 	UserDesc    string `json:"user_desc"`
-	DraftID     string `json:"draft_id"`
+	DraftID     int64 `json:"draft_id"`
 }

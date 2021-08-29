@@ -12,7 +12,7 @@ func (client *WeChatClient) DeleteCategory(data *DeleteCategoryRequest) error {
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := CommonResponse{}
+	rsp := &CommonResponse{}
 	if err := client.DoRequest(req, rsp); err != nil {
 		return err
 	}
