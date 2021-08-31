@@ -29,7 +29,7 @@ func (client WeChatClient) BuildGetWeAppSupportVersionRequest() *GetWeAppSupport
 }
 
 type GetWeAppSupportVersionRequest struct {
-	AccessToken string `name:"access_token" json:"-"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
 
 type GetWeAppSupportVersionResponse struct {
