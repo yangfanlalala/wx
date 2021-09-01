@@ -35,7 +35,7 @@ type GetAccountBasicInfoRequest struct {
 
 type GetAccountBasicInfoResponse struct {
 	AppID             string        `json:"appid"`
-	AccountType       string        `json:"account_type"`
+	AccountType       int64        	`json:"account_type"`
 	PrincipalType     int64         `json:"principal_type"`
 	PrincipalName     string        `json:"principal_name"`
 	Credential        string        `json:"credential"`
