@@ -10,7 +10,7 @@ func (client *WeChatClient) SetDataSettingSetPeriodFetch(data *SetDataSettingSet
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := struct {
+	rsp := &struct {
 		CommonResponse
 		SetDataSettingSetPeriodFetchResponse
 	}{}

@@ -12,7 +12,7 @@ func (client *WeChatClient) GetAccountBasicInfo(data *GetAccountBasicInfoRequest
 	req.WithURL(ApiGetAccountBasicInfo).
 		WithMethod(http.MethodGet).
 		WithData(data)
-	rsp := struct {
+	rsp := &struct {
 		CommonResponse
 		GetAccountBasicInfoResponse
 	}{}
