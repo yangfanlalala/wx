@@ -1,6 +1,7 @@
 package wx
 
 import (
+	"fmt"
 	"github.com/json-iterator/go"
 	"net/http"
 )
@@ -64,6 +65,9 @@ func (client *WeChatClient) DoRequest(input Request, output Response) error {
 	rsp, err := client.httpClient.Do(req)
 	if err != nil {
 		return err
+	}
+	if rsp.StatusCode != http.StatusOK {
+		return fmt.Errorf("status not ok, code [%d]", rsp.StatusCode)
 	}
 	defer func() { _ = rsp.Body.Close() }()
 	err = jsoniter.NewDecoder(rsp.Body).Decode(output)
