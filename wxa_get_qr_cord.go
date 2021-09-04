@@ -12,7 +12,7 @@ import (
 
 const ApiWxaGetQRCode = "https://api.weixin.qq.com/wxa/get_qrcode"
 
-func (client *WeChatClient) WxaGetQRCode(data *WxaGetQRCodeRequest) (io.Reader, error) {
+func (client *WeChatClient) WxaGetQRCode(data *WxaGetQRCodeRequest) (io.ReadCloser, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiWxaGetQRCode).
 		WithMethod(http.MethodPost).
