@@ -40,7 +40,7 @@ func (client *WeChatClient) WxaGetQRCode(data *WxaGetQRCodeRequest) (io.ReadClos
 		}
 		return nil, reply.Error()
 	}
-	if strings.HasPrefix(contentType, "image"); err != nil {
+	if strings.HasPrefix(contentType, "image") {
 		return rsp.Body, nil
 	}
 	return nil, fmt.Errorf("unknown content type")
