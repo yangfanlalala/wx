@@ -9,13 +9,13 @@ import (
 
 const ApiGetWxaCodeUnlimit = "https://api.weixin.qq.com/wxa/getwxacodeunlimit"
 
-func (client *WeChatClient) WxaGetWxaCodeUnlimit(data *WxaGetWxaCodeUnlimitRequest) (*io.Reader, error) {
+func (client *WeChatClient) WxaGetWxaCodeUnlimit(data *WxaGetWxaCodeUnlimitRequest) (io.ReadCloser, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiGetWxaCodeUnlimit).
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	return nil, nil
+	return client.DoStream(req)
 }
 
 func (client *WeChatClient) BuildWxaGetWxaCodeUnlimitRequest() *WxaGetWxaCodeUnlimitRequest {

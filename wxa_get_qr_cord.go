@@ -4,7 +4,6 @@ import (
 	"fmt"
 	jsoniter "github.com/json-iterator/go"
 	"io"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -30,7 +29,6 @@ func (client *WeChatClient) WxaGetQRCode(data *WxaGetQRCodeRequest) (io.ReadClos
 		return nil, fmt.Errorf("status not ok, code[%d]", rsp.StatusCode)
 	}
 	contentType := rsp.Header.Get("Content-Type")
-	log.Println(rsp.Header)
 	if strings.HasPrefix(contentType, "application/json") {
 		reply := &CommonResponse{}
 		err = jsoniter.NewDecoder(rsp.Body).Decode(reply)

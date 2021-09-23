@@ -3,7 +3,9 @@ package wx
 import (
 	"fmt"
 	"github.com/json-iterator/go"
+	"io"
 	"net/http"
+	"strings"
 )
 
 const (
@@ -75,6 +77,31 @@ func (client *WeChatClient) DoRequest(input Request, output Response) error {
 		return err
 	}
 	return nil
+}
+
+func (client *WeChatClient) DoStream(input Request) (io.ReadCloser, error) {
+	req, err := input.BuildRequest()
+	if err != nil {
+		return nil, err
+	}
+	rsp, err := client.httpClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	if rsp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("status not ok, code[%d]", rsp.StatusCode)
+	}
+	contentType := rsp.Header.Get("Content-Type")
+	if strings.HasPrefix(contentType, "application/json") {
+		reply := &CommonResponse{}
+		err = jsoniter.NewDecoder(rsp.Body).Decode(reply)
+		_ = rsp.Body.Close()
+		if err != nil {
+			return nil, err
+		}
+		return nil, reply.Error()
+	}
+	return rsp.Body, nil
 }
 
 func NewWeChatClient() *WeChatClient {
