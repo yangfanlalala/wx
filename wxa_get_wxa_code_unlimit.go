@@ -23,7 +23,7 @@ func (client *WeChatClient) BuildWxaGetWxaCodeUnlimitRequest() *WxaGetWxaCodeUnl
 }
 
 type WxaGetWxaCodeUnlimitRequest struct {
-	AccessToken string   `position:"query" name:"access_token"  json:"access_token"`
+	AccessToken string   `position:"query" name:"access_token" json:"-"`
 	Scene       string   `position:"body" name:"scene"  json:"scene"`
 	Page        string   `position:"body" name:"page"  json:"page"`
 	Width       int64    `position:"body" name:"width"  json:"width"`
