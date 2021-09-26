@@ -27,9 +27,9 @@ type WxaGetWxaCodeUnlimitRequest struct {
 	Scene       string   `position:"body" name:"scene"  json:"scene"`
 	Page        string   `position:"body" name:"page"  json:"page"`
 	Width       int64    `position:"body" name:"width"  json:"width"`
-	AutoColor   bool     `position:"body" name:"auto_color"  json:"auto_color"`
-	LineColor   RGBColor `position:"body" name:"line_color"  json:"line_color"`
-	IsHyaline   bool     `position:"body" name:"is_hyaline"  json:"is_hyaline"`
+	AutoColor   bool     `position:"body" name:"auto_color"  json:"auto_color,omitempty"`
+	LineColor   *RGBColor `position:"body" name:"line_color"  json:"line_color,omitempty"`
+	IsHyaline   bool     `position:"body" name:"is_hyaline"  json:"is_hyaline,omitempty"`
 }
 
 type RGBColor struct {
