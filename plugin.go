@@ -1,5 +1,7 @@
 package wx
 
+import "net/http"
+
 // API Document https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/plugin-management/pluginManager.applyPlugin.html
 
 const (
@@ -14,8 +16,23 @@ const (
 	PluginStatusTimeout = 4
 )
 
-func (client *WeChatClient) Plugin() {
-
+func (client *WeChatClient) Plugin(data *PluginRequest) (*PluginResponse, error) {
+	req := &CommonRequest{}
+	req.WithURL(ApiQueryAuth).
+		WithMethod(http.MethodPost).
+		WithContentType(MineJson).
+		WithData(data)
+	rsp := &struct {
+		CommonResponse
+		PluginResponse
+	}{}
+	if err := client.DoRequest(req, rsp); err != nil {
+		return nil, err
+	}
+	if err := rsp.Error(); err != nil {
+		return nil, err
+	}
+	return &rsp.PluginResponse, nil
 }
 
 func (client *WeChatClient) BuildPluginRequest() *PluginRequest {
@@ -34,4 +51,8 @@ type PluginResponseItem struct {
 	Status int64 `json:"status"`
 	Nickname string `json:"nickname"`
 	HeadImageURL string `json:"headimgurl"`
+}
+
+type PluginResponse struct {
+	PluginList []*PluginResponseItem `json:"plugin_list"`
 }
