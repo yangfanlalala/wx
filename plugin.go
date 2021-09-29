@@ -42,7 +42,7 @@ func (client *WeChatClient) BuildPluginRequest() *PluginRequest {
 type PluginRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"access_token"`
 	Action string `json:"action"`
-	PluginID string `json:"plugin_id,omitempty"`
+	PluginAppid string `json:"plugin_appid,omitempty"`
 	Reason string `json:"reason,omitempty"`
 }
 
