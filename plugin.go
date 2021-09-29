@@ -18,7 +18,7 @@ const (
 
 func (client *WeChatClient) Plugin(data *PluginRequest) (*PluginResponse, error) {
 	req := &CommonRequest{}
-	req.WithURL(ApiQueryAuth).
+	req.WithURL(ApiPlugin).
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
