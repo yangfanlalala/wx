@@ -125,3 +125,12 @@ type TemplateDraft struct {
 	UserDesc    string `json:"user_desc"`
 	DraftID     int64 `json:"draft_id"`
 }
+
+type UserPhoneInfo struct {
+	PhoneNumber string `json:"phoneNumber"`
+	PurePhoneNumber string `json:"purePhoneNumber"`
+	CountryCode string `json:"countryCode"`
+	Watermark struct{
+		Appid string `json:"appid"`
+	} `json:"watermark"`
+}
