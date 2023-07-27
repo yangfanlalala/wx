@@ -97,11 +97,19 @@ type Category struct {
 				URL  string `json:"url"`
 			} `json:"inner_list"`
 		} `json:"exter_list"`
-		Remark string `json:"remark"]`
+		Remark string `json:"remark"`
 	} `json:"qualify"`
 }
 
 type WxaCategory struct {
+	First       int64  `json:"first"`
+	FirstName   string `json:"first_name"`
+	Second      int64  `json:"second"`
+	SecondName  string `json:"second_name"`
+	Third       int64  `json:"third"`
+	ThirdName   string `json:"third_name"`
+	AuditStatus int32  `json:"audit_status"` // 1.审核中 2.审核不通过 3.审核通过
+	AuditReason string `json:"autit_reason"`
 }
 
 type AppVersion struct {
@@ -123,14 +131,14 @@ type TemplateDraft struct {
 	CreateTime  int64  `json:"create_time"`
 	UserVersion string `json:"user_version"`
 	UserDesc    string `json:"user_desc"`
-	DraftID     int64 `json:"draft_id"`
+	DraftID     int64  `json:"draft_id"`
 }
 
 type UserPhoneInfo struct {
-	PhoneNumber string `json:"phoneNumber"`
+	PhoneNumber     string `json:"phoneNumber"`
 	PurePhoneNumber string `json:"purePhoneNumber"`
-	CountryCode string `json:"countryCode"`
-	Watermark struct{
+	CountryCode     string `json:"countryCode"`
+	Watermark       struct {
 		Appid string `json:"appid"`
 	} `json:"watermark"`
 }
