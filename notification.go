@@ -5,6 +5,7 @@ import (
 	"encoding/binary"
 	"encoding/xml"
 	"errors"
+
 	"github.com/yangfanlalala/wx/crypt/aes"
 )
 
@@ -52,6 +53,15 @@ type FastRegister struct {
 type NotificationProto struct {
 	AppID   string `xml:"AppId"`
 	Encrypt string `xml:"Encrypt"`
+}
+
+type NotificationMessage struct {
+	ToUserName   string `xml:"ToUserName"`
+	FromUserName string `xml:"FromUserName"`
+	CreateTime   int64  `xml:"CreateTime"`
+	MessageType  string `xml:"MsgType"`
+	Content      string `xml:"Content"`
+	MessageID    string `xml:"MsgId"`
 }
 
 func (client *WeChatClient) ParseNotification(raw []byte) (*Notification, error) {
