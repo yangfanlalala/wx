@@ -9,12 +9,15 @@ import (
 	"github.com/yangfanlalala/wx/crypt/aes"
 )
 
-const NotifyTypeComponentVerifyTicket = "component_verify_ticket"
-const NotifyTypeUnauthorized = "unauthorized"
-const NotifyTypeUpdateAuthorized = "updateauthorized"
-const NotifyAuthorized = "authorized"
-const NotifyThirdFastRegisterBetaApp = "notify_third_fastregisterbetaapp"
-const NotifyThirdFastRegister = "notify_third_fasteregister"
+const NotifyTypeComponentVerifyTicket = "component_verify_ticket"         // 票据推送
+const NotifyTypeUnauthorized = "unauthorized"                             // 取消授权
+const NotifyTypeUpdateAuthorized = "updateauthorized"                     // 更新授权
+const NotifyAuthorized = "authorized"                                     // 授权
+const NotifyThirdFastRegisterBetaApp = "notify_third_fastregisterbetaapp" // 快速注册试用小程序
+const NotifyThirdFastRegister = "notify_third_fasteregister"              // 快速注册
+const NotifyThirdWxaAuth = "notify_3rd_wxa_auth"                          // 认证消息
+const NotifyThirdApplyICPFillingResult = "notify_apply_icpfiling_result"  // 备案结果
+const NotifyThirdICPFilingVerifyResult = "notify_icpfiling_verify_result" // 人脸核身结果
 
 type NotifySignature struct {
 	Signature        string
@@ -33,6 +36,9 @@ type Notification struct {
 	AuthorizationCodeExpiredTime int64  `xml:"AuthorizationCodeExpiredTime"`
 	PreAuthCode                  string `xml:"PreAuthCode"`
 	FastRegister
+	NotificationICPApply
+	NotificationICPVerify
+	NotificationVerification
 }
 
 type FastRegister struct {
@@ -48,6 +54,30 @@ type FastRegister struct {
 		LegalPersonaName   string `xml:"legal_persona_name"`
 		ComponentPhone     string `xml:"component_phone"`
 	} `xml:"info"`
+}
+
+type NotificationICPApply struct {
+	AuthorizerAppID string `xml:"authorizer_appid"`
+	BeianStatus     int32  `xml:"beian_status"`
+}
+type NotificationICPVerify struct {
+	TaskID      string `xml:"task_id"`
+	VerifyAPPID string `xml:"verify_appid"`
+	Result      int32  `xml:"result"`
+}
+
+type NotificationVerification struct {
+	TaskID      string                           `xml:"taskid"`
+	Appid       string                           `xml:"appid"`
+	TaskStatus  int32                            `xml:"task_status"`
+	ApplyStatus int32                            `xml:"apply_status"`
+	Dispatch    NotificationVerificationDispatch `xml:"dispatch_info"`
+	Message     string                           `xml:"message"`
+}
+type NotificationVerificationDispatch struct {
+	Provider     string `xml:"provider"`
+	Contact      string `xml:"contact"`
+	DispatchTime int64  `xml:"dispatch_time"`
 }
 
 type NotificationProto struct {
