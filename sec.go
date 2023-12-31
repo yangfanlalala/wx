@@ -1,8 +1,10 @@
 package wx
 
-const VerificationApplySuccessStatus int32 = 4
+const SecApplySuccessStatus int32 = 4
+const SecApplyFailStatus int32 = 5
+const SecApplyRecommitStatus int32 = 3
 
-var VerificationTaskStatuses = map[int32]string{
+var SecTaskStatuses = map[int32]string{
 	0:  "初始状态",
 	1:  "任务超时",
 	2:  "用户授权拒绝",
@@ -19,7 +21,7 @@ var VerificationTaskStatuses = map[int32]string{
 	15: "等待支付",
 }
 
-var VerificationApllyStatuses = map[int32]string{
+var SecApllyStatuses = map[int32]string{
 	0: "审核单不存在",
 	1: "待支付",
 	2: "审核中",
