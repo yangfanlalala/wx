@@ -1,5 +1,7 @@
 package wx
 
+const VerificationApplySuccessStatus int32 = 4
+
 var VerificationTaskStatuses = map[int32]string{
 	0:  "初始状态",
 	1:  "任务超时",

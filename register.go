@@ -1,5 +1,7 @@
 package wx
 
+const FastRegisterNotificationSuccessStatus = 0
+
 var FastRegisterStatuses = map[int32]string{
 	0:      "生成任务",
 	1:      "任务超时",

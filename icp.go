@@ -1,5 +1,7 @@
 package wx
 
+const ICPSuccessStatus int32 = 0
+
 const (
 	ErrCodeICPOK                      int32 = 0
 	ErrCodeICPSymtemException         int32 = -1
