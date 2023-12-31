@@ -118,3 +118,24 @@ func (client *WeChatClient) ParseNotification(raw []byte) (*Notification, error)
 	}
 	return notify, nil
 }
+
+func (client *WeChatClient) ParseMessage(raw []byte, data any) error {
+	proto := &NotificationProto{}
+	if err := xml.Unmarshal(raw, proto); err != nil {
+		return err
+	}
+	plain, err := aes.WxDecrypt([]byte(proto.Encrypt), []byte(client.options.EncryptKey))
+	if err != nil {
+		return err
+	}
+	buff := bytes.NewReader(plain[16:20])
+	var leng int32
+	if err = binary.Read(buff, binary.BigEndian, &leng); err != nil {
+		return err
+	}
+	plain = plain[20 : leng+20]
+	if err = xml.Unmarshal(plain, data); err != nil {
+		return err
+	}
+	return nil
+}
