@@ -64,12 +64,16 @@ func (client *WeChatClient) FastRegisterPersonalWeAppQuery(data *FastRegisterPer
 	return &rsp.FastRegisterPersonalWeAppQueryResponse, nil
 }
 
-func (client *WeChatClient) BuildFastRegisterPersonalWeAppQueryRequest() *FastRegisterPersonalWeAppQueryResponse {
-	return &FastRegisterPersonalWeAppQueryResponse{}
+func (client *WeChatClient) BuildFastRegisterPersonalWeAppQueryRequest() *FastRegisterPersonalWeAppQueryRequest {
+	return &FastRegisterPersonalWeAppQueryRequest{
+		Action: "query",
+	}
 }
 
 type FastRegisterPersonalWeAppQueryRequest struct {
+	Action               string `position:"query" name:"action" json:"-"`
+	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
+	TaskID               string `position:"body" name:"taskid" json:"taskid"`
 }
 
-type FastRegisterPersonalWeAppQueryResponse struct {
-}
+type FastRegisterPersonalWeAppQueryResponse FastRegisterPersonalWeAppResponse
