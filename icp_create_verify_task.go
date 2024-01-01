@@ -6,20 +6,23 @@ import "net/http"
 
 const ApiICPCreateVerifyTask = "https://api.weixin.qq.com/wxa/icp/create_icp_verifytask"
 
-func (client *WeChatClient) ICPCreateVerifyTask(data *ICPCreateVerifyTaskRequest) error {
+func (client *WeChatClient) ICPCreateVerifyTask(data *ICPCreateVerifyTaskRequest) (*ICPCreateVerifyTaskResponse, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiICPCreateVerifyTask).
 		WithMethod(http.MethodPost).
 		WithContentType(MineJson).
 		WithData(data)
-	rsp := &CommonResponse{}
+	rsp := &struct {
+		CommonResponse
+		ICPCreateVerifyTaskResponse
+	}{}
 	if err := client.DoRequest(req, rsp); err != nil {
-		return err
+		return nil, err
 	}
 	if err := rsp.Error(); err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return &rsp.ICPCreateVerifyTaskResponse, nil
 }
 
 func (client *WeChatClient) BuildICPCreateVerifyTaskRequest() *ICPCreateVerifyTaskRequest {
