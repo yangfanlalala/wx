@@ -27,14 +27,18 @@ type NotifySignature struct {
 }
 
 type Notification struct {
-	AppID                        string `xml:"AppId"`
-	InfoType                     string `xml:"InfoType"`
-	CreateTime                   int64  `xml:"CreateTime"`
-	ComponentVerifyTicket        string `xml:"ComponentVerifyTicket"` //验证票据
-	AuthorizerAppID              string `xml:"AuthorizerAppid"`
-	AuthorizationCode            string `xml:"AuthorizationCode"`
-	AuthorizationCodeExpiredTime int64  `xml:"AuthorizationCodeExpiredTime"`
-	PreAuthCode                  string `xml:"PreAuthCode"`
+	AppID                        string `xml:"AppId"`                        // 票据、
+	APPID                        string `xml:"appid"`                        // 快速注册、认证
+	InfoType                     string `xml:"InfoType"`                     // All
+	CreateTime                   int64  `xml:"CreateTime"`                   // All
+	ComponentVerifyTicket        string `xml:"ComponentVerifyTicket"`        //验证票据
+	AuthorizerAppID              string `xml:"AuthorizerAppid"`              // 授权
+	AuthorizerAPPID              string `xml:"authorizer_appid"`             // 备案
+	BeianStatus                  int32  `xml:"beian_status"`                 // 备案
+	AuthorizationCode            string `xml:"AuthorizationCode"`            // 授权
+	AuthorizationCodeExpiredTime int64  `xml:"AuthorizationCodeExpiredTime"` // 授权
+	PreAuthCode                  string `xml:"PreAuthCode"`                  // 授权
+	Status                       string `xml:"status"`                       // 快速注册
 	FastRegister
 	NotificationICPApply
 	NotificationICPVerify
@@ -42,8 +46,6 @@ type Notification struct {
 }
 
 type FastRegister struct {
-	Appid    string `xml:"appid"`
-	Status   int64  `xml:"status"`
 	AuthCode string `xml:"auth_code"`
 	Msg      string `xml:"msg"`
 	Info     struct {
@@ -56,10 +58,6 @@ type FastRegister struct {
 	} `xml:"info"`
 }
 
-type NotificationICPApply struct {
-	AuthorizerAppID string `xml:"authorizer_appid"`
-	BeianStatus     int32  `xml:"beian_status"`
-}
 type NotificationICPVerify struct {
 	TaskID      string `xml:"task_id"`
 	VerifyAPPID string `xml:"verify_appid"`
@@ -68,7 +66,6 @@ type NotificationICPVerify struct {
 
 type NotificationVerification struct {
 	TaskID      string                           `xml:"taskid"`
-	Appid       string                           `xml:"appid"`
 	TaskStatus  int32                            `xml:"task_status"`
 	ApplyStatus int32                            `xml:"apply_status"`
 	Dispatch    NotificationVerificationDispatch `xml:"dispatch_info"`
