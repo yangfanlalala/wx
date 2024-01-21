@@ -31,7 +31,7 @@ type Notification struct {
 	APPID                        string `xml:"appid"`                        // 快速注册、认证
 	InfoType                     string `xml:"InfoType"`                     // All
 	CreateTime                   int64  `xml:"CreateTime"`                   // All
-	ComponentVerifyTicket        string `xml:"ComponentVerifyTicket"`        //验证票据
+	ComponentVerifyTicket        string `xml:"ComponentVerifyTicket"`        // 验证票据
 	AuthorizerAppID              string `xml:"AuthorizerAppid"`              // 授权
 	AuthorizationCode            string `xml:"AuthorizationCode"`            // 授权
 	AuthorizationCodeExpiredTime int64  `xml:"AuthorizationCodeExpiredTime"` // 授权

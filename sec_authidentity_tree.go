@@ -25,8 +25,8 @@ func (client *WeChatClient) SecAuthidentityTree(data *SecAuthidentityTreeRequest
 	return &rsp.SecAuthidentityTreeResponse, nil
 }
 
-func (client *WeChatClient) BuildSecAuthidentityTreeRequest() *SecWxaAuthRequest {
-	return &SecWxaAuthRequest{}
+func (client *WeChatClient) BuildSecAuthidentityTreeRequest() *SecAuthidentityTreeRequest {
+	return &SecAuthidentityTreeRequest{}
 }
 
 type SecAuthidentityTreeRequest struct {
