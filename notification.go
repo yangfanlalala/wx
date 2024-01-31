@@ -53,6 +53,8 @@ type FastRegister struct {
 		LegalPersonaWechat string `xml:"legal_personal_wechat"`
 		LegalPersonaName   string `xml:"legal_persona_name"`
 		ComponentPhone     string `xml:"component_phone"`
+		WxUser             string `xml:"wxuser"`
+		IDName             string `xml:"idname"`
 	} `xml:"info"`
 }
 
