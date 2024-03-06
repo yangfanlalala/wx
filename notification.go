@@ -95,6 +95,7 @@ type NotificationMessage struct {
 	Content      string `json:"Content" xml:"Content"`
 	MessageID    string `json:"MsgId" xml:"MsgId"`
 	Event        string `json:"Even" xml:"Event"`
+	ContentCheckMessage
 }
 
 type ContentCheckMessage struct {
