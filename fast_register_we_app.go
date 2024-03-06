@@ -37,7 +37,7 @@ type FastRegisterWeAppRequest struct {
 	CodeType             int64  `position:"body" name:"code_type" json:"code_type"`
 	LegalPersonaWechat   string `position:"body" name:"legal_persona_wechat" json:"legal_persona_wechat"`
 	LegalPersonaName     string `position:"body" name:"legal_persona_name" json:"legal_persona_name"`
-	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone"`
+	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone,omitempty"`
 }
 
 type FastRegisterWeAppResponse struct {

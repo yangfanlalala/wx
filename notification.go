@@ -3,6 +3,7 @@ package wx
 import (
 	"bytes"
 	"encoding/binary"
+	"encoding/json"
 	"encoding/xml"
 	"errors"
 
@@ -87,12 +88,21 @@ type NotificationProto struct {
 }
 
 type NotificationMessage struct {
-	ToUserName   string `xml:"ToUserName"`
-	FromUserName string `xml:"FromUserName"`
-	CreateTime   int64  `xml:"CreateTime"`
-	MessageType  string `xml:"MsgType"`
-	Content      string `xml:"Content"`
-	MessageID    string `xml:"MsgId"`
+	ToUserName   string `json:"ToUserName" xml:"ToUserName"`
+	FromUserName string `json:"FromUserName" xml:"FromUserName"`
+	CreateTime   int64  `json:"CreateTime" xml:"CreateTime"`
+	MessageType  string `json:"MsgType" xml:"MsgType"`
+	Content      string `json:"Content" xml:"Content"`
+	MessageID    string `json:"MsgId" xml:"MsgId"`
+	Event        string `json:"Even" xml:"Event"`
+}
+
+type ContentCheckMessage struct {
+	Appid   string                `json:"appid" xml:"appid"`
+	TraceID string                `json:"trace_id" xml:"trace_id"`
+	Version uint16                `json:"version" xml:"version"`
+	Result  *ContentCheckResult   `json:"result" xml:"result"`
+	Detail  []*ContentCheckDetail `json:"detail" xml:"detail"`
 }
 
 func (client *WeChatClient) ParseNotification(raw []byte) (*Notification, error) {
@@ -136,6 +146,27 @@ func (client *WeChatClient) ParseMessage(raw []byte, data any) error {
 	}
 	plain = plain[20 : leng+20]
 	if err = xml.Unmarshal(plain, data); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (client *WeChatClient) ParseJSONMessage(raw []byte, data any) error {
+	proto := &NotificationProto{}
+	if err := json.Unmarshal(raw, proto); err != nil {
+		return err
+	}
+	plain, err := aes.WxDecrypt([]byte(proto.Encrypt), []byte(client.options.EncryptKey))
+	if err != nil {
+		return err
+	}
+	buff := bytes.NewReader(plain[16:20])
+	var leng int32
+	if err = binary.Read(buff, binary.BigEndian, &leng); err != nil {
+		return err
+	}
+	plain = plain[20 : leng+20]
+	if err = json.Unmarshal(plain, data); err != nil {
 		return err
 	}
 	return nil

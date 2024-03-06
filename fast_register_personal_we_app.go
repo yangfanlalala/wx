@@ -36,13 +36,13 @@ type FastRegisterPersonalWeAppRequest struct {
 	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
 	IDName               string `position:"body" name:"idname" json:"idname"`
 	WxUser               string `position:"body" name:"wxuser" json:"wxuser"`
-	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone"`
+	ComponentPhone       string `position:"body" name:"component_phone" json:"component_phone,omitempty"`
 }
 
 type FastRegisterPersonalWeAppResponse struct {
-	TaskID        string `json:"taskid"`
-	AuthorizerURL string `json:"authorizer_url"`
-	Status        int64  `json:"status"`
+	TaskID       string `json:"taskid"`
+	AuthorizeURL string `json:"authorize_url"`
+	Status       int64  `json:"status"`
 }
 
 func (client *WeChatClient) FastRegisterPersonalWeAppQuery(data *FastRegisterPersonalWeAppQueryRequest) (*FastRegisterPersonalWeAppQueryResponse, error) {
