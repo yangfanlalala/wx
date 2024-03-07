@@ -51,7 +51,7 @@ type FastRegister struct {
 		Name               string `xml:"name"`
 		Code               string `xml:"code"`
 		CodeType           int64  `xml:"code_type"`
-		LegalPersonaWechat string `xml:"legal_personal_wechat"`
+		LegalPersonaWechat string `xml:"legal_persona_wechat"`
 		LegalPersonaName   string `xml:"legal_persona_name"`
 		ComponentPhone     string `xml:"component_phone"`
 		WxUser             string `xml:"wxuser"`
