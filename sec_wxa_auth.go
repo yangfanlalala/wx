@@ -18,6 +18,19 @@ const (
 	SecInvoiceTypeVat         SecInvoiceType  = 3  // 增值税发票
 )
 
+var (
+	SecCustomerTypeText = map[SecCustomerType]string{
+		SecCustomerTypeEnterprise: "企业",
+		SecCustomerTypeIndividual: "个体工商户",
+		SecCustomerTypePerson:     "个人",
+	}
+	SecInvoiceTypeText = map[SecInvoiceType]string{
+		SecInvoiceTypeNone:       "无需发票",
+		SecInvoiceTypeElectronic: "电子发票",
+		SecInvoiceTypeVat:        "增值税发票",
+	}
+)
+
 func (client *WeChatClient) SecWxaAuth(data *SecWxaAuthRequest) (*SecWxaAuthResponse, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiSecWxaAuth).
