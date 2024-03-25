@@ -43,7 +43,7 @@ type ICPQueryDistrictCodeRequest struct {
 
 type ICPDistrictCodeItem struct {
 	Type    ICPDistrictType        `json:"type"`               // 区域类型
-	Code    string                 `json:"code"`               // 区域代码
+	Code    int32                  `json:"code"`               // 区域代码
 	Name    string                 `json:"name"`               // 区域名称
 	SubList []*ICPDistrictCodeItem `json:"sub_list,omitempty"` // 下级区域信息列表
 }
