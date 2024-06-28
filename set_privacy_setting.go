@@ -95,6 +95,30 @@ var PrivacyOptions = []*PrivacySettingDesc{
 		PrivacyKey:  "MessageFile",
 		PrivacyDesc: "选中的文件",
 	},
+	{
+		PrivacyKey:  "ChooseLocation",
+		PrivacyDesc: "选择的位置信息",
+	},
+	{
+		PrivacyKey:  "Accelerometer",
+		PrivacyDesc: "加速传感器",
+	},
+	{
+		PrivacyKey:  "Compass",
+		PrivacyDesc: "磁场传感器",
+	},
+	{
+		PrivacyKey:  "DeviceMotion",
+		PrivacyDesc: "方向传感器",
+	},
+	{
+		PrivacyKey:  "Gyroscope",
+		PrivacyDesc: "陀螺仪传感器",
+	},
+	{
+		PrivacyKey:  "Clipboard",
+		PrivacyDesc: "剪切板",
+	},
 }
 
 func (client *WeChatClient) SetPrivacySetting(data *SetPrivacySettingRequest) error {
@@ -119,6 +143,7 @@ func (client *WeChatClient) BuildSetPrivacySettingRequest() *SetPrivacySettingRe
 
 type SetPrivacySettingRequest struct {
 	AccessToken  string                `position:"query" name:"access_token" json:"-"`
+	PrivacyVer   int64                 `json:"privacy_ver"`
 	OwnerSetting PrivacyOwnerSetting   `json:"owner_setting"`
 	SettingList  []*PrivacySettingItem `json:"setting_list"`
 }
@@ -131,6 +156,7 @@ type PrivacyOwnerSetting struct {
 	ExtFileMediaID       string `json:"ext_file_media_id"`
 	NoticeMethod         string `json:"notice_method"`
 	StoreExpireTimestamp string `json:"store_expire_timestamp"`
+	StoreRegion          int64  `json:"store_region"`
 }
 
 type PrivacySettingItem struct {

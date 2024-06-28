@@ -4,7 +4,11 @@ import "net/http"
 
 // API DOCUMENT https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/privacy_config/get_privacy_setting.html
 
-const APIGetPrivacySetting = "https://api.weixin.qq.com/cgi-bin/component/getprivacysetting"
+const (
+	APIGetPrivacySetting   = "https://api.weixin.qq.com/cgi-bin/component/getprivacysetting"
+	PrivacyVerProduct      = 1
+	PrivacyVerDevelopement = 2
+)
 
 func (client *WeChatClient) GetPrivacySetting(data *GetPrivacySettingRequest) (*GetPrivacySettingResponse, error) {
 	req := &CommonRequest{}
@@ -31,6 +35,7 @@ func (client *WeChatClient) BuildGetPrivacySettingRequest() *GetPrivacySettingRe
 
 type GetPrivacySettingRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
+	PrivacyVer  int64  `position:"body" name:"privacy_ver" json:"privacy_ver"`
 }
 
 type GetPrivacySettingResponse struct {
