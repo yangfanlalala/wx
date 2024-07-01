@@ -33,5 +33,18 @@ type WxaGetVersionInfoRequest struct {
 	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
 
+type WxaVersionExp struct {
+	ExpTime    int64  `json:"exp_time"`
+	ExpVersion string `json:"exp_version"`
+	ExpDesc    string `json:"exp_desc"`
+}
+
+type WxaVersionRelease struct {
+	ReleaseTime    int64  `json:"release_time"`
+	ReleaseVersion string `json:"release_version"`
+	ReleaseDesc    string `json:"release_desc"`
+}
 type WxaGetVersionInfoResponse struct {
+	ExpInfo     WxaVersionExp     `json:"exp_info"`
+	ReleaseInfo WxaVersionRelease `json:"release_info"`
 }
