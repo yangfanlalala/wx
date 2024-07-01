@@ -45,6 +45,6 @@ type WxaVersionRelease struct {
 	ReleaseDesc    string `json:"release_desc"`
 }
 type WxaGetVersionInfoResponse struct {
-	ExpInfo     WxaVersionExp     `json:"exp_info"`
-	ReleaseInfo WxaVersionRelease `json:"release_info"`
+	ExpInfo     *WxaVersionExp     `json:"exp_info"`
+	ReleaseInfo *WxaVersionRelease `json:"release_info"`
 }
