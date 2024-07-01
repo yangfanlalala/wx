@@ -30,9 +30,7 @@ func (client *WeChatClient) BuildWxaGetVersionInfoRequest() *WxaGetVersionInfoRe
 }
 
 type WxaGetVersionInfoRequest struct {
-	ComponentAccessToken string `position:"query" name:"component_access_token" json:"-"`
-	ComponentAppID       string `position:"body" name:"component_appid" json:"component_appid"`
-	AuthorizerAppID      string `position:"body" name:"authorizer_appid" json:"authorizer_appid"`
+	AccessToken string `position:"query" name:"access_token" json:"-"`
 }
 
 type WxaGetVersionInfoResponse struct {
