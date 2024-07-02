@@ -57,11 +57,11 @@ type WxaSubmitAuditPreview struct {
 }
 
 type WxaSubmitAuditUGC struct {
-	Scene          int64  `name:"scene" json:"scene"`
-	OtherSceneDesc string `name:"other_scene_desc" json:"other_scene_desc"`
-	Method         int64  `name:"method" json:"method"`
-	HasAuditTeam   int64  `name:"has_audit_team" json:"has_audit_team"`
-	AuditDesc      string `name:"audit_desc" json:"audit_desc"`
+	Scene          []int64 `name:"scene" json:"scene"`
+	OtherSceneDesc string  `name:"other_scene_desc" json:"other_scene_desc"`
+	Method         []int64 `name:"method" json:"method"`
+	HasAuditTeam   int64   `name:"has_audit_team" json:"has_audit_team"`
+	AuditDesc      string  `name:"audit_desc" json:"audit_desc"`
 }
 
 type WxaSubmitAuditResponse struct {
