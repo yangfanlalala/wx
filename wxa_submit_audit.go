@@ -30,13 +30,13 @@ func (client *WeChatClient) BuildWxaSubmitAuditRequest() *WxaSubmitAuditRequest 
 }
 
 type WxaSubmitAuditRequest struct {
-	AccessToken   string                  `position:"query" name:"access_token" json:"-"`
-	ItemList      []WxaSubmitAuditItem    `position:"body" name:"item_list" json:"item_list,omitempty"`
-	PreviewInfo   []WxaSubmitAuditPreview `position:"body" name:"preview_info" json:"preview_info,omitempty"`
-	VersionDesc   string                  `position:"body" name:"version_desc" json:"version_desc,omitempty"`
-	FeedbackInfo  string                  `position:"body" name:"feedback_info" json:"feedback_info,omitempty"`
-	FeedbackStuff string                  `position:"body" name:"feedback_stuff" json:"feedback_stuff"`
-	UgcDeclare    *WxaSubmitAuditUGC       `position:"body" name:"ugc_declare" json:"ugc_declare,omitempty"`
+	AccessToken   string                 `position:"query" name:"access_token" json:"-"`
+	ItemList      []*WxaSubmitAuditItem  `position:"body" name:"item_list" json:"item_list,omitempty"`
+	PreviewInfo   *WxaSubmitAuditPreview `position:"body" name:"preview_info" json:"preview_info,omitempty"`
+	VersionDesc   string                 `position:"body" name:"version_desc" json:"version_desc,omitempty"`
+	FeedbackInfo  string                 `position:"body" name:"feedback_info" json:"feedback_info,omitempty"`
+	FeedbackStuff string                 `position:"body" name:"feedback_stuff" json:"feedback_stuff"`
+	UgcDeclare    *WxaSubmitAuditUGC     `position:"body" name:"ugc_declare" json:"ugc_declare,omitempty"`
 }
 
 type WxaSubmitAuditItem struct {
@@ -48,7 +48,7 @@ type WxaSubmitAuditItem struct {
 	FirstID     int64  `name:"first_id" json:"first_id"`
 	SecondID    int64  `name:"second_id" json:"second_id"`
 	ThirdID     int64  `name:"third_id" json:"third_id"`
-	Title       int64  `name:"title" json:"title"`
+	Title       string `name:"title" json:"title"`
 }
 
 type WxaSubmitAuditPreview struct {
