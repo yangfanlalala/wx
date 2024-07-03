@@ -67,3 +67,55 @@ type WxaSubmitAuditUGC struct {
 type WxaSubmitAuditResponse struct {
 	AuditID int64 `json:"auditid"`
 }
+
+type AuditUGCKV struct {
+	Key   string
+	Value int64
+}
+
+var (
+	AuditUGCScene = []*AuditUGCKV{
+		{
+			Key:   "不涉及用户生成内容",
+			Value: 0,
+		},
+		{
+			Key:   "用户资料",
+			Value: 1,
+		},
+		{
+			Key:   "图片",
+			Value: 2,
+		},
+		{
+			Key:   "视频",
+			Value: 3,
+		},
+		{
+			Key:   "文本",
+			Value: 4,
+		},
+		{
+			Key:   "其他",
+			Value: 5,
+		},
+	}
+	AuditUGCMethod = []*AuditUGCKV{
+		{
+			Key:   "使用平台建议的内容安全API",
+			Value: 1,
+		},
+		{
+			Key:   "使用其他的内容审核产品",
+			Value: 2,
+		},
+		{
+			Key:   "通过人工审核把关",
+			Value: 3,
+		},
+		{
+			Key:   "未做内容审核把关",
+			Value: 4,
+		},
+	}
+)
