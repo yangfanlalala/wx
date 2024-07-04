@@ -34,5 +34,5 @@ type WxaGetCategoryRequest struct {
 }
 
 type WxaGetCategoryResponse struct {
-	CategoriesList []*WxaCategory `json:"category_list"`
+	CategoriesList []*WxaCategoryClass `json:"category_list"`
 }

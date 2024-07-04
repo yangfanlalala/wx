@@ -111,6 +111,14 @@ type WxaCategory struct {
 	AuditStatus int32  `json:"audit_status"` // 1.审核中 2.审核不通过 3.审核通过
 	AuditReason string `json:"autit_reason"`
 }
+type WxaCategoryClass struct {
+	First_ID    int64  `json:"first_id"`
+	FirstClass  string `json:"first_class"`
+	Second_ID   int64  `json:"second_id"`
+	SecondClass string `json:"second_class"`
+	Third_ID    int64  `json:"third_id"`
+	ThirdClass  string `json:"third_class"`
+}
 
 type AppVersion struct {
 	AppVersion  int64  `json:"app_version"`
