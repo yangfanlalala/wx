@@ -6,6 +6,32 @@ import "net/http"
 
 const ApiWxaGetAuditStatus = "https://api.weixin.qq.com/wxa/get_auditstatus"
 
+var StatusMap = map[int64]struct {
+	Status     string
+	StatusText string
+}{
+	0: {
+		Status:     "success",
+		StatusText: "审核成功",
+	},
+	1: {
+		Status:     "fail",
+		StatusText: "审核被拒绝",
+	},
+	2: {
+		Status:     "underway",
+		StatusText: "审核中",
+	},
+	3: {
+		Status:     "withdraw",
+		StatusText: "已撤回",
+	},
+	4: {
+		Status:     "delay",
+		StatusText: "延期审核",
+	},
+}
+
 func (client *WeChatClient) WxaGetAuditStatus(data *WxaGetAuditStatusRequest) (*WxaGetAuditStatusResponse, error) {
 	req := &CommonRequest{}
 	req.WithURL(ApiWxaGetAuditStatus).
