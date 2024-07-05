@@ -6,7 +6,7 @@ import "net/http"
 
 const ApiWxaGetAuditStatus = "https://api.weixin.qq.com/wxa/get_auditstatus"
 
-var StatusMap = map[int64]struct {
+var AuditStatusMap = map[int64]struct {
 	Status     string
 	StatusText string
 }{
