@@ -6,6 +6,67 @@ import "net/http"
 
 const ApiICPApplyFiling = "https://api.weixin.qq.com/wxa/icp/apply_icp_filing"
 
+type ICPMaterialInfo struct {
+	Value       string `json:"value"`
+	Description string `json:"description"`
+	Remark      string `json:"remark"`
+}
+
+var (
+	ICPMaterialItems = []*ICPMaterialInfo{
+		{
+			Value:       "commitment_letter",
+			Description: "互联网信息服务承诺书",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "business_name_change_letter",
+			Description: "主体更名函",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "party_building_confirmation_letter",
+			Description: "党建确认函",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "promise_video",
+			Description: "承诺视频",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "authenticity_responsibility_letter",
+			Description: "网站备案信息真实性责任告知书",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "authenticity_commitment_letter",
+			Description: "小程序备案信息真实性承诺书",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "website_construction_proposal",
+			Description: "小程序建设方案书",
+			Remark:      "最多上传1个",
+		},
+		{
+			Value:       "subject_other_materials",
+			Description: "主体其它附件",
+			Remark:      "最多上传10个",
+		},
+		{
+			Value:       "applets_other_materials",
+			Description: "小程序其它附件",
+			Remark:      "最多上传10个",
+		},
+		{
+			Value:       "holding_certificate_photo",
+			Description: "手持证件照",
+			Remark:      "最多上传1个",
+		},
+	}
+)
+
 func (client *WeChatClient) ICPApplyFiling(data *ICPApplyFilingRequest) error {
 	req := &CommonRequest{}
 	req.WithURL(ApiICPApplyFiling).
