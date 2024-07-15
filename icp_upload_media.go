@@ -41,6 +41,7 @@ type ICPUploadMediaRequest struct {
 	Type            ICPMediaType `position:"body" name:"type" json:"type"`
 	CertificateType int32        `position:"body" name:"certificate_type" json:"certificate_type"`
 	Media           []byte       `position:"body" name:"media" json:"media"`
+	ICPOrderField   string       `position:"body" name:"icp_order_field" json:"icp_order_field"`
 }
 
 type ICPUploadMediaResponse struct {
