@@ -91,7 +91,7 @@ type ICPSubject struct {
 	BaseInfo        *ICPSubjectBaseInfo        `json:"base_info"`                   // 主体基本信息
 	PersonalInfo    *ICPSubjectPersonalInfo    `json:"personal_info,omitempty"`     // 个人主体额外信息 （非必填）
 	OrganizeInfo    *ICPSubjectOrganizeInfo    `json:"organiaze_info"`              // 主体额外信息（个人备案时，如果存在与主体负责人信息相同的字段，则填入相同的值）
-	PrincipalInfo   *ICPSubjectPrincipalInfo   `json:"principal_info"`              // 主体负责人信息
+	PrincipalInfo   *ICPPrincipalInfo          `json:"principal_info"`              // 主体负责人信息
 	LegalPersonInfo *ICPSubjectLegalPersonInfo `json:"legal_person_info,omitempty"` // 法人信息（非个人备案，且主体负责人不是法人时，必填）
 }
 
@@ -117,7 +117,7 @@ type ICPSubjectOrganizeInfo struct {
 	CertificatePhoto   string `json:"certificate_photo"`   //	主体证件照片 media_id，如果小程序主体为非个人类型，则必填，
 }
 
-type ICPSubjectPrincipalInfo struct {
+type ICPPrincipalInfo struct {
 	Name                         string `json:"name"`                            // 负责人姓名
 	Mobile                       string `json:"mobile"`                          // 负责人联系方式
 	Email                        string `json:"email"`                           // 负责人电子邮件
@@ -138,8 +138,8 @@ type ICPSubjectLegalPersonInfo struct {
 }
 
 type ICPApplets struct {
-	BaseInfo      *ICPAppletsBaseInfo      `json:"base_info"`
-	PrincipalInfo *ICPAppletsPrincipalInfo `json:"principal_info"`
+	BaseInfo      *ICPAppletsBaseInfo `json:"base_info"`
+	PrincipalInfo *ICPPrincipalInfo   `json:"principal_info"`
 }
 
 type ICPAppletsNRLXDetail struct {
@@ -157,20 +157,20 @@ type ICPAppletsBaseInfo struct {
 	RecodeNumber        string                  `json:"record_number"`         // 小程序备案号，示例值：粤B2-20090059-1626X（申请小程序备案时不用填写，查询已备案详情时会返回）
 }
 
-type ICPAppletsPrincipalInfo struct {
-	Name                         string `json:"name"`                            // 负责人姓名，示例值："张三"
-	Mobile                       string `json:"mobile"`                          // 负责人联系方式，示例值："13012344321"
-	Email                        string `json:"email"`                           // 负责人电子邮件，示例值："zhangsan@zhangsancorp.com"
-	EmergencyContact             string `json:"emergency_contact"`               // 负责人应急联系方式，示例值："17743211234"
-	CertificateType              int32  `json:"certificate_type"`                // 负责人证件类型，示例值：2(参考：获取证件类型接口，此处只能填入单位性质属于个人的证件类型)
-	CertificateNumber            string `json:"certificate_number"`              // 负责人证件号码，示例值："110105199001011234"
-	CertificateValidityDateStart string `json:"certificate_validity_date_start"` // 负责人证件有效期起始日期，格式为 YYYYmmdd，示例值："20230815"
-	CertificateValidityDateEnd   string `json:"certificate_validity_date_end"`   // 负责人证件有效期终止日期，格式为 YYYYmmdd，如证件长期有效，请填写 "长期"，示例值："20330815"
-	CertificatePhotoFront        string `json:"certificate_photo_front"`         // 负责人证件正面照片 media_id（身份证为人像面）
-	CertificatePhotoBack         string `json:"certificate_photo_back"`          // 负责人证件背面照片 media_id（身份证为国徽面）
-	AuthorizationLetter          string `json:"authorization_letter"`            // 授权书 media_id，当主体负责人不是法人时需要主体负责人授权书，当小程序负责人不是法人时需要小程序负责人授权书，
-	VerifyTaskID                 string `json:"verify_task_id"`                  // 扫脸认证任务id(扫脸认证接口返回的task_id)，仅小程序负责人需要扫脸，主体负责人无需扫脸
-}
+// type ICPAppletsPrincipalInfo struct {
+// 	Name                         string `json:"name"`                            // 负责人姓名，示例值："张三"
+// 	Mobile                       string `json:"mobile"`                          // 负责人联系方式，示例值："13012344321"
+// 	Email                        string `json:"email"`                           // 负责人电子邮件，示例值："zhangsan@zhangsancorp.com"
+// 	EmergencyContact             string `json:"emergency_contact"`               // 负责人应急联系方式，示例值："17743211234"
+// 	CertificateType              int32  `json:"certificate_type"`                // 负责人证件类型，示例值：2(参考：获取证件类型接口，此处只能填入单位性质属于个人的证件类型)
+// 	CertificateNumber            string `json:"certificate_number"`              // 负责人证件号码，示例值："110105199001011234"
+// 	CertificateValidityDateStart string `json:"certificate_validity_date_start"` // 负责人证件有效期起始日期，格式为 YYYYmmdd，示例值："20230815"
+// 	CertificateValidityDateEnd   string `json:"certificate_validity_date_end"`   // 负责人证件有效期终止日期，格式为 YYYYmmdd，如证件长期有效，请填写 "长期"，示例值："20330815"
+// 	CertificatePhotoFront        string `json:"certificate_photo_front"`         // 负责人证件正面照片 media_id（身份证为人像面）
+// 	CertificatePhotoBack         string `json:"certificate_photo_back"`          // 负责人证件背面照片 media_id（身份证为国徽面）
+// 	AuthorizationLetter          string `json:"authorization_letter"`            // 授权书 media_id，当主体负责人不是法人时需要主体负责人授权书，当小程序负责人不是法人时需要小程序负责人授权书，
+// 	VerifyTaskID                 string `json:"verify_task_id"`                  // 扫脸认证任务id(扫脸认证接口返回的task_id)，仅小程序负责人需要扫脸，主体负责人无需扫脸
+// }
 
 type ICPMaterials struct {
 	CommitmentLetter                 []string `json:"commitment_letter"`                  // 互联网信息服务承诺书 media_id，最多上传1个
