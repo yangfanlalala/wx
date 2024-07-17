@@ -90,7 +90,7 @@ func (client *WeChatClient) BuildICPApplyFilingRequest() *ICPApplyFilingRequest 
 type ICPSubject struct {
 	BaseInfo        *ICPSubjectBaseInfo        `json:"base_info"`                   // 主体基本信息
 	PersonalInfo    *ICPSubjectPersonalInfo    `json:"personal_info,omitempty"`     // 个人主体额外信息 （非必填）
-	OrganizeInfo    *ICPSubjectOrganizeInfo    `json:"organiaze_info"`              // 主体额外信息（个人备案时，如果存在与主体负责人信息相同的字段，则填入相同的值）
+	OrganizeInfo    *ICPSubjectOrganizeInfo    `json:"organize_info"`               // 主体额外信息（个人备案时，如果存在与主体负责人信息相同的字段，则填入相同的值）
 	PrincipalInfo   *ICPPrincipalInfo          `json:"principal_info"`              // 主体负责人信息
 	LegalPersonInfo *ICPSubjectLegalPersonInfo `json:"legal_person_info,omitempty"` // 法人信息（非个人备案，且主体负责人不是法人时，必填）
 }
