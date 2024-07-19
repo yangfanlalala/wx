@@ -9,6 +9,12 @@ const ApiSecWxaAuth = "https://api.weixin.qq.com/wxa/sec/wxaauth"
 type SecCustomerType int32
 type SecInvoiceType int32
 
+type SecOption struct {
+	Label  string
+	Value  int32
+	Remark string
+}
+
 const (
 	SecCustomerTypeEnterprise SecCustomerType = 1  //企业
 	SecCustomerTypeIndividual SecCustomerType = 12 // 个体工商户
@@ -28,6 +34,38 @@ var (
 		SecInvoiceTypeNone:       "无需发票",
 		SecInvoiceTypeElectronic: "电子发票",
 		SecInvoiceTypeVat:        "增值税发票",
+	}
+	SecCustomerTypes = []*SecOption{
+		{
+			Label:  "企业",
+			Value:  1,
+			Remark: "enterprise",
+		},
+		{
+			Label:  "个体工商户",
+			Value:  12,
+			Remark: "individual_business",
+		},
+		{
+			Label:  "个人",
+			Value:  15,
+			Remark: "individual",
+		},
+	}
+	SecInvoiceTypes = []*SecOption{
+		{
+			Label:  "无需发票",
+			Value:  1,
+			Remark: "none",
+		}, {
+			Label:  "电子发票",
+			Value:  2,
+			Remark: "elec",
+		}, {
+			Label:  "增值税发票",
+			Value:  3,
+			Remark: "vat",
+		},
 	}
 )
 
