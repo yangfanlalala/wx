@@ -66,7 +66,7 @@ var (
 			Remark: "vat",
 		},
 	}
-	SecAccountType = []*SecOption{
+	SecAccountTypes = []*SecOption{
 		{
 			Label:  "自选词汇命名",
 			Value:  SecAccountNameManual,
