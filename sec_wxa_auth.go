@@ -21,7 +21,7 @@ const (
 	SecCustomerTypePerson     SecCustomerType = 15 // 个人
 	SecInvoiceTypeNone        SecInvoiceType  = 1  // 无需开
 	SecInvoiceTypeElectronic  SecInvoiceType  = 2  // 电子发票
-	SecInvoiceTypeVat         SecInvoiceType  = 3  // 增值税发票
+	SecInvoiceTypeVat         SecInvoiceType  = 4  // 增值税发票
 )
 
 var (
@@ -63,7 +63,7 @@ var (
 			Remark: "elec",
 		}, {
 			Label:  "增值税发票",
-			Value:  3,
+			Value:  4,
 			Remark: "vat",
 		},
 	}
@@ -129,13 +129,6 @@ type SecVatInvoice struct {
 	EnterpriseAddress string `json:"enterprise_address"` // 企业注册地址
 	BankName          string `json:"bank_name"`          // 企业开户银行
 	BankAccount       string `json:"bank_account"`       // 企业银行账号
-	MailingAddress    string `json:"mailing_address"`    // 发票邮寄地址邮编
-	Address           string `json:"address"`            // 街道地址
-	Name              string `json:"name"`               // 联系人
-	Phone             string `json:"phone"`              // 联系电话
-	Province          string `json:"province"`           // 省份
-	City              string `json:"city"`               // 城市
-	District          string `json:"district"`           // 县区
 	Desc              string `json:"desc"`               // 发票备注（选填）
 }
 
