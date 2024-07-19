@@ -6,9 +6,6 @@ import "net/http"
 
 const ApiSecWxaAuth = "https://api.weixin.qq.com/wxa/sec/wxaauth"
 
-type SecCustomerType int32
-type SecInvoiceType int32
-
 type SecOption struct {
 	Label  string
 	Value  int32
@@ -16,21 +13,23 @@ type SecOption struct {
 }
 
 const (
-	SecCustomerTypeEnterprise SecCustomerType = 1  //企业
-	SecCustomerTypeIndividual SecCustomerType = 12 // 个体工商户
-	SecCustomerTypePerson     SecCustomerType = 15 // 个人
-	SecInvoiceTypeNone        SecInvoiceType  = 1  // 无需开
-	SecInvoiceTypeElectronic  SecInvoiceType  = 2  // 电子发票
-	SecInvoiceTypeVat         SecInvoiceType  = 4  // 增值税发票
+	SecCustomerTypeEnterprise int32 = 1  // 企业
+	SecCustomerTypeIndividual int32 = 12 // 个体工商户
+	SecCustomerTypePerson     int32 = 15 // 个人
+	SecInvoiceTypeNone        int32 = 1  // 无需开
+	SecInvoiceTypeElectronic  int32 = 2  // 电子发票
+	SecInvoiceTypeVat         int32 = 4  // 增值税发票
+	SecAccountNameManual      int32 = 1  // 自选名称
+	SecAccountNameBrand       int32 = 2  // 品牌商标名
 )
 
 var (
-	SecCustomerTypeText = map[SecCustomerType]string{
+	SecCustomerTypeText = map[int32]string{
 		SecCustomerTypeEnterprise: "企业",
 		SecCustomerTypeIndividual: "个体工商户",
 		SecCustomerTypePerson:     "个人",
 	}
-	SecInvoiceTypeText = map[SecInvoiceType]string{
+	SecInvoiceTypeText = map[int32]string{
 		SecInvoiceTypeNone:       "无需发票",
 		SecInvoiceTypeElectronic: "电子发票",
 		SecInvoiceTypeVat:        "增值税发票",
@@ -38,33 +37,45 @@ var (
 	SecCustomerTypes = []*SecOption{
 		{
 			Label:  "企业",
-			Value:  1,
+			Value:  SecCustomerTypeEnterprise,
 			Remark: "enterprise",
 		},
 		{
 			Label:  "个体工商户",
-			Value:  12,
+			Value:  SecCustomerTypeIndividual,
 			Remark: "individual_business",
 		},
 		{
 			Label:  "个人",
-			Value:  15,
+			Value:  SecCustomerTypePerson,
 			Remark: "individual",
 		},
 	}
 	SecInvoiceTypes = []*SecOption{
 		{
 			Label:  "无需发票",
-			Value:  1,
+			Value:  SecInvoiceTypeNone,
 			Remark: "none",
 		}, {
 			Label:  "电子发票",
-			Value:  2,
+			Value:  SecInvoiceTypeElectronic,
 			Remark: "elec",
 		}, {
 			Label:  "增值税发票",
-			Value:  4,
+			Value:  SecInvoiceTypeVat,
 			Remark: "vat",
+		},
+	}
+	SecAccountType = []*SecOption{
+		{
+			Label:  "自选词汇命名",
+			Value:  SecAccountNameManual,
+			Remark: "",
+		},
+		{
+			Label:  "商标命名",
+			Value:  SecAccountNameBrand,
+			Remark: "",
 		},
 	}
 )
@@ -94,7 +105,7 @@ func (client *WeChatClient) BuildSecWxaAuthRequest() *SecWxaAuthRequest {
 
 type SecWxaAuthRequest struct {
 	AccessToken         string          `position:"query" name:"access_token" json:"-"`                           //
-	CustomerType        SecCustomerType `position:"body" name:"customer_type" json:"customer_type"`               // 企业为1，个体工商户 为12，个人是15
+	CustomerType        int32           `position:"body" name:"customer_type" json:"customer_type"`               // 企业为1，个体工商户 为12，个人是15
 	TaskID              string          `position:"body" name:"task_id" json:"task_id"`                           // 认证任务id，打回重审调用reauth时为必填
 	ContactInfo         *SecContactInfo `position:"body" name:"contact_info" json:"contact_info"`                 // 联系人信息
 	InvoiceInfo         *SecInvoiceInfo `position:"body" name:"invoice_info" json:"invoice_info"`                 // 发票信息，如果是服务商代缴模式，不需要改参数
@@ -134,7 +145,7 @@ type SecVatInvoice struct {
 
 // 发票信息
 type SecInvoiceInfo struct {
-	InvoiceType  SecInvoiceType        `json:"invoice_info"`  // 发票类型 1: 不开发票 2: 电子发票 3: 增值税专票
+	InvoiceType  int32                 `json:"invoice_info"`  // 发票类型 1: 不开发票 2: 电子发票 3: 增值税专票
 	Electronic   *SecElectronicInvoice `json:"electronic"`    // 发票类型=2时必填 电子发票开票信息
 	Vat          *SecVatInvoice        `json:"vat"`           // 发票类型=3时必填 增值税专票开票信息
 	InvoiceTitle string                `json:"invoice_title"` // 发票抬头，需要和认证主体名称一样
